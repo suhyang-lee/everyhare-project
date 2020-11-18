@@ -41,3 +41,4 @@
 ---
 
 ## 📎 유즈케이스 다이어그램
+<img src="https://user-images.githubusercontent.com/74591219/99482509-679fd900-299f-11eb-98c4-879b1647a0af.png" />
