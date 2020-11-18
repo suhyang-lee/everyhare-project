@@ -1,0 +1,31 @@
+{
+  "name": "react-everyshare-front",
+  "version": "1.0.0",
+  "description": "에브리쉐어 프로젝트 입니다.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next"
+  },
+  "author": "SUHYANG.LEE",
+  "license": "ISC",
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "next": "^10.0.1",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "devDependencies": {
+    "css-loader": "^5.0.1",
+    "eslint": "^7.13.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "fibers": "^5.0.0",
+    "sass": "^1.29.0",
+    "sass-loader": "^10.1.0",
+    "style-loader": "^2.0.0"
+  }
+}

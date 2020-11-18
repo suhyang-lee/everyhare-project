@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="17.4" height="19.111" viewBox="0 0 17.4 19.111">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #010101;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <g id="Icon_feather-shopping-bag" data-name="Icon feather-shopping-bag" transform="translate(83.7 -166.444)">
+    <g id="그룹_37" data-name="그룹 37" transform="translate(-87.2 164.444)">
+      <path id="패스_8" data-name="패스 8" class="cls-1" d="M7.067,3,4.5,6.422V18.4a1.711,1.711,0,0,0,1.711,1.711H18.189A1.711,1.711,0,0,0,19.9,18.4V6.422L17.333,3Z"/>
+      <path id="패스_9" data-name="패스 9" class="cls-1" d="M4.5,9H19.9" transform="translate(0 -2.578)"/>
+      <path id="패스_10" data-name="패스 10" class="cls-1" d="M18.845,15A3.422,3.422,0,0,1,12,15" transform="translate(-3.222 -5.155)"/>
+    </g>
+  </g>
+</svg>

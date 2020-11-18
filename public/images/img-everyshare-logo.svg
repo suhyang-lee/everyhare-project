@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="228" height="50" viewBox="0 0 228 50">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #010101;
+        font-size: 43px;
+        font-family: DXMobrRExtraBold-KSCpc-EUC-H, DX몽블랑라운드 ExB;
+      }
+
+      .cls-2 {
+        letter-spacing: -0.099em;
+      }
+    </style>
+  </defs>
+  <text id="에브리쉐어" class="cls-1" transform="translate(0 36)"><tspan class="cls-2" x="0" y="0">에브</tspan><tspan y="0">리쉐어</tspan></text>
+</svg>

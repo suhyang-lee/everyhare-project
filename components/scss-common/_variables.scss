@@ -1,0 +1,35 @@
+/* _variable.scss */
+
+// Main Color CODE
+$G-color-white: #fff;
+$G-color-yellow: #ffc800;
+$G-color-orange: #f89900;
+$G-color-black: #010101;
+$G-color-gray: #636363;
+
+// Main Shadow Color CODE
+$G-shadow-gray16: rgba(0, 0, 0, 0.16);
+$G-shadow-white16: rgba(255, 255, 255, 0.16);
+
+// line Color CODE
+$line-color-gray: #dfdfdfab;
+$line-color-yellow: #c19a0c83;
+
+// Background Color
+$color-transparency: rgba(0, 0, 0, 0%);
+
+// Break Points
+$breakpoint-mobile: 360px;
+$breakpoint-tablet: 720px;
+$breakpoint-desktop: 1200px;
+
+// height variable
+$height-100: 100 * 1vh;
+
+// Font weight
+$thin: 100;
+$light: 300;
+$regular: 400;
+$medium: 500;
+$bold: 700;
+$black: 900;

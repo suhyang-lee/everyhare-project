@@ -1,0 +1,141 @@
+/* _mixins.scss */
+@import "./variables";
+
+// 슬라이드 버튼
+@mixin slide-button {
+  position: absolute;
+  width: 4.688rem;
+  height: 4.688rem;
+  border-radius: 4.688rem;
+  background-color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin left-button($top) {
+  @include slide-button;
+  left: -2rem;
+  box-shadow: 3px 1px 5px rgba(0, 0, 0, 25%);
+  top: $top * 1%;
+
+  img {
+    transform: rotate(0deg);
+  }
+
+  &:hover {
+    animation-duration: 1s;
+    animation-name: leftButtonSlide;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-out;
+  }
+
+  @keyframes leftButtonSlide {
+    from {
+      margin-left: 10px;
+    }
+
+    to {
+      margin-left: 0px;
+    }
+  }
+}
+
+@mixin right-button($top) {
+  @include slide-button;
+  right: -2rem;
+  box-shadow: -3px 1px 5px rgba(0, 0, 0, 25%);
+  top: $top * 1%;
+
+  img {
+    transform: rotate(180deg);
+  }
+
+  &:hover {
+    animation-duration: 1s;
+    animation-name: rightButtonSlide;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-out;
+  }
+
+  @keyframes rightButtonSlide {
+    from {
+      margin-right: 10px;
+    }
+
+    to {
+      margin-right: 0px;
+    }
+  }
+}
+
+// 타이틀 스타일
+@mixin title-style($fontSize, $FontWeight, $fontAlign, $marginBotton) {
+  font-size: $fontSize * 1rem;
+  font-weight: $FontWeight;
+  text-align: $fontAlign;
+  margin-bottom: $marginBotton * 1rem;
+}
+
+// 이미지 사이즈 조정 및 스타일
+@mixin image-frame {
+  box-sizing: border-box;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin image-frame-stlye($width, $height, $bgc, $borderRadius) {
+  @include image-frame;
+
+  @if $width == auto {
+    width: auto;
+  } @else {
+    width: $width * 1%;
+  }
+
+  @if $height == auto {
+    height: auto;
+  } @else {
+    height: $height * 1rem;
+  }
+
+  background-color: $bgc;
+  border-radius: $borderRadius * 1%;
+}
+
+// 그리드 기본 설정
+@mixin basic-grid-columns($columnNum, $gap) {
+  display: grid;
+  grid-template-columns: repeat($columnNum, 1fr);
+  column-gap: $gap * 1px;
+}
+
+// 반응형 미디어 쿼리 (Size: 360-720-1200)
+@mixin mobile {
+  @media (min-width: #{$breakpoint-mobile}) and (max-width: #{$breakpoint-tablet - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$breakpoint-tablet}) and (max-width: #{$breakpoint-desktop - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$breakpoint-desktop}) {
+    @content;
+  }
+}
+
+// 반응형 그리드 셋팅
+@mixin responsive-grid($width, $height, $rowsNum, $gridColumns...) {
+  min-width: $width * 1px;
+  height: $height * 1rem;
+  grid-template-rows: repeat($rowsNum, 1fr);
+  grid-template-columns: $gridColumns;
+}
