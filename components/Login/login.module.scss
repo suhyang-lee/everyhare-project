@@ -1,0 +1,113 @@
+.loginWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 70%);
+  z-index: 999;
+}
+
+.modalWrapper {
+  width: 30rem;
+  height: 38.563rem;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  border-radius: 1rem;
+  padding: 2rem;
+  background-color: #fff;
+  position: relative;
+}
+
+.closeBtn {
+  cursor: pointer;
+  position: absolute;
+  right: 1rem;
+  top: 1.5rem;
+  background: 0;
+}
+
+.modal-wrapper > img {
+  width: 45%;
+}
+
+.loginForm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+.loginForm > input {
+  width: 100%;
+  height: 3rem;
+  margin-bottom: 0.3rem;
+  box-sizing: border-box;
+  padding: 1rem;
+  border: 1px solid #c7c7c7;
+  font-size: 1rem;
+  border-radius: 0.3rem;
+}
+
+.loginInfoSet {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: #838383;
+  font-weight: 300;
+}
+
+.loginInfoSet > button {
+  display: inline-block;
+  background: 0;
+  color: #838383;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.loginButtonList {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 4rem;
+}
+
+.loginButtonList > button {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  height: 3rem;
+  margin-bottom: 0.3rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 0.3rem;
+}
+
+.loginButtonList > button:first-child {
+  background-color: #000;
+  color: #fff;
+}
+
+.loginButtonList > button:nth-child(2) {
+  color: #000;
+  background: url("/images/kakako-logo.png") no-repeat #fee500;
+  background-position: 5rem center;
+  background-size: 1.5rem;
+}
+
+.loginButtonList > button:last-child {
+  color: #fff;
+  background: url("/images/naver-logo.png") no-repeat #09c73f;
+  background-position: 5.2rem center;
+  background-size: 1rem;
+}

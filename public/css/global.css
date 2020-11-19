@@ -77,7 +77,12 @@ html {
 body {
   height: 100%;
 }
-
+html::-webkit-scrollbar {
+  width: 0 !important;
+}
+body::-webkit-scrollbar {
+  width: 0 !important;
+}
 body,
 h1,
 h2,

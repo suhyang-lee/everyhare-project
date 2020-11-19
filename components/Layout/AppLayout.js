@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
@@ -7,6 +7,7 @@ import Footer from "./Footer/Footer";
 import styles from "./layout.module.scss";
 
 const AppLayout = ({ children }) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <div className={styles.page}>
       <Header styles={styles} />

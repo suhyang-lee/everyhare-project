@@ -1,6 +1,6 @@
 /* 헤더 내부 카테고리  */
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 
 import styles from "./category.module.scss";
