@@ -1,6 +1,7 @@
 /* mainBanner.module.scss */
 @import "../../scss-common/mixins";
 @import "../../scss-common/variables";
+@import "./mainBannerResoponsiv.scss";
 
 @import url(https://cdn.rawgit.com/kattergil/NotoSerifKR-Web/76eb9ebf/stylesheet/NotoSerif-Web.css);
 
@@ -9,7 +10,6 @@
   background-color: $G-color-white;
   background-image: url("/images/photo-1603376728541-6e1906a300e6.jpg");
   background-repeat: no-repeat;
-  background-position: 0 calc(70% + 17vh);
 
   .mainBanner {
     height: $height-100;
@@ -18,16 +18,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
-    .bannerContents {
-      width: 1200px;
-    }
   }
 }
 
 .bannerContents {
   h5 {
-    @include title-style(4, $black, left, 1.3);
     text-transform: uppercase;
     color: $G-color-white;
     box-sizing: border-box;
@@ -37,41 +32,26 @@
   p {
     font-family: "Noto Serif KR";
     color: $G-color-white;
-    font-weight: $thin;
-    font-size: 2rem;
-    line-height: 1.2em;
   }
 
   .bannerWriteBtn {
-    width: 20%;
-    height: 16%;
     border-radius: 3rem;
     color: $G-color-white;
     margin-top: 2rem;
     background-color: $color-transparency;
     border: 1px solid $G-color-white;
+    cursor: pointer;
 
     &:hover {
       background-color: $G-color-yellow;
       border: 1px;
       color: $G-color-black;
       font-weight: $bold;
-      cursor: pointer;
-      box-sizing: border-box;
-      animation-duration: 0.2s;
-      animation-name: seepButton;
-      animation-timing-function: ease-in;
+      outline: 0;
     }
-  }
-}
 
-@keyframes seepButton {
-  0% {
-    opacity: 0%;
-  }
-
-  100% {
-    opacity: 100%;
-    background-color: $G-color-yellow;
+    &:focus {
+      outline: 0;
+    }
   }
 }

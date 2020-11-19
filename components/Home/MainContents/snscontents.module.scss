@@ -1,6 +1,15 @@
 @import "../../scss-common/mixins";
 @import "../../scss-common/variables";
 
+@include mobile {
+}
+
+@include tablet {
+}
+
+@include desktop {
+}
+
 .headingWrpper {
   @include title-style(2.25, $black, center, 8);
 }

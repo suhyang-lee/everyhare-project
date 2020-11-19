@@ -1,15 +1,30 @@
 @import "../../scss-common/mixins";
 @import "../../scss-common/variables";
 
+@include mobile {
+}
+
+@include tablet {
+}
+
+@include desktop {
+  .newContentsWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .newContents {
+    width: 80%;
+  }
+}
+
 .headingWrpper {
   @include title-style(2.25, 900, center, 8);
 }
 
 .newContents {
   position: relative;
-  width: 1200px;
   @include basic-grid-columns(12, 27);
-  margin: 0 auto;
 
   li {
     display: grid;
@@ -17,7 +32,6 @@
     row-gap: 1rem;
 
     .productImageWrapper {
-      //image-frame-stlye($width, $height, $bgc, $borderRadius)
       @include image-frame-stlye(100, 23.875, $G-color-white, 3);
       border: 1px solid $line-color-gray;
     }

@@ -56,7 +56,7 @@ const Header = () => {
         </div>
       </div>
 
-      {isOpen && <Category onClickOpen={onClickOpen} />}
+      {isOpen && <Category onClickOpen={onClickOpen} isOpen={isOpen} />}
     </header>
   );
 };
