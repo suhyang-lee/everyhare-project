@@ -1,15 +1,21 @@
 /* 페이지 공통 헤더  */
+import React, { useState } from "react";
+import Category from "../Category/Category";
 
-import React from "react";
-/* CSS 모듈 import */
 import styles from "./header.module.scss";
 
 const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const onClickOpen = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <header className={styles.header}>
       <div className={styles.headerItemsWrapper}>
         <div className={styles.headerItem}>
-          <div className={styles.headerMenuBtn}>
+          <div className={styles.headerMenuBtn} onClick={onClickOpen}>
             <img src="/images/icon-menu.svg" alt="메뉴열기" />
             <h2>카테고리</h2>
           </div>
@@ -49,6 +55,8 @@ const Header = () => {
           </nav>
         </div>
       </div>
+
+      {isOpen && <Category onClickOpen={onClickOpen} />}
     </header>
   );
 };
