@@ -1,31 +1,40 @@
 /* 페이지 공통 헤더  */
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import Category from "../Category/Category";
 import Login from "../../Login/Login";
 
 import styles from "./header.module.scss";
 
 const Header = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const [isOpen, setIsOpen] = useState(false);
   const [isShow, setIsShow] = useState(false);
+
+  const onLogOut = useCallback(() => {
+    setIsLoggedIn(false);
+  }, []);
 
   const onClickOpen = () => {
     setIsOpen(!isOpen);
   };
 
   const onClickLoginModal = (e) => {
-    e.preventDefault();
     setIsShow(true);
   };
 
   const onClickLoginModalClose = (e) => {
-    e.preventDefault();
     setIsShow(false);
   };
 
   return (
     <>
-      {isShow && <Login onClickLoginModalClose={onClickLoginModalClose} />}
+      {isShow && (
+        <Login
+          onClickLoginModalClose={onClickLoginModalClose}
+          setIsLoggedIn={setIsLoggedIn}
+        />
+      )}
       <header className={styles.header}>
         <div className={styles.headerItemsWrapper}>
           <div className={styles.headerItem}>
@@ -49,18 +58,27 @@ const Header = () => {
                     <a>마이페이지</a>
                   </h2>
                 </li>
-                <li>
-                  <h2 onClick={onClickLoginModal}>로그인</h2>
-                </li>
-                <li>
-                  <h2>
-                    <a>회원가입</a>
-                  </h2>
-                </li>
-                <li>
+                {isLoggedIn ? (
+                  <li onClick={onLogOut}>
+                    <h2>로그아웃</h2>
+                  </li>
+                ) : (
+                  <>
+                    <li>
+                      <h2 onClick={onClickLoginModal}>로그인</h2>
+                    </li>
+                    <li>
+                      <h2>
+                        <a>회원가입</a>
+                      </h2>
+                    </li>
+                  </>
+                )}
+
+                <li className={styles.circleBtn}>
                   <img src="/images/icon-search.svg" alt="검색하기" />
                 </li>
-                <li>
+                <li className={styles.circleBtn}>
                   <img src="/images/icon-shopping.svg" alt="담아두기" />
                 </li>
               </ul>

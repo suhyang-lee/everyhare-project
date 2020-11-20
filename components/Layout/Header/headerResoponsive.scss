@@ -113,10 +113,9 @@
       &:nth-child(3) {
         display: none;
       }
-      &:nth-child(4),
-      &:nth-child(5) {
-        background-color: $G-color-yellow;
-      }
+    }
+    .circleBtn {
+      background-color: $G-color-yellow;
     }
   }
   .headerMenuBtn {
@@ -159,11 +158,8 @@
   }
 
   .gnbUl {
-    li {
-      &:nth-child(4),
-      &:nth-child(5) {
-        background-color: $G-color-yellow;
-      }
+    .circleBtn {
+      background-color: $G-color-yellow;
     }
   }
 

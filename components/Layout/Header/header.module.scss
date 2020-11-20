@@ -40,18 +40,17 @@
     &:nth-child(1),
     &:nth-child(2),
     &:nth-child(3) {
-      margin-right: 0.8rem;
+      margin-right: 0.5rem;
     }
+  }
 
-    &:nth-child(4),
-    &:nth-child(5) {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 2.5rem;
-      height: 2.5rem;
-      border-radius: 2.5rem;
-      margin-right: 0.2rem;
-    }
+  .circleBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 2.5rem;
+    margin-right: 0.2rem;
   }
 }
