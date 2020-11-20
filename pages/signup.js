@@ -8,7 +8,7 @@ const SignUp = () => {
   return (
     <AppLayout>
       <Head>
-        <title>홈 | EveryShare</title>
+        <title>회원가입 | EveryShare</title>
       </Head>
       <Signup />
     </AppLayout>

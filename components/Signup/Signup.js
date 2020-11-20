@@ -1,8 +1,53 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
+import styled from "styled-components";
 
+import useInput from "../Hooks/useInput";
 import styles from "./signup.module.scss";
 
+const ErrorMessage = styled.div`
+  color: red;
+`;
+
 const Signup = () => {
+  const [id, onChangeId] = useInput("");
+
+  const [password, onChangePassword] = useInput("");
+  const [passwordCheck, setPasswordCheck] = useState("");
+  const [passwordError, setPasswordError] = useState(false);
+
+  const [nickname, onChangeNickname] = useInput("");
+  const [phoneNumber, onChangePhoneNumber] = useInput("");
+
+  const [term, setTerm] = useState("");
+  const [termError, setTermError] = useState(false);
+
+  const onChangePasswordCheck = useCallback(
+    (e) => {
+      setPasswordCheck(e.target.value);
+      setPasswordError(e.target.value !== password);
+    },
+    [password],
+  );
+
+  const onChangeTerm = useCallback((e) => {
+    setTerm(e.target.checked);
+    setTermError(false);
+  }, []);
+
+  const onSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+
+      if (password !== passwordCheck) {
+        return setPasswordError(true);
+      }
+      if (!term) {
+        return setTermError(true);
+      }
+      console.log(id, nickname, password, phoneNumber);
+    },
+    [password, passwordCheck, term],
+  );
   return (
     <div className={styles.joinWrapper}>
       <div className={styles.joinItem}>
@@ -23,25 +68,63 @@ const Signup = () => {
         <hr />
       </div>
       <div className={styles.joinItem}>
-        <form>
-          <input type="text" placeholder="사용하실 ID를 입력 해 주세요." />
-          <input
-            type="password"
-            placeholder="패스워드의 조합을 영문 + 숫자 + 특수문자 8~16자리로 입력 해 주세요."
-          />
-          <input type="password" placeholder="패스워드를 재입력 해 주세요." />
-          <input type="text" placeholder="별명을 입력 해 주세요." />
+        <form onSubmit={onSubmit}>
           <input
             type="text"
+            name="user-id"
+            value={id}
+            onChange={onChangeId}
+            required
+            placeholder="사용하실 ID를 입력 해 주세요."
+          />
+          <input
+            type="password"
+            name="user-password"
+            value={password}
+            onChange={onChangePassword}
+            placeholder="패스워드의 조합을 영문 + 숫자 + 특수문자 8~16자리로 입력 해 주세요."
+          />
+          <input
+            type="password"
+            name="user-password-check"
+            value={passwordCheck}
+            onChange={onChangePasswordCheck}
+            placeholder="패스워드를 재입력 해 주세요."
+          />
+          {passwordError && (
+            <ErrorMessage>비밀번호가 일치하지 않습니다.</ErrorMessage>
+          )}
+          <input
+            type="text"
+            name="user-nickname"
+            value={nickname}
+            onChange={onChangeNickname}
+            placeholder="별명을 입력 해 주세요."
+          />
+          <input
+            type="text"
+            name="user-phone-number"
+            value={phoneNumber}
+            onChange={onChangePhoneNumber}
             placeholder="휴대폰 번호를 '-'표 없이 입력 해 주세요"
           />
+          <p className={styles.joinInfoMessage}>
+            <input
+              type="checkbox"
+              name="user-term"
+              checked={term}
+              onChange={onChangeTerm}
+            />
+            ※ 에브리쉐어는 실제로 서비스되고 있지 않습니다. <br />
+            {termError && (
+              <ErrorMessage>약관에 동의하셔야 합니다.</ErrorMessage>
+            )}
+          </p>
+          <button className={styles.joinSubmitBtn} htmltype="submit">
+            에브리쉐어 가입하기
+          </button>
         </form>
       </div>
-      <p className={styles.joinInfoMessage}>
-        ※ 에브리쉐어는 실제로 서비스되고 있지 않습니다. <br />※ 에브리쉐어는
-        개인 프로젝트를 위해 만들어진 사이트 입니다.
-      </p>
-      <button className={styles.joinSubmitBtn}>에브리쉐어 가입하기</button>
     </div>
   );
 };
