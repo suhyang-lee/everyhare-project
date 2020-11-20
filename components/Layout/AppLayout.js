@@ -7,7 +7,6 @@ import Footer from "./Footer/Footer";
 import styles from "./layout.module.scss";
 
 const AppLayout = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <div className={styles.page}>
       <Header styles={styles} />

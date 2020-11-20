@@ -1,0 +1,113 @@
+.joinWrapper {
+  width: 800px;
+  margin: 0 auto;
+  padding-top: 15rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.joinItem {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.joinContent:first-child > h4 {
+  font-size: 2rem;
+}
+
+.joinContent:first-child > p {
+  font-size: 1.125rem;
+  color: #979797;
+  margin-top: 1rem;
+}
+
+.joinContent:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+}
+
+.joinContent:nth-child(2) > button {
+  width: 20rem;
+  height: 3rem;
+  margin-bottom: 0.3rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 0.3rem;
+}
+
+.joinContent:nth-child(2) > button:first-child {
+  color: #000;
+  background: url("/images/kakako-logo.png") no-repeat #fee500;
+  background-position: 3rem center;
+  background-size: 1.5rem;
+}
+
+.joinContent:nth-child(2) > button:last-child {
+  color: #fff;
+  background: url("/images/naver-logo.png") no-repeat #09c73f;
+  background-position: 3.2rem center;
+  background-size: 1rem;
+}
+
+.joinItem:nth-child(3) > form {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.joinItem:nth-child(3) > form > input {
+  width: 100%;
+  height: 3rem;
+  margin-bottom: 0.3rem;
+  box-sizing: border-box;
+  padding: 1rem;
+  border: 1px solid #c7c7c7;
+  font-size: 1rem;
+  border-radius: 0.3rem;
+}
+
+.joinItem:nth-child(2) {
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  font-weight: 900;
+}
+
+.joinItem:nth-child(2) > hr {
+  width: 50%;
+  align-self: center;
+  border: 0px;
+  height: 1px;
+  background-color: #c7c7c7;
+}
+
+.joinItem:nth-child(2) > hr:nth-child(1) {
+  align-self: right;
+  margin-right: 1rem;
+}
+
+.joinItem:nth-child(2) > hr:nth-child(2) {
+  align-self: left;
+  margin-left: 1rem;
+}
+
+.joinInfoMessage {
+  margin-top: 1rem;
+  margin-bottom: 5rem;
+}
+
+.joinSubmitBtn {
+  display: block;
+  width: 20.5rem;
+  height: 4.063rem;
+  font-size: 1.25rem;
+  background-color: #000;
+  margin: 0 auto;
+  color: #fff;
+  border-radius: 3rem;
+  cursor: pointer;
+  margin-bottom: 10rem;
+}
