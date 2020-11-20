@@ -3,20 +3,27 @@ import styles from "./login.module.scss";
 import Link from "next/link";
 import PropTypes from "prop-types";
 import useInput from "../Hooks/useInput";
+import { useDispatch } from "react-redux";
+import { loginAction } from "../../reducers/user";
 
-const LoginForm = ({ setIsLoggedIn, onClickLoginModalClose }) => {
+const LoginForm = ({ onClickLoginModalClose }) => {
+  const dispatch = useDispatch();
   const [id, onChangeId] = useInput("");
   const [password, onChangePassword] = useInput("");
 
   const onSubmitForm = useCallback(
     (e) => {
       e.preventDefault();
-      console.log(id, password);
-      setIsLoggedIn(true);
+
+      //로그인 완료 셋팅
+      dispatch(loginAction({ id, password }));
+
+      //로그인 모달닫기
       onClickLoginModalClose();
     },
     [id, password],
   );
+
   return (
     <>
       <form className={styles.loginForm} onSubmit={onSubmitForm}>
@@ -55,7 +62,6 @@ const LoginForm = ({ setIsLoggedIn, onClickLoginModalClose }) => {
 };
 
 LoginForm.propTypes = {
-  setIsLoggedIn: PropTypes.func.isRequired,
   onClickLoginModalClose: PropTypes.func.isRequired,
 };
 

@@ -4,15 +4,18 @@ import Category from "../Category/Category";
 import Login from "../../Login/Login";
 
 import styles from "./header.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutAction } from "../../../reducers/user";
 
 const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const dispatch = useDispatch();
 
   const [isOpen, setIsOpen] = useState(false);
   const [isShow, setIsShow] = useState(false);
 
   const onLogOut = useCallback(() => {
-    setIsLoggedIn(false);
+    dispatch(logoutAction());
   }, []);
 
   const onClickOpen = () => {
@@ -29,12 +32,7 @@ const Header = () => {
 
   return (
     <>
-      {isShow && (
-        <Login
-          onClickLoginModalClose={onClickLoginModalClose}
-          setIsLoggedIn={setIsLoggedIn}
-        />
-      )}
+      {isShow && <Login onClickLoginModalClose={onClickLoginModalClose} />}
       <header className={styles.header}>
         <div className={styles.headerItemsWrapper}>
           <div className={styles.headerItem}>
