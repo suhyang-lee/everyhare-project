@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import Head from "next/head";
 import "../public/css/global.css";
 
+import wrapper from "../store/configureStore";
+
 const EveryShare = ({ Component }) => {
   return (
     <>
@@ -20,4 +22,4 @@ EveryShare.propTypes = {
   Component: PropTypes.elementType.isRequired,
 };
 
-export default EveryShare;
+export default wrapper.withRedux(EveryShare);
