@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 
-import useInput from "../Hooks/useInput";
+import { useInput } from "../Hooks/userHooks";
 import styles from "./signup.module.scss";
 
 const ErrorMessage = styled.div`

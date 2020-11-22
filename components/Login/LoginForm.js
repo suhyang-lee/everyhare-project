@@ -2,14 +2,14 @@ import React, { useCallback } from "react";
 import styles from "./login.module.scss";
 import Link from "next/link";
 import PropTypes from "prop-types";
-import useInput from "../Hooks/useInput";
+import { userInput } from "../Hooks/userHooks";
 import { useDispatch } from "react-redux";
 import { loginAction } from "../../reducers/user";
 
 const LoginForm = ({ onClickLoginModalClose }) => {
   const dispatch = useDispatch();
-  const [id, onChangeId] = useInput("");
-  const [password, onChangePassword] = useInput("");
+  const [id, onChangeId] = userInput();
+  const [password, onChangePassword] = userInput();
 
   const onSubmitForm = useCallback(
     (e) => {

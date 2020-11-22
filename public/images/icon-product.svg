@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="30" height="33" viewBox="0 0 30 33">
+  <g id="Icon_feather-shopping-bag" data-name="Icon feather-shopping-bag" transform="translate(-3 -1.5)">
+    <path id="패스_1" data-name="패스 1" d="M9,3,4.5,9V30a3,3,0,0,0,3,3h21a3,3,0,0,0,3-3V9L27,3Z" fill="none" stroke="#818181" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+    <path id="패스_2" data-name="패스 2" d="M4.5,9h27" fill="none" stroke="#818181" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+    <path id="패스_3" data-name="패스 3" d="M24,15a6,6,0,0,1-12,0" fill="none" stroke="#818181" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+  </g>
+</svg>

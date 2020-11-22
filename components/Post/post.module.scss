@@ -1,0 +1,186 @@
+@import "../scss-common/variables";
+@import "../scss-common/mixins";
+@import "./postResponsive.scss";
+
+.wrapper {
+  box-sizing: border-box;
+  padding: 1rem;
+}
+
+.titleWrapper {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 0.3rem;
+  border-bottom: 1px solid #707070;
+  box-sizing: border-box;
+  margin-bottom: 2rem;
+
+  h3 {
+    font-size: 2em;
+    font-weight: 700;
+  }
+
+  img {
+    margin-right: 0.5rem;
+  }
+}
+
+.postWrapper {
+  h4 {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 2rem;
+  }
+  .postContentsWrapper {
+    width: 100%;
+  }
+}
+
+.postContents {
+  margin-bottom: 3rem;
+
+  h5 {
+    text-shadow: #fff 0px 1px 1px;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    line-height: 1.4rem;
+  }
+
+  .radioWrapper {
+    width: 100%;
+    display: flex;
+    margin-top: 1rem;
+  }
+}
+
+.postTypeRadio {
+  position: relative;
+  width: 100%;
+  p {
+    cursor: pointer;
+  }
+
+  .radioLabel {
+    width: 100%;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: inline-block;
+    border-color: #ddd;
+    font-size: 1.2rem;
+    border: 1px solid hsl(0, 0%, 89%);
+    font-weight: 700;
+    background-repeat: no-repeat;
+  }
+
+  .noneActive {
+    background-image: url("/images/icon-box.svg");
+    background-color: #fff;
+  }
+  .noneActiveC {
+    background-image: url("/images/icon-calender.svg");
+    background-color: #fff;
+  }
+  .active {
+    background-image: url("/images/icon-check.svg");
+    background-color: #000;
+    color: #fff;
+  }
+}
+
+/* 위치 검색 */
+.locationWrapper {
+  width: 100%;
+  display: flex;
+  position: relative;
+
+  input[type="text"] {
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid hsl(0, 0%, 89%);
+    font-size: 1.4rem;
+  }
+
+  .gpsBtn {
+    position: absolute;
+    right: 0;
+    bottom: 0.3rem;
+    cursor: pointer;
+    background-color: transparent;
+
+    img {
+      width: 70%;
+    }
+  }
+}
+
+.categorySelect {
+  width: 100%;
+  height: 3rem;
+  font-size: 1.125rem;
+  border: 1px solid hsl(0, 0%, 89%);
+  box-sizing: border-box;
+  padding-left: 1rem;
+  font-weight: 500;
+  -webkit-appearance: none; /* 네이티브 외형 감추기 */
+  -moz-appearance: none;
+  appearance: none;
+  background-color: red;
+  background: url("/images/icon-select.svg") no-repeat 95% 50%;
+}
+
+/* 대여 조건 */
+
+.inputWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  p {
+    font-size: 2rem;
+  }
+  input {
+    height: 3rem;
+    font-size: 1.125rem;
+    border: 0;
+    border-bottom: 1px solid hsl(0, 0%, 89%);
+    box-sizing: border-box;
+    padding-left: 0.5rem;
+    text-align: center;
+  }
+  .inputTerm {
+    width: 30%;
+  }
+  .rentalFeeSelect {
+    width: 41%;
+  }
+  .depositInput {
+    width: 72.5%;
+  }
+}
+
+.addBtn {
+  width: 15%;
+  height: 3rem;
+  background-color: #fff;
+  border: 1px solid #c7c7c7;
+  background-image: url("/images/icon-plus.svg");
+  background-repeat: no-repeat;
+  background-position: center right 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.nextBtn {
+  display: block;
+  width: 12.5rem;
+  height: 3.063rem;
+  font-size: 1.25rem;
+  background-color: #000;
+  margin: 0 auto;
+  color: #fff;
+  border-radius: 3rem;
+  cursor: pointer;
+  margin-bottom: 10rem;
+}

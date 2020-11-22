@@ -3,7 +3,7 @@
 
 .page {
   display: grid;
-  grid-template-rows: auto 478px;
+  grid-template-rows: auto auto;
   overflow: hidden;
 
   .header,
@@ -26,6 +26,7 @@
 }
 
 .contents {
+  width: 100%;
   min-height: 100vh;
   grid-row: 1/2;
 }
