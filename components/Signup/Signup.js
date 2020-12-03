@@ -1,7 +1,9 @@
 import React, { useCallback, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { SIGN_UP_REQUEST } from "../../actions/userAction";
 
-import { useInput } from "../Hooks/userHooks";
+import { userInput } from "../Hooks/userHooks";
 import styles from "./signup.module.scss";
 
 const ErrorMessage = styled.div`
@@ -9,14 +11,17 @@ const ErrorMessage = styled.div`
 `;
 
 const Signup = () => {
-  const [id, onChangeId] = useInput("");
+  const dispatch = useDispatch();
+  const { signupLoading } = useSelector((state) => state.user);
 
-  const [password, onChangePassword] = useInput("");
+  const [email, onChangeEmail] = userInput("");
+
+  const [password, onChangePassword] = userInput("");
   const [passwordCheck, setPasswordCheck] = useState("");
   const [passwordError, setPasswordError] = useState(false);
 
-  const [nickname, onChangeNickname] = useInput("");
-  const [phoneNumber, onChangePhoneNumber] = useInput("");
+  const [nickname, onChangeNickname] = userInput("");
+  const [phoneNumber, onChangePhoneNumber] = userInput("");
 
   const [term, setTerm] = useState("");
   const [termError, setTermError] = useState(false);
@@ -44,7 +49,11 @@ const Signup = () => {
       if (!term) {
         return setTermError(true);
       }
-      console.log(id, nickname, password, phoneNumber);
+      console.log(email, nickname, password, phoneNumber);
+      dispatch({
+        type: SIGN_UP_REQUEST,
+        data: { email, nickname, password, phoneNumber },
+      });
     },
     [password, passwordCheck, term],
   );
@@ -70,12 +79,12 @@ const Signup = () => {
       <div className={styles.joinItem}>
         <form onSubmit={onSubmit}>
           <input
-            type="text"
-            name="user-id"
-            value={id}
-            onChange={onChangeId}
+            type="email"
+            name="user-email"
+            value={email}
+            onChange={onChangeEmail}
             required
-            placeholder="사용하실 ID를 입력 해 주세요."
+            placeholder="사용하실 이메일을 입력 해 주세요."
           />
           <input
             type="password"

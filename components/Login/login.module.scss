@@ -61,8 +61,14 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   color: #838383;
   font-weight: 300;
+  margin-top: 1rem;
+}
+
+.loginInfoSet label {
+  margin-left: 0.8rem;
 }
 
 .loginInfoSet > button {

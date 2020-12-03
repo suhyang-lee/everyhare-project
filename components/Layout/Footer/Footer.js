@@ -1,6 +1,12 @@
 /* 페이지 공통 풋터  */
-
 import React from "react";
+import Link from "next/link";
+import styled from "styled-components";
+
+const FooterLink = styled.a`
+  color: white;
+  cursor: pointer;
+`;
 
 /* CSS 모듈 import */
 import styles from "./footer.module.scss";
@@ -15,39 +21,83 @@ const Footer = () => {
             <li>
               <h3>CATEGORY</h3>
             </li>
+
             <li>
               <h4>
-                <a>디지털/가전</a>
+                <Link
+                  href={{
+                    pathname: "/board/digital",
+                  }}
+                >
+                  <FooterLink>디지털/가전</FooterLink>
+                </Link>
+              </h4>
+            </li>
+
+            <li>
+              <h4>
+                <Link
+                  href={{
+                    pathname: "/board/kids",
+                  }}
+                >
+                  <FooterLink>유아동</FooterLink>
+                </Link>
               </h4>
             </li>
             <li>
               <h4>
-                <a>유아동</a>
+                <Link
+                  href={{
+                    pathname: "/board/goods",
+                  }}
+                >
+                  <FooterLink>생활용품</FooterLink>
+                </Link>
               </h4>
             </li>
             <li>
               <h4>
-                <a>생활용품</a>
+                <Link
+                  href={{
+                    pathname: "/board/clothing",
+                  }}
+                >
+                  <FooterLink>의류/잡화</FooterLink>
+                </Link>
               </h4>
             </li>
             <li>
               <h4>
-                <a>의류/잡화</a>
+                <Link
+                  href={{
+                    pathname: "/board/sports",
+                  }}
+                >
+                  <FooterLink>스포츠/레저</FooterLink>
+                </Link>
               </h4>
             </li>
             <li>
               <h4>
-                <a>스포츠/레저</a>
+                <Link
+                  href={{
+                    pathname: "/board/hobby",
+                  }}
+                >
+                  <FooterLink>도서/취미</FooterLink>
+                </Link>
               </h4>
             </li>
             <li>
               <h4>
-                <a>도서/취미</a>
-              </h4>
-            </li>
-            <li>
-              <h4>
-                <a>기타용품</a>
+                <Link
+                  href={{
+                    pathname: "/board/etc",
+                  }}
+                >
+                  <FooterLink>기타용품</FooterLink>
+                </Link>
               </h4>
             </li>
           </ul>

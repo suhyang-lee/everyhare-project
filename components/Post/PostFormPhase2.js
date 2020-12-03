@@ -1,48 +1,22 @@
-import React, { useCallback, useState } from "react";
+import React from "react";
 import styles from "./post.module.scss";
-import Editor from "./PostEditor";
-import classNames from "classnames/bind";
-import { userSelect } from "../Hooks/userHooks";
+import _ from "lodash/fp";
+import PropTypes from "prop-types";
 import styled from "styled-components";
-import { PlusCircleOutlined, RightOutlined } from "@ant-design/icons";
+import classNames from "classnames/bind";
+import { RightOutlined } from "@ant-design/icons";
+
+import Editor from "./PostEditor";
 
 const cx = classNames.bind(styles);
 
 const ErrorMessage = styled.div`
+  display: block;
   color: red;
+  margin-top: 1rem;
 `;
 
-const PostFormPhase2 = () => {
-  const [long, short, onSelect] = userSelect();
-  const [min, setMin] = useState(1);
-  const [max, setMax] = useState(5);
-  const [minError, setMinError] = useState(false);
-  const [maxError, setMaxError] = useState(false);
-
-  const onMinCheck = useCallback(
-    (e) => {
-      setMin(e.target.value);
-      if (e.target.value < 0 || e.target.value >= 31) {
-        setMinError(true);
-      } else {
-        setMinError(false);
-      }
-    },
-    [min],
-  );
-
-  const onMaxCheck = useCallback(
-    (e) => {
-      setMax(e.target.value);
-      if (e.target.value < 5 || e.target.value >= 366) {
-        setMaxError(true);
-      } else {
-        setMaxError(false);
-      }
-    },
-    [max],
-  );
-
+const PostFormPhase2 = ({ register, setEditorState, errors }) => {
   return (
     <>
       <article className={styles.postWrapper}>
@@ -50,33 +24,39 @@ const PostFormPhase2 = () => {
         <div className={styles.postContentsWrapper}>
           {/* 물건 대여 유형 */}
           <div className={styles.postContents}>
-            <h5>물건의 대여 유형을 선택 해 주세요</h5>
+            <h5>물건의 대여 유형을 선택 해 주세요</h5>{" "}
             <div className={styles.radioWrapper}>
-              <div className={styles.postTypeRadio} onClick={onSelect}>
-                <button
-                  className={
-                    long
-                      ? cx("active", "radioLabel")
-                      : cx("noneActiveC", "radioLabel")
-                  }
-                  owner="borrower"
-                >
+              <div className={styles.postTypeRadio}>
+                <input
+                  ref={register}
+                  type="radio"
+                  name="rentTerm"
+                  value="long"
+                  id="long"
+                  hidden
+                  defaultChecked
+                />
+                <label htmlFor="long" className={cx("radioLabel", "termLabel")}>
                   장기 대여
                   <p>
                     장기간 대여를 하는 분들이 선택하는 유형으로 <br />
                     30일 이상 대여 시에 해당합니다
                   </p>
-                </button>
+                </label>
               </div>
 
-              <div className={styles.postTypeRadio} onClick={onSelect}>
-                <button
-                  className={
-                    short
-                      ? cx("active", "radioLabel")
-                      : cx("noneActiveC", "radioLabel")
-                  }
-                  value="borrower"
+              <div className={styles.postTypeRadio}>
+                <input
+                  ref={register}
+                  type="radio"
+                  name="rentTerm"
+                  value="short"
+                  id="short"
+                  hidden
+                />
+                <label
+                  htmlFor="short"
+                  className={cx("radioLabel", "termLabel")}
                 >
                   단기 대여
                   <p>
@@ -84,75 +64,125 @@ const PostFormPhase2 = () => {
                     <br />
                     30일 미만의 대여 시에 해당합니다
                   </p>
-                </button>
+                </label>
               </div>
             </div>
           </div>
+
+          {/* 물품 이미지 추가 */}
+          <div className={styles.postContents}>
+            <h5>대여 할 이미지를 등록 해 주세요</h5>
+
+            <div className={styles.imageUploadWrapper}>
+              <label htmlFor="addFile">사진등록</label>
+              <input type="file" multiple id="addFile" name="imageUpload" />
+            </div>
+          </div>
+          <div className={styles.postContents}>
+            <h5>게시물 제목을 입력 해 주세요</h5>
+            <div className={styles.contentsBox}>
+              <div className={styles.textWrapper}>
+                <input
+                  type="text"
+                  name="title"
+                  ref={register({
+                    required: true,
+                    maxLength: 100,
+                  })}
+                />
+              </div>
+              {_.get("title.type", errors) === "required" && (
+                <ErrorMessage>제목은 필수 입력 사항입니다</ErrorMessage>
+              )}
+              {_.get("title.type", errors) === "maxLength" && (
+                <ErrorMessage>제목은 최대 100자까지 입니다</ErrorMessage>
+              )}
+            </div>
+          </div>
+
           {/* 물품 관련 텍스트 에디터 */}
           <div className={styles.postContents}>
             <h5>물품에 대한 내용을 작성해주세요</h5>
-            <Editor />
-          </div>
-          <div className={styles.postContents}>
-            <h5>대여 기간을 입력 해 주세요</h5>
             <div className={styles.inputWrapper}>
-              <p>최소</p>
-              <input
-                type="number"
-                min="1"
-                max="31"
-                step="5"
-                className={styles.inputTerm}
-                value={min}
-                onChange={onMinCheck}
-              />
-              <p>일 / 최대</p>
-              <input
-                type="number"
-                min="5"
-                max="365"
-                step="10"
-                className={styles.inputTerm}
-                value={max}
-                onChange={onMaxCheck}
-              />
-              <p>일</p>
+              <Editor setEditorState={setEditorState} />
             </div>
           </div>
+
+          {/* 대여비 계산 방법 */}
           <div className={styles.postContents}>
             <h5>대여비의 계산 방법을 입력 해 주세요</h5>
-            <div className={styles.inputWrapper}>
-              <select
-                name="renteFeeSelect"
-                className={cx("categorySelect", "rentalFeeSelect")}
-              >
-                <option value="day">일(Days) 당</option>
-                <option value="month">달(Month) 당</option>
-                <option value="year">년(year) 당</option>
-              </select>
-              <input type="number" min="0" />
-              <p>원</p>
-              <button className={styles.addBtn}>
-                제안추가&nbsp;
-                <PlusCircleOutlined />
-              </button>
+            <div className={styles.contentsBox}>
+              <div className={styles.inputWrapper}>
+                <select
+                  ref={register}
+                  name="rentelFeeSelect"
+                  className={cx("selectList", "rentalFeeSelect")}
+                >
+                  <option value="day">일(Days) 당</option>
+                  <option value="month">달(Month) 당</option>
+                  <option value="year">년(year) 당</option>
+                </select>
+                <input
+                  type="text"
+                  ref={register({
+                    required: true,
+                    pattern: /^[0-9]*$/,
+                  })}
+                  name="rentalFee"
+                  className={styles.rentalFee}
+                />
+                <p>원</p>
+              </div>
+
+              {_.get("rentalFee.type", errors) === "required" && (
+                <ErrorMessage>대여비는 필수 입력 사항입니다</ErrorMessage>
+              )}
+
+              {_.get("rentalFee.type", errors) === "pattern" && (
+                <ErrorMessage>오직 숫자만 입력하셔야 합니다</ErrorMessage>
+              )}
             </div>
           </div>
+
+          {/* 보증금 책정 */}
           <div className={styles.postContents}>
             <h5>적절한 보증금을 책정 해 주세요</h5>
-            <div className={styles.inputWrapper}>
-              <input type="number" min="0" className={styles.depositInput} />
-              <p>원</p>
-              <button className={styles.addBtn}>
-                시세 알아보기&nbsp;
-                <RightOutlined />
-              </button>
+            <div className={styles.contentsBox}>
+              <div className={styles.inputWrapper}>
+                <input
+                  type="text"
+                  ref={register({
+                    required: true,
+                    pattern: /^[0-9]*$/,
+                  })}
+                  name="deposit"
+                  className={styles.depositInput}
+                />
+                <p>원</p>
+                <button className={styles.searchBtn}>
+                  시세 알아보기&nbsp;
+                  <RightOutlined />
+                </button>
+              </div>
+              {_.get("deposit.type", errors) === "required" && (
+                <ErrorMessage>보증금은 필수 입력 사항입니다</ErrorMessage>
+              )}
+
+              {_.get("deposit.type", errors) === "pattern" && (
+                <ErrorMessage>오직 숫자만 입력하셔야 합니다</ErrorMessage>
+              )}
             </div>
           </div>
         </div>
       </article>
     </>
   );
+};
+
+PostFormPhase2.propTypes = {
+  register: PropTypes.func.isRequired,
+  setEditorState: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired,
 };
 
 export default PostFormPhase2;

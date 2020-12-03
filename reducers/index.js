@@ -3,7 +3,6 @@ import { combineReducers } from "redux";
 
 import user from "./user";
 import post from "./post";
-import comment from "./comment";
 
 /* combineReducers를 통해 reducer 함수 합치기
  * Hydrate(SSR)를 위해서 index를 추가한 것 임.
@@ -20,7 +19,6 @@ const rootReducer = combineReducers({
   },
   user,
   post,
-  comment,
 });
 
 export default rootReducer;

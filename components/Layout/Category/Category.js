@@ -2,8 +2,14 @@
 
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-
+import Link from "next/link";
+import styled from "styled-components";
 import styles from "./category.module.scss";
+
+const HeaderLink = styled.a`
+  color: black;
+  cursor: pointer;
+`;
 
 const Category = ({ onClickOpen, isOpen }) => {
   const body = document.querySelector("body");
@@ -46,37 +52,79 @@ const Category = ({ onClickOpen, isOpen }) => {
             </li>
             <li>
               <h4>
-                <a>디지털/가전</a>
+                <Link
+                  href={{
+                    pathname: "/board/digital",
+                  }}
+                >
+                  <HeaderLink>디지털/가전</HeaderLink>
+                </Link>
               </h4>
             </li>
             <li>
               <h4>
-                <a>유아동</a>
+                <Link
+                  href={{
+                    pathname: "/board/kids",
+                  }}
+                >
+                  <HeaderLink>유아동</HeaderLink>
+                </Link>
               </h4>
             </li>
             <li>
               <h4>
-                <a>생활용품</a>
+                <Link
+                  href={{
+                    pathname: "/board/goods",
+                  }}
+                >
+                  <HeaderLink>생활용품</HeaderLink>
+                </Link>
               </h4>
             </li>
             <li>
               <h4>
-                <a>의류/잡화</a>
+                <Link
+                  href={{
+                    pathname: "/board/clothing",
+                  }}
+                >
+                  <HeaderLink>의류/잡화</HeaderLink>
+                </Link>
               </h4>
             </li>
             <li>
               <h4>
-                <a>스포츠/레저</a>
+                <Link
+                  href={{
+                    pathname: "/board/sports",
+                  }}
+                >
+                  <HeaderLink>스포츠/레저</HeaderLink>
+                </Link>
               </h4>
             </li>
             <li>
               <h4>
-                <a>도서/취미</a>
+                <Link
+                  href={{
+                    pathname: "/board/hobby",
+                  }}
+                >
+                  <HeaderLink>도서/취미</HeaderLink>
+                </Link>
               </h4>
             </li>
             <li>
               <h4>
-                <a>기타용품</a>
+                <Link
+                  href={{
+                    pathname: "/board/etc",
+                  }}
+                >
+                  <HeaderLink>기타용품</HeaderLink>
+                </Link>
               </h4>
             </li>
           </ul>
@@ -88,22 +136,22 @@ const Category = ({ onClickOpen, isOpen }) => {
             </li>
             <li>
               <h4>
-                <a>글쓰기</a>
+                <HeaderLink>글쓰기</HeaderLink>
               </h4>
             </li>
             <li>
               <h4>
-                <a>내가 대여해 준 물품</a>
+                <HeaderLink>내가 대여해 준 물품</HeaderLink>
               </h4>
             </li>
             <li>
               <h4>
-                <a>내가 대여한 물품</a>
+                <HeaderLink>내가 대여한 물품</HeaderLink>
               </h4>
             </li>
             <li>
               <h4>
-                <a>담아 둔 목록보기</a>
+                <HeaderLink>담아 둔 목록보기</HeaderLink>
               </h4>
             </li>
           </ul>
@@ -112,22 +160,22 @@ const Category = ({ onClickOpen, isOpen }) => {
           <ul className={styles.lnbItem}>
             <li>
               <h3>
-                <a>자주묻는 질문</a>
+                <HeaderLink>자주묻는 질문</HeaderLink>
               </h3>
             </li>
             <li>
               <h4>
-                <a>자주묻는 질문</a>
+                <HeaderLink>자주묻는 질문</HeaderLink>
               </h4>
             </li>
             <li>
               <h4>
-                <a>문의하기</a>
+                <HeaderLink>문의하기</HeaderLink>
               </h4>
             </li>
             <li>
               <h4>
-                <a>공지사항</a>
+                <HeaderLink>공지사항</HeaderLink>
               </h4>
             </li>
           </ul>

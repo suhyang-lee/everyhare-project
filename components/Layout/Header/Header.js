@@ -1,21 +1,29 @@
 /* 페이지 공통 헤더  */
 import React, { useCallback, useState } from "react";
+import Link from "next/link";
+import styled from "styled-components";
+
 import Category from "../Category/Category";
 import Login from "../../Login/Login";
 
 import styles from "./header.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { logoutAction } from "../../../reducers/user";
+import { logoutRequstAction } from "../../../reducers/user";
+
+const HeaderLink = styled.a`
+  color: black;
+  cursor: pointer;
+`;
 
 const Header = () => {
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user);
 
   const [isOpen, setIsOpen] = useState(false);
   const [isShow, setIsShow] = useState(false);
 
   const onLogOut = useCallback(() => {
-    dispatch(logoutAction());
+    dispatch(logoutRequstAction());
   }, []);
 
   const onClickOpen = () => {
@@ -43,9 +51,11 @@ const Header = () => {
           </div>
 
           <div className={styles.headerItem}>
-            <h1>
-              <img src="/images/img-everyshare-logo.svg" alt="에브리쉐어" />
-            </h1>
+            <Link href="/">
+              <h1>
+                <img src="/images/img-everyshare-logo.svg" alt="에브리쉐어" />
+              </h1>
+            </Link>
           </div>
 
           <div className={styles.headerItem}>
@@ -56,7 +66,7 @@ const Header = () => {
                     <a>마이페이지</a>
                   </h2>
                 </li>
-                {isLoggedIn ? (
+                {user ? (
                   <li onClick={onLogOut}>
                     <h2>로그아웃</h2>
                   </li>
@@ -67,7 +77,9 @@ const Header = () => {
                     </li>
                     <li>
                       <h2>
-                        <a>회원가입</a>
+                        <Link href="/signup">
+                          <HeaderLink>회원가입</HeaderLink>
+                        </Link>
                       </h2>
                     </li>
                   </>

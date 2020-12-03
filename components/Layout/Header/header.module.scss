@@ -17,6 +17,12 @@
   z-index: $index-1;
 }
 
+.headerItem {
+  h1 {
+    cursor: pointer;
+  }
+}
+
 .headerItemsWrapper {
   display: grid;
   position: relative;

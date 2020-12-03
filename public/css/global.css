@@ -251,3 +251,13 @@ input:focus,
 select:focus {
   outline: none;
 }
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  outline: 0;
+  border: 0;
+}

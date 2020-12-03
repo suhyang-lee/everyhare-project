@@ -1,12 +1,19 @@
 import React from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
 import styles from "./post.module.scss";
 import classNames from "classnames/bind";
-import { userSelect } from "../Hooks/userHooks";
+import _ from "lodash/fp";
+
 const cx = classNames.bind(styles);
 
-const PostFormPhase1 = () => {
-  const [owner, borrower, onSelect] = userSelect();
+const ErrorMessage = styled.div`
+  display: block;
+  color: red;
+  margin-top: 1rem;
+`;
 
+const PostFormPhase1 = ({ register, errors }) => {
   return (
     <>
       <article className={styles.postWrapper}>
@@ -15,54 +22,58 @@ const PostFormPhase1 = () => {
           <div className={styles.postContents}>
             <h5>물품등록 유형을 선택하세요</h5>
             <div className={styles.radioWrapper}>
-              <div className={styles.postTypeRadio} onClick={onSelect}>
-                <button
-                  className={
-                    owner
-                      ? cx("active", "radioLabel")
-                      : cx("noneActive", "radioLabel")
-                  }
-                  owner="borrower"
+              <div className={styles.postTypeRadio}>
+                <input
+                  ref={register}
+                  type="radio"
+                  id="owner"
+                  name="postType"
+                  value="owner"
+                  defaultChecked
+                  hidden
+                />
+                <label
+                  htmlFor="owner"
+                  className={cx("radioLabel", "typeLabel")}
                 >
                   물건 빌려드려요
                   <p>
                     회원님의 집에 방치되어 있는 물건을 <br />
                     필요한 누군가에게 빌려주는 유형입니다
                   </p>
-                </button>
+                </label>
               </div>
 
-              <div className={styles.postTypeRadio} onClick={onSelect}>
-                <button
-                  className={
-                    borrower
-                      ? cx("active", "radioLabel")
-                      : cx("noneActive", "radioLabel")
-                  }
+              <div className={styles.postTypeRadio}>
+                <input
+                  ref={register}
+                  type="radio"
+                  id="borrower"
+                  name="postType"
                   value="borrower"
+                  hidden
+                />
+                <label
+                  htmlFor="borrower"
+                  className={cx("radioLabel", "typeLabel")}
                 >
                   물건 빌려주세요
                   <p>
                     필요하지만 구매하기엔 고민이 될 때 <br />
                     누군가에게 빌리는 유형입니다
                   </p>
-                </button>
+                </label>
               </div>
-            </div>
-          </div>
-          <div className={styles.postContents}>
-            <h5>지역은 어디신가요?</h5>
-            <div className={styles.locationWrapper}>
-              <input type="text" name="location" />
-              <button className={styles.gpsBtn}>
-                <img src="/images/icon-gps.svg" alt="GPS 이미지" />
-              </button>
             </div>
           </div>
           <div className={styles.postContents}>
             <h5>카테고리를 선택 해 주세요</h5>
 
-            <select name="CategorySelect" className={styles.categorySelect}>
+            <select
+              name="category"
+              className={styles.selectList}
+              ref={register}
+            >
               <option value="" disabled>
                 카테고리를 선택 해 주세요
               </option>
@@ -79,6 +90,11 @@ const PostFormPhase1 = () => {
       </article>
     </>
   );
+};
+
+PostFormPhase1.propTypes = {
+  register: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired,
 };
 
 export default PostFormPhase1;
