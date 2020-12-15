@@ -1,6 +1,6 @@
 /* 헤더 내부 카테고리  */
 
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import PropTypes from "prop-types";
 import Link from "next/link";
 import styled from "styled-components";
@@ -26,15 +26,15 @@ const Category = ({ onClickOpen, isOpen }) => {
     };
   }, []);
 
-  const onMouseLeave = () => {
+  const onMouseLeave = useCallback(() => {
     timeOutid = setTimeout(() => {
       onClickOpen(false);
     });
-  };
+  }, [onClickOpen, timeOutid]);
 
-  const onMouseOverCapture = () => {
+  const onMouseOverCapture = useCallback(() => {
     clearTimeout(timeOutid);
-  };
+  }, [timeOutid]);
 
   return (
     <>
@@ -136,7 +136,13 @@ const Category = ({ onClickOpen, isOpen }) => {
             </li>
             <li>
               <h4>
-                <HeaderLink>글쓰기</HeaderLink>
+                <Link
+                  href={{
+                    pathname: "/post",
+                  }}
+                >
+                  <HeaderLink>글쓰기</HeaderLink>
+                </Link>
               </h4>
             </li>
             <li>
@@ -190,9 +196,33 @@ const Category = ({ onClickOpen, isOpen }) => {
 
           {/* <!-- 모바일용 gnb 메뉴 --> */}
           <ul className={styles.lnbItem}>
-            <li>마이페이지</li>
-            <li>로그인</li>
-            <li>회원가입</li>
+            <li>
+              <Link
+                href={{
+                  pathname: "/mypage",
+                }}
+              >
+                <HeaderLink>마이페이지</HeaderLink>
+              </Link>
+            </li>
+            <li>
+              <Link
+                href={{
+                  pathname: "/login",
+                }}
+              >
+                <HeaderLink>로그인</HeaderLink>
+              </Link>
+            </li>
+            <li>
+              <Link
+                href={{
+                  pathname: "/signup",
+                }}
+              >
+                <HeaderLink>회원가입</HeaderLink>
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>

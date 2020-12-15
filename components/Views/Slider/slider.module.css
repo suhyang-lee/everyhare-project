@@ -1,0 +1,22 @@
+.slickImageWrapper {
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+}
+
+.slickImageWrapper img {
+  width: 100%;
+  height: 500px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+/*# sourceMappingURL=slider.module.css.map */

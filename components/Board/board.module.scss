@@ -1,16 +1,18 @@
+@import "../scss-common/variables";
+@import "../scss-common/mixins";
+@import "./boardResponsive.scss";
+
 .contentsWrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
-  margin-top: 15rem;
   margin-bottom: 10rem;
 
   .titleWrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 1200px;
     margin-bottom: 5rem;
   }
 }
@@ -18,6 +20,7 @@
 .titleWrapper {
   h3 {
     font-size: 1.75rem;
+    font-weight: 700;
   }
 
   button {
@@ -25,8 +28,6 @@
     align-items: center;
     justify-content: center;
     font-size: 1.125rem;
-    width: 11.375rem;
-    height: 3.25rem;
     background-color: #000;
     color: #fff;
     font-weight: 500;
@@ -37,10 +38,8 @@
 }
 
 .listContents {
-  width: 1200px;
   display: grid;
-  grid-template-rows: repeat(auto-fill, 1fr);
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   column-gap: 24px;
   row-gap: 40px;
+  grid-template-rows: repeat(auto-fill, 1fr);
 }

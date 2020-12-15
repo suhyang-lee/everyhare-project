@@ -1,3 +1,6 @@
+@import "../scss-common/variables";
+@import "../scss-common/mixins";
+@import "./postcardResponsive.scss";
 
 .imageWrapper {
   box-sizing: border-box;

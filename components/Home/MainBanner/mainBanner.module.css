@@ -1,0 +1,169 @@
+/* mainBanner.module.scss */
+/* _mixins.scss */
+/* _variable.scss */
+/* _variable.scss */
+/* _mixins.scss */
+/* _variable.scss */
+/* _variable.scss */
+@import url(https://cdn.rawgit.com/kattergil/NotoSerifKR-Web/76eb9ebf/stylesheet/NotoSerif-Web.css);
+@media only screen and (min-width: 360px) and (max-width: 719px) {
+  .mainBannerWrapper {
+    background-position: 0 calc(30% + 20vh);
+  }
+  .mainBannerWrapper .bannerContents {
+    width: 100%;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    padding-left: 1rem;
+  }
+  .bannerContents h5 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    text-align: left;
+    margin-bottom: 1.3rem;
+  }
+  .bannerContents p {
+    font-size: 1.1rem;
+    line-height: 1.2em;
+  }
+  .bannerWriteBtn {
+    width: 17%;
+    height: 25%;
+  }
+}
+
+@media only screen and (min-width: 720px) and (max-width: 1199px) {
+  .mainBannerWrapper {
+    background-position: 0 calc(30% + 20vh);
+  }
+  .mainBannerWrapper .bannerContents {
+    width: 100%;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    padding-left: 1rem;
+  }
+  .bannerContents h5 {
+    font-size: 4rem;
+    font-weight: 900;
+    text-align: left;
+    margin-bottom: 1.3rem;
+  }
+  .bannerContents p {
+    font-size: 2.5rem;
+    line-height: 1.2em;
+  }
+  .bannerWriteBtn {
+    width: 30%;
+    height: 20%;
+    font-size: 1.3rem;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .mainBannerWrapper {
+    background-position: 0 calc(70% + 17vh);
+  }
+  .mainBannerWrapper .bannerContents {
+    width: 1200px;
+  }
+  .bannerContents h5 {
+    font-size: 4rem;
+    font-weight: 900;
+    text-align: left;
+    margin-bottom: 1.3rem;
+  }
+  .bannerContents p {
+    font-size: 2rem;
+    line-height: 1.2em;
+  }
+  .bannerWriteBtn {
+    width: 20%;
+    height: 16%;
+  }
+  .bannerWriteBtn:hover {
+    -webkit-animation-duration: 0.2s;
+            animation-duration: 0.2s;
+    -webkit-animation-name: seepButton;
+            animation-name: seepButton;
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  @-webkit-keyframes seepButton {
+    0% {
+      opacity: 0%;
+    }
+    100% {
+      opacity: 100%;
+      background-color: #ffc800;
+    }
+  }
+  @keyframes seepButton {
+    0% {
+      opacity: 0%;
+    }
+    100% {
+      opacity: 100%;
+      background-color: #ffc800;
+    }
+  }
+}
+
+.mainBannerWrapper {
+  height: 100vh;
+  background-color: #fff;
+  background-image: url("/images/photo-1603376728541-6e1906a300e6.jpg");
+  background-repeat: no-repeat;
+}
+
+.mainBannerWrapper .mainBanner {
+  height: 100vh;
+  background-color: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.bannerContents h5 {
+  text-transform: uppercase;
+  color: #fff;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: serif;
+}
+
+.bannerContents p {
+  font-family: "Noto Serif KR";
+  color: #fff;
+}
+
+.bannerContents .bannerWriteBtn {
+  border-radius: 3rem;
+  color: #fff;
+  margin-top: 2rem;
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid #fff;
+  cursor: pointer;
+}
+
+.bannerContents .bannerWriteBtn:hover {
+  background-color: #ffc800;
+  border: 1px;
+  color: #010101;
+  font-weight: 700;
+  outline: 0;
+}
+
+.bannerContents .bannerWriteBtn:focus {
+  outline: 0;
+}
+/*# sourceMappingURL=mainBanner.module.css.map */

@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from "react";
 import PropTypes from "prop-types";
+import moment from "moment";
 
 import styles from "./comment.module.scss";
 import {
@@ -17,6 +18,7 @@ const CommentList = ({ comment }) => {
   const id = user?.id;
 
   const [liked, setLiked] = useState(false);
+
   const onToggleLike = useCallback(() => {
     setLiked((prev) => !prev);
   }, []);
@@ -31,11 +33,11 @@ const CommentList = ({ comment }) => {
           />
         </div>
         <p>{User.nickname}</p>
-        <p>@coladelicious</p>
+        <p>@{User.email && User.email.split("@")[0]}</p>
       </div>
       <div className={styles.commentContents}>
         <div className={styles.commentInfo}>
-          <p>2020.10.10</p>
+          <p>{moment(comment.updatedAt).format("YYYY/MM/DD H:MM")}</p>
           {id && User.id === id ? (
             <>
               <button>
@@ -62,6 +64,6 @@ const CommentList = ({ comment }) => {
 };
 
 CommentList.propTypes = {
-  comment: PropTypes.object.isRequired,
+  comment: PropTypes.object,
 };
 export default CommentList;

@@ -20,8 +20,11 @@ const PostCard = ({ post }) => {
     <Link href={`/view/${post.id}`}>
       <div className={styles.postCard}>
         <div className={styles.imageWrapper}>
-          {post.Images[0] ? (
-            <img src={post.Images[0].src} alt="썸네일 이미지" />
+          {post.Images && post.Images[0] ? (
+            <img
+              src={`http://localhost:3060/${post.Images[0].src}`}
+              alt="썸네일 이미지"
+            />
           ) : (
             <img src="../images/no-images.png" alt="썸네일 이미지" />
           )}
@@ -33,7 +36,7 @@ const PostCard = ({ post }) => {
           <p>대여비 및 보증금</p>
           <div className={styles.cardInfoPrice}>
             <p>
-              {post.rentalFee} ETH / {post.deposit} ETH
+              {post.price} ETH / {post.deposit} ETH
             </p>
             <button onClick={onToggleLike}>
               {liked ? (

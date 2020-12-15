@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 import { MessageFilled } from "@ant-design/icons";
 import { useForm } from "react-hook-form";
+import PropTypes from "prop-types";
 
 import styles from "./comment.module.scss";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,7 +20,6 @@ const CommentInput = ({ postId }) => {
 
   const onSubmitForm = useCallback((data) => {
     data.postId = postId;
-    console.log(data);
     dispatch(addComment(data));
   });
 
@@ -36,6 +36,10 @@ const CommentInput = ({ postId }) => {
       </button>
     </form>
   );
+};
+
+CommentInput.propTypes = {
+  postId: PropTypes.number,
 };
 
 export default CommentInput;

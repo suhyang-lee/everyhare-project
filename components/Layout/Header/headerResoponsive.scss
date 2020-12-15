@@ -9,7 +9,7 @@
     width: 100%;
     height: 65px;
     min-width: 360px;
-    grid-template-columns: 60% 1fr 1fr;
+    grid-template-columns: 60% 2fr 1fr;
     grid-template-rows: repeat(3, 1fr);
   }
 
@@ -73,7 +73,7 @@
   }
 
   .headerItemsWrapper {
-    $columns: 40% 50% 1fr;
+    $columns: 90% 1fr 1fr;
     @include responsive-grid(45, 7.5, 3, $columns);
     margin: 0 auto;
   }

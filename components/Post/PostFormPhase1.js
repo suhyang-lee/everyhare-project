@@ -77,13 +77,13 @@ const PostFormPhase1 = ({ register, errors }) => {
               <option value="" disabled>
                 카테고리를 선택 해 주세요
               </option>
-              <option value="디지털/가전">디지털/가전</option>
-              <option value="유아동">유아동</option>
-              <option value="생활용품">생활용품</option>
-              <option value="의류/잡화">의류/잡화</option>
-              <option value="스포츠/레저">스포츠/레저</option>
-              <option value="도서/취미">도서/취미</option>
-              <option value="기타용품">기타용품</option>
+              <option value="digital">디지털/가전</option>
+              <option value="kids">유아동</option>
+              <option value="goods">생활용품</option>
+              <option value="clothing">의류/잡화</option>
+              <option value="sports">스포츠/레저</option>
+              <option value="hobby">도서/취미</option>
+              <option value="etc">기타용품</option>
             </select>
           </div>
         </div>

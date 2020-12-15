@@ -1,8 +1,12 @@
 import { all, fork } from "redux-saga/effects";
+import axios from "axios";
 
 import userSaga from "./user";
 import postSaga from "./post";
+import searchSaga from "./search";
 
+axios.defaults.baseURL = "http://localhost:3060";
+axios.defaults.withCredentials = true;
 /*
     <1> fucntion * = 제너레이트 문법
     : 기본적으로 yield를 통해 함수 자체를 일시정지 할 수 있음.
@@ -38,5 +42,5 @@ import postSaga from "./post";
 */
 
 export default function* rootSaga() {
-  yield all([fork(userSaga), fork(postSaga)]);
+  yield all([fork(userSaga), fork(postSaga), fork(searchSaga)]);
 }

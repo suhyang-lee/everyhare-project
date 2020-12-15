@@ -1,0 +1,56 @@
+@include mobile {
+  .joinWrapper {
+    width: 95%;
+    padding-top: 8rem;
+    padding-bottom: 3rem;
+
+    .joinItem {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+  }
+
+  .joinContent:nth-child(2) > button {
+    width: 100%;
+  }
+}
+
+@include tablet {
+  .joinWrapper {
+    width: 80%;
+    padding-top: 12rem;
+    padding-bottom: 3rem;
+
+    .joinItem {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+  }
+  .joinContent:nth-child(2) > button {
+    width: 100%;
+  }
+}
+
+@include desktop {
+  .joinWrapper {
+    width: 800px;
+    padding-top: 15rem;
+    padding-bottom: 3rem;
+
+    .joinItem {
+      display: flex;
+      flex: 1;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+  .joinContent:nth-child(2) > button {
+    width: 20rem;
+  }
+}

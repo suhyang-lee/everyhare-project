@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styles from "./post.module.scss";
 import _ from "lodash/fp";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import classNames from "classnames/bind";
-import { RightOutlined } from "@ant-design/icons";
+import { RightOutlined, CloseCircleFilled } from "@ant-design/icons";
 
 import Editor from "./PostEditor";
+import { useDispatch, useSelector } from "react-redux";
+import { REMOVE_IMAGE, UPLOAD_IMAGES_REQUEST } from "../../actions/postAction";
 
 const cx = classNames.bind(styles);
 
@@ -17,6 +19,42 @@ const ErrorMessage = styled.div`
 `;
 
 const PostFormPhase2 = ({ register, setEditorState, errors }) => {
+  const dispatch = useDispatch();
+  const { ImagePaths } = useSelector((state) => state.post);
+
+  const onChangeImages = useCallback(
+    (e) => {
+      e.preventDefault();
+
+      let totalImages = e.target.files.length + ImagePaths.length;
+
+      if (totalImages >= 11) {
+        return alert("최대 10개까지 업로드가 가능합니다.");
+      }
+
+      const imageFormData = new FormData();
+      [].forEach.call(e.target.files, (file) => {
+        imageFormData.append("image", file);
+      });
+
+      dispatch({
+        type: UPLOAD_IMAGES_REQUEST,
+        data: imageFormData,
+      });
+    },
+    [ImagePaths],
+  );
+
+  const onRemoveImage = useCallback(
+    (index) => () => {
+      dispatch({
+        type: REMOVE_IMAGE,
+        data: index,
+      });
+    },
+    [],
+  );
+
   return (
     <>
       <article className={styles.postWrapper}>
@@ -24,7 +62,7 @@ const PostFormPhase2 = ({ register, setEditorState, errors }) => {
         <div className={styles.postContentsWrapper}>
           {/* 물건 대여 유형 */}
           <div className={styles.postContents}>
-            <h5>물건의 대여 유형을 선택 해 주세요</h5>{" "}
+            <h5>물건의 대여 유형을 선택 해 주세요</h5>
             <div className={styles.radioWrapper}>
               <div className={styles.postTypeRadio}>
                 <input
@@ -71,11 +109,35 @@ const PostFormPhase2 = ({ register, setEditorState, errors }) => {
 
           {/* 물품 이미지 추가 */}
           <div className={styles.postContents}>
-            <h5>대여 할 이미지를 등록 해 주세요</h5>
+            <h5>
+              대여 할 이미지를 등록 해 주세요 <br />{" "}
+              <span>{ImagePaths.length}/10</span>
+            </h5>
 
             <div className={styles.imageUploadWrapper}>
               <label htmlFor="addFile">사진등록</label>
-              <input type="file" multiple id="addFile" name="imageUpload" />
+              <input
+                type="file"
+                multiple
+                id="addFile"
+                name="image"
+                onChange={onChangeImages}
+              />
+              {/* 이미지 업로드시 미리보기 */}
+              {ImagePaths.map((image, index) => {
+                return (
+                  <>
+                    <div className={styles.imagePreviews} key={image}>
+                      <CloseCircleFilled
+                        className={styles.closeBtn}
+                        onClick={onRemoveImage(index)}
+                        key={image}
+                      />
+                      <img src={`http://localhost:3060/${image}`} alt={image} />
+                    </div>
+                  </>
+                );
+              })}
             </div>
           </div>
           <div className={styles.postContents}>

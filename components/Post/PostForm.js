@@ -5,6 +5,7 @@ import { convertToRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
 import { EditorState } from "draft-js";
 import { useForm } from "react-hook-form";
+import Router from "next/router";
 
 import styles from "./post.module.scss";
 import Phase1 from "./PostFormPhase1";
@@ -15,13 +16,14 @@ import { addPost } from "../../reducers/post";
 const PostForm = () => {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const dispatch = useDispatch();
-  const { addPostDone } = useSelector((state) => state.post);
+  const { addPostDone, ImagePaths, posts } = useSelector((state) => state.post);
   const { register, handleSubmit, errors, reset } = useForm();
 
   useEffect(() => {
     if (addPostDone) {
       reset();
       setEditorState("");
+      Router.push(`view/${posts[0].id}`);
     }
   }, [addPostDone]);
 
@@ -33,12 +35,11 @@ const PostForm = () => {
 
       //전달 데이터 내부에 richtext 컨텐츠 삽입
       data.contents = editorToHtml;
-
-      console.log(data);
+      data.Images = ImagePaths;
 
       dispatch(addPost(data));
     },
-    [editorState],
+    [editorState, ImagePaths],
   );
 
   return (

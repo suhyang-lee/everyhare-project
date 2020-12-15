@@ -1,35 +1,48 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
+
 import styles from "./login.module.scss";
 import Link from "next/link";
 import PropTypes from "prop-types";
+import { useRouter } from "next/router";
 
 import { userInput } from "../Hooks/userHooks";
 import { useDispatch, useSelector } from "react-redux";
 import { loginRequstAction } from "../../reducers/user";
 
-const LoginForm = ({ onClickLoginModalClose }) => {
+const LoginForm = ({ onClickLoginModal }) => {
   const dispatch = useDispatch();
-  const { loginLoadding, logoutLoadding } = useSelector((state) => state.user);
+  const router = useRouter();
+  const { loginLoadding, loginError, user } = useSelector(
+    (state) => state.user,
+  );
   const [email, onChangeEmail] = userInput("");
   const [password, onChangePassword] = userInput("");
   const [keepLoggedIn, onChangeKeepLoggedIn] = userInput("");
 
-  const onSubmitForm = useCallback(
+  useEffect(() => {
+    if (loginError) {
+      alert(loginError);
+    }
+  }, [loginError]);
+
+  useEffect(() => {
+    if (user && user.id) {
+      router.push("/");
+    }
+  }, [user]);
+
+  const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
-
-      //로그인 완료 셋팅
       dispatch(loginRequstAction({ email, password }));
-
-      //로그인 모달닫기
-      onClickLoginModalClose();
+      onClickLoginModal(!e);
     },
     [email, password],
   );
 
   return (
     <>
-      <form className={styles.loginForm} onSubmit={onSubmitForm}>
+      <form className={styles.loginForm} onSubmit={onSubmit}>
         <input
           type="email"
           name="user-email"
@@ -68,10 +81,6 @@ const LoginForm = ({ onClickLoginModalClose }) => {
       </form>
     </>
   );
-};
-
-LoginForm.propTypes = {
-  onClickLoginModalClose: PropTypes.func.isRequired,
 };
 
 export default LoginForm;

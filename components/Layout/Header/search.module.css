@@ -1,0 +1,94 @@
+.backgroundWrapper {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  z-index: 777;
+}
+
+.searchWrapper {
+  width: 100%;
+  position: absolute;
+  z-index: 888;
+  height: 10rem;
+  background-color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-animation: slideBottom 0.3s;
+          animation: slideBottom 0.3s;
+}
+
+@-webkit-keyframes slideBottom {
+  from {
+    top: -20rem;
+  }
+  to {
+    top: 0;
+  }
+}
+
+@keyframes slideBottom {
+  from {
+    top: -20rem;
+  }
+  to {
+    top: 0;
+  }
+}
+
+.searchWrapper .wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.searchWrapper .wrapper img {
+  width: 10rem;
+  margin-right: 1rem;
+}
+
+.searchWrapper .wrapper input[type="search"] {
+  width: 80vw;
+  height: 3rem;
+  font-size: 1.1rem;
+  font-weight: 100;
+  padding-left: 1.5rem;
+  padding-right: 2.5rem;
+  margin-right: 1rem;
+  border-radius: 50px;
+  border: 0;
+  background-color: #000;
+  color: #fff;
+}
+
+.searchWrapper .wrapper button {
+  right: 2rem;
+  top: 13%;
+  font-size: 1.5rem;
+  background: 0;
+  color: #000;
+}
+
+.searchWrapper .closeBtn {
+  position: absolute;
+  font-size: 1.5rem;
+  top: 1rem;
+  right: 1rem;
+  color: #000;
+  background: 0;
+}
+/*# sourceMappingURL=search.module.css.map */

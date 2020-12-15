@@ -2,6 +2,9 @@ import {
   LOG_IN_REQUEST,
   LOG_IN_SUCCESS,
   LOG_IN_FAILURE,
+  LOAD_USER_INFO_REQUEST,
+  LOAD_USER_INFO_SUCCESS,
+  LOAD_USER_INFO_FAILURE,
   LOG_OUT_REQUEST,
   LOG_OUT_SUCCESS,
   LOG_OUT_FAILURE,
@@ -20,6 +23,10 @@ export const initState = {
   loginDone: false,
   loginError: false,
 
+  loadUserInfoLoadding: false, //로그인 정보 시도
+  loadUserInfoDone: false,
+  loadUserInfoError: false,
+
   logoutLoadding: false, //로그아웃 시도
   logoutDone: false,
   logoutError: false,
@@ -28,17 +35,12 @@ export const initState = {
   changeNicknameDone: false,
   changeNicknameError: false,
 
-  user: null,
-  signUpdate: {},
-  loginDate: {},
-};
+  signupLoadding: false,
+  signupDone: false,
+  signupError: false,
 
-const dummyUser = (data) => ({
-  ...data,
-  nickname: "동그리",
-  id: 1,
-  Posts: [],
-});
+  user: null,
+};
 
 export const loginRequstAction = (data) => {
   return {
@@ -65,13 +67,31 @@ const reducer = (state = initState, action) => {
       case LOG_IN_SUCCESS:
         draft.loginLoadding = false;
         draft.loginDone = true;
-        draft.user = dummyUser(action.data);
+        draft.user = action.data;
         break;
 
       case LOG_IN_FAILURE:
         draft.loginLoadding = false;
         draft.loginDone = false;
-        draft.user = action.error;
+        draft.loginError = action.error;
+        break;
+
+      case LOAD_USER_INFO_REQUEST:
+        draft.loadUserInfoLoadding = true;
+        draft.loadUserInfoDone = false;
+        draft.loadUserInfoError = null;
+        break;
+
+      case LOAD_USER_INFO_SUCCESS:
+        draft.loadUserInfoLoadding = false;
+        draft.loadUserInfoDone = true;
+        draft.user = action.data;
+        break;
+
+      case LOAD_USER_INFO_FAILURE:
+        draft.loadUserInfoLoadding = false;
+        draft.loadUserInfoDone = false;
+        draft.loginError = action.error;
         break;
 
       case LOG_OUT_REQUEST:

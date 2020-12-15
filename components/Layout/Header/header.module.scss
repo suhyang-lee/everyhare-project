@@ -50,6 +50,8 @@
     }
   }
 
+  $circleSize: 20px;
+
   .circleBtn {
     display: inline-flex;
     align-items: center;
@@ -58,5 +60,21 @@
     height: 2.5rem;
     border-radius: 2.5rem;
     margin-right: 0.2rem;
+    position: relative;
+
+    .zzimed {
+      width: $circleSize;
+      height: $circleSize;
+      border-radius: $circleSize;
+      line-height: $circleSize;
+      text-align: center;
+      background-color: #000;
+      color: #fff;
+      font-weight: 300;
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      font-size: 12px;
+    }
   }
 }

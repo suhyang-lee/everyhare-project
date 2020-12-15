@@ -5,7 +5,7 @@ import styles from "./slider.module.scss";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import {createGlobalStyle} from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
 const Global = createGlobalStyle`
   .slick-dots {
@@ -30,11 +30,10 @@ const Global = createGlobalStyle`
 }
 `;
 
-const ProductSlider = ({Images}) => {
-  
+const ProductSlider = ({ Images }) => {
   const settings = {
     customPaging: function (i) {
-      return <img src={Images[i].src} />;
+      return <img src={`http://localhost:3060/${Images[i].src}`} />;
     },
     dots: true,
     fade: true,
@@ -51,18 +50,27 @@ const ProductSlider = ({Images}) => {
   };
   return (
     <>
-    <Global />
-    <Slider {...settings}>
-      {Images.map((item) => {
-        return (
-          <a key={item.id}>
-            <div className={styles.slickImageWrapper}>
-              <img src={item.src} alt="이미지리스트" />
-            </div>
-          </a>
-        );
-      })}
-    </Slider>
+      <Global />
+      {Images.length !== 0 ? (
+        <Slider {...settings}>
+          {Images.map((image) => {
+            return (
+              <a key={image.id}>
+                <div className={styles.slickImageWrapper}>
+                  <img
+                    src={`http://localhost:3060/${image.src}`}
+                    alt="이미지리스트"
+                  />
+                </div>
+              </a>
+            );
+          })}
+        </Slider>
+      ) : (
+        <div className={styles.slickImageWrapper}>
+          <img src="../images/no-images.png" />
+        </div>
+      )}
     </>
   );
 };
@@ -70,6 +78,5 @@ const ProductSlider = ({Images}) => {
 ProductSlider.propTypes = {
   Images: PropTypes.arrayOf(PropTypes.object),
 };
-
 
 export default ProductSlider;

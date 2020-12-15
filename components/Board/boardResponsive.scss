@@ -1,0 +1,58 @@
+@include mobile {
+  .contentsWrapper {
+    padding: 1rem;
+    margin-top: 6rem;
+
+    .titleWrapper {
+      width: 100%;
+      h3 {
+        font-size: 1.5rem;
+      }
+      button {
+        width: 8rem;
+        height: 2.8rem;
+      }
+    }
+  }
+  .listContents {
+    width: 100%;
+    grid-template-columns: repeat(auto-fill, 1fr);
+  }
+}
+
+@include tablet {
+  .contentsWrapper {
+    padding: 2rem;
+    margin-top: 10rem;
+
+    .titleWrapper {
+      width: 100%;
+      button {
+        width: 8rem;
+        height: 2.8rem;
+      }
+    }
+  }
+  .listContents {
+    width: 100%;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
+@include desktop {
+  .contentsWrapper {
+    margin-top: 15rem;
+    .titleWrapper {
+      width: 1200px;
+      button {
+        width: 11.375rem;
+        height: 3.25rem;
+      }
+    }
+  }
+
+  .listContents {
+    width: 1200px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}

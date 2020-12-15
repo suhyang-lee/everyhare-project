@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import React, { useState } from "react";
+import React from "react";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import styled from "styled-components";
 
@@ -15,7 +15,7 @@ const Editor = dynamic(
 
 const EditorWrapper = styled.div`
   .wrapper {
-    height: 400px;
+    min-height: 400px;
   }
   .editor {
     height: 300px !important;
@@ -26,7 +26,6 @@ const EditorWrapper = styled.div`
 `;
 
 const PostEditor = ({ setEditorState }) => {
-
   return (
     <>
       <EditorWrapper>
@@ -53,13 +52,4 @@ PostEditor.propTypes = {
   setEditorState: PropTypes.func.isRequired,
 };
 
-
 export default PostEditor;
-/* const htmlToDraft = dynamic(
-  async () => {
-    const mod = await import("html-to-draftjs");
-    return mod.htmlToDraft;
-  },
-  { ssr: false },
-);
- */

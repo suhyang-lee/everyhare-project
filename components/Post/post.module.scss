@@ -53,6 +53,12 @@
     margin-bottom: 2rem;
     font-weight: 700;
     line-height: 1.4rem;
+    span {
+      display: block;
+      color: gray;
+      font-size: 1rem;
+      margin-top: 1rem;
+    }
   }
 
   .radioWrapper {
@@ -78,7 +84,6 @@
     font-size: 1.2rem;
     border: 1px solid hsl(0, 0%, 89%);
     font-weight: 700;
-    padding-top: 3.5rem;
 
     p {
       margin-top: 1rem;
@@ -151,6 +156,12 @@
 /* 이미지 업로드 */
 .imageUploadWrapper {
   width: 100%;
+  display: grid;
+  grid-template-rows: repeat(auto-fill, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(151px, 1fr));
+  row-gap: 8px;
+  column-gap: 8px;
+
   input[type="file"] {
     position: absolute;
     width: 0;
@@ -159,14 +170,42 @@
     overflow: hidden;
     border: 0;
   }
-  label {
+
+  label,
+  .imagePreviews {
     width: 151px;
     height: 151px;
     display: block;
     border: 1px solid #e4e4e4;
     font-size: 18px;
     text-align: center;
-    line-height: 180px;
+  }
+
+  .imagePreviews {
+    overflow: hidden;
+    position: relative;
+
+    .closeBtn {
+      position: absolute;
+      color: #fff;
+      top: 5px;
+      right: 5px;
+      cursor: pointer;
+    }
+
+    img {
+      width: 151px;
+      height: 151px;
+      object-fit: cover;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  label {
+    box-sizing: border-box;
+    padding-top: 5rem;
     background: url("/images/icon-plus.png") no-repeat;
     background-position: center 50px;
     color: gray;
@@ -202,7 +241,7 @@
     width: 41%;
   }
   .depositInput {
-    width: 72.5%;
+    width: 60%;
   }
   .rentalFee {
     width: 48%;
@@ -210,8 +249,9 @@
 }
 
 .searchBtn {
-  width: 15%;
+  width: 200px;
   height: 3rem;
+  margin-left: 0.5rem;
   background-color: #fff;
   border: 1px solid #c7c7c7;
   background-repeat: no-repeat;

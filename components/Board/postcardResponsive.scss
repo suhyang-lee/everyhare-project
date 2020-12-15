@@ -1,0 +1,29 @@
+@include mobile {
+  .cardInfo {
+    p {
+      &:first-of-type {
+        width: 300px;
+      }
+    }
+  }
+}
+
+@include tablet {
+  .cardInfo {
+    p {
+      &:first-of-type {
+        width: 300px;
+      }
+    }
+  }
+}
+
+@include desktop {
+  .cardInfo {
+    p {
+      &:first-of-type {
+        width: 250px;
+      }
+    }
+  }
+}

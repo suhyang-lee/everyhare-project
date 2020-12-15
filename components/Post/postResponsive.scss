@@ -10,20 +10,20 @@
     }
     .radioLabel {
       height: 150px;
-      padding-top: 6rem;
       border-color: #ddd;
       font-size: 1.2rem;
       border: 1px solid #e4e4e4;
       text-align: center;
       background-image: url("/images/icon-box.svg");
       background-repeat: no-repeat;
-      background-position: center 1rem;
+      background-position: 50% 75%;
+      padding-top: 2rem;
     }
   }
 }
 
 @include tablet {
-  .wrapper {
+  .wrapper { 
     margin-top: 10rem;
   }
 
@@ -34,17 +34,18 @@
     }
     .radioLabel {
       height: 150px;
-      padding-top: 6rem;
       border-color: #ddd;
       font-size: 1.2rem;
       border: 1px solid #e4e4e4;
       text-align: center;
       background-image: url("/images/icon-box.svg");
       background-repeat: no-repeat;
-      background-position: center 1rem;
+      background-position: 50% 75%;
+      padding-top: 2rem;
     }
   }
 }
+
 
 @include desktop {
   .wrapper {
@@ -83,6 +84,7 @@
       text-align: left;
       padding-left: 35%;
       box-sizing: border-box;
+      padding-top: 3.5rem;
     }
   }
 }
