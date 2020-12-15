@@ -1,0 +1,33 @@
+.contentsWrapper {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: (auto)[3];
+      grid-template-rows: repeat(3, auto);
+}
+
+.contentsWrapper > article {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding-top: 7.5rem;
+  padding-bottom: 10rem;
+}
+
+.contentsWrapper > article:nth-child(1) {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1/2;
+}
+
+.contentsWrapper > article:nth-child(2) {
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  grid-row: 2/3;
+  background-color: #ffc800;
+}
+
+.contentsWrapper > article:nth-child(3) {
+  -ms-grid-row: 3;
+  -ms-grid-row-span: 1;
+  grid-row: 3/4;
+}
+/*# sourceMappingURL=home.module.css.map */

@@ -86,7 +86,7 @@
         line-height: 2.188rem;
       }
     }
-    .lnbItem:first-child {
+    .lnbItem:first-of-type {
       grid-row: 2/3;
       display: grid;
       width: 100%;

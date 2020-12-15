@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import Head from "next/head";
 import "../public/css/global.css";
@@ -8,10 +8,9 @@ import wrapper from "../store/configureStore";
 const EveryShare = ({ Component }) => {
   return (
     <>
-      <Head profile="http://www.w3.org/2005/10/profile">
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <Head>
         <title>EveryShare</title>
+        <link rel="shortcut icon" href="/static/favicon.ico" />
       </Head>
       <Component />
     </>

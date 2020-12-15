@@ -71,10 +71,12 @@
 }
 
 html {
+  width: 100%;
   height: 100%;
 }
 
 body {
+  height: 100%;
   height: 100%;
 }
 html::-webkit-scrollbar {
@@ -99,7 +101,10 @@ select {
 html {
   font-family: "Noto Sans KR", sans-serif;
 }
-
+* {
+  margin: 0;
+  padding: 0;
+}
 html,
 body,
 div,
@@ -240,4 +245,19 @@ button {
 
 input::placeholder {
   color: #c7c7c7;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  outline: 0;
+  border: 0;
 }

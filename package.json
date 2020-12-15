@@ -4,33 +4,56 @@
   "description": "에브리쉐어 프로젝트 입니다.",
   "main": "index.js",
   "scripts": {
-    "dev": "next"
+    "dev": "next -p 3000",
+    "build": "next build",
+    "start": "next start"
   },
   "author": "SUHYANG.LEE",
   "license": "ISC",
   "dependencies": {
+    "@ant-design/icons": "^4.3.0",
+    "@hookform/resolvers": "^1.1.2",
+    "axios": "^0.21.0",
+    "babel-plugin-styled-components": "^1.12.0",
     "classnames": "^2.2.6",
+    "draft-js": "^0.11.7",
+    "draftjs-to-html": "^0.9.1",
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-prettier": "^3.1.4",
+    "html-to-draftjs": "^1.5.0",
+    "immer": "^8.0.0",
+    "moment": "^2.29.1",
     "next": "^10.0.1",
     "next-redux-wrapper": "^6.0.2",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
+    "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-dom": "^17.0.1",
+    "react-draft-wysiwyg": "^1.14.5",
+    "react-hook-form": "^6.11.5",
     "react-onclickoutside": "^6.9.0",
     "react-redux": "^7.2.2",
+    "react-slick": "^0.27.13",
     "redux": "^4.0.5",
-    "styled-components": "^5.2.1"
+    "redux-devtools-extension": "^2.13.8",
+    "redux-saga": "^1.1.3",
+    "slick-carousel": "^1.8.1",
+    "styled-components": "^5.2.1",
+    "yup": "^0.32.8"
   },
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
     "css-loader": "^5.0.1",
     "eslint": "^7.13.0",
+    "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "faker": "^5.1.0",
     "fibers": "^5.0.0",
     "sass": "^1.29.0",
     "sass-loader": "^10.1.0",
+    "shortid": "^2.2.16",
     "style-loader": "^2.0.0"
   }
 }

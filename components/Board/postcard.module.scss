@@ -1,0 +1,58 @@
+@import "../scss-common/variables";
+@import "../scss-common/mixins";
+@import "./postcardResponsive.scss";
+
+.imageWrapper {
+  box-sizing: border-box;
+  width: 100%;
+  height: 250px;
+  background-color: #f4f6fc;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  cursor: pointer;
+
+  img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.cardInfo {
+  p {
+    &:first-of-type {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+
+      span {
+        font-weight: 600;
+      }
+    }
+
+    &:nth-of-type(2) {
+      font-size: 0.875rem;
+      color: #979797;
+      margin-bottom: 0.4rem;
+    }
+  }
+}
+
+.cardInfoPrice {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 1.25rem;
+  font-weight: 700;
+
+  button {
+    background: 0;
+    font-weight: 700;
+  }
+}

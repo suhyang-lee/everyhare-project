@@ -4,14 +4,14 @@ import PropTypes from "prop-types";
 import styles from "./login.module.scss";
 import LoginForm from "./LoginForm";
 
-const Login = ({ onClickLoginModalClose, setIsLoggedIn }) => {
+const Login = ({ onClickLoginModal }) => {
   /* 모달 부모창 스크롤 막기 */
   const body = document.querySelector("body");
   const lockScroll = (e) => e.preventDefault();
 
   const onMaskClick = (e) => {
     if (e.target === e.currentTarget) {
-      onClickLoginModalClose(e);
+      onClickLoginModal(!e);
     }
   };
 
@@ -28,14 +28,11 @@ const Login = ({ onClickLoginModalClose, setIsLoggedIn }) => {
     <>
       <div className={styles.loginWrapper} onClickCapture={onMaskClick}>
         <div className={styles.modalWrapper}>
-          <button className={styles.closeBtn} onClick={onClickLoginModalClose}>
+          <button className={styles.closeBtn} onClick={onClickLoginModal}>
             <img src="/images/icon-close.svg" alt="로그인 모달 닫기" />
           </button>
           <img src="/images/img-everyshare-logo.svg" alt="에브리쉐어 로고" />
-          <LoginForm
-            setIsLoggedIn={setIsLoggedIn}
-            onClickLoginModalClose={onClickLoginModalClose}
-          />
+          <LoginForm onClickLoginModal={onClickLoginModal} />
         </div>
       </div>
     </>
@@ -43,8 +40,7 @@ const Login = ({ onClickLoginModalClose, setIsLoggedIn }) => {
 };
 
 Login.propTypes = {
-  onClickLoginModalClose: PropTypes.func.isRequired,
-  setIsLoggedIn: PropTypes.func.isRequired,
+  onClickLoginModal: PropTypes.func,
 };
 
 export default Login;

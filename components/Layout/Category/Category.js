@@ -1,9 +1,15 @@
 /* 헤더 내부 카테고리  */
 
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import PropTypes from "prop-types";
-
+import Link from "next/link";
+import styled from "styled-components";
 import styles from "./category.module.scss";
+
+const HeaderLink = styled.a`
+  color: black;
+  cursor: pointer;
+`;
 
 const Category = ({ onClickOpen, isOpen }) => {
   const body = document.querySelector("body");
@@ -20,15 +26,15 @@ const Category = ({ onClickOpen, isOpen }) => {
     };
   }, []);
 
-  const onMouseLeave = () => {
+  const onMouseLeave = useCallback(() => {
     timeOutid = setTimeout(() => {
       onClickOpen(false);
     });
-  };
+  }, [onClickOpen, timeOutid]);
 
-  const onMouseOverCapture = () => {
+  const onMouseOverCapture = useCallback(() => {
     clearTimeout(timeOutid);
-  };
+  }, [timeOutid]);
 
   return (
     <>
@@ -46,37 +52,79 @@ const Category = ({ onClickOpen, isOpen }) => {
             </li>
             <li>
               <h4>
-                <a>디지털/가전</a>
+                <Link
+                  href={{
+                    pathname: "/board/digital",
+                  }}
+                >
+                  <HeaderLink>디지털/가전</HeaderLink>
+                </Link>
               </h4>
             </li>
             <li>
               <h4>
-                <a>유아동</a>
+                <Link
+                  href={{
+                    pathname: "/board/kids",
+                  }}
+                >
+                  <HeaderLink>유아동</HeaderLink>
+                </Link>
               </h4>
             </li>
             <li>
               <h4>
-                <a>생활용품</a>
+                <Link
+                  href={{
+                    pathname: "/board/goods",
+                  }}
+                >
+                  <HeaderLink>생활용품</HeaderLink>
+                </Link>
               </h4>
             </li>
             <li>
               <h4>
-                <a>의류/잡화</a>
+                <Link
+                  href={{
+                    pathname: "/board/clothing",
+                  }}
+                >
+                  <HeaderLink>의류/잡화</HeaderLink>
+                </Link>
               </h4>
             </li>
             <li>
               <h4>
-                <a>스포츠/레저</a>
+                <Link
+                  href={{
+                    pathname: "/board/sports",
+                  }}
+                >
+                  <HeaderLink>스포츠/레저</HeaderLink>
+                </Link>
               </h4>
             </li>
             <li>
               <h4>
-                <a>도서/취미</a>
+                <Link
+                  href={{
+                    pathname: "/board/hobby",
+                  }}
+                >
+                  <HeaderLink>도서/취미</HeaderLink>
+                </Link>
               </h4>
             </li>
             <li>
               <h4>
-                <a>기타용품</a>
+                <Link
+                  href={{
+                    pathname: "/board/etc",
+                  }}
+                >
+                  <HeaderLink>기타용품</HeaderLink>
+                </Link>
               </h4>
             </li>
           </ul>
@@ -88,22 +136,28 @@ const Category = ({ onClickOpen, isOpen }) => {
             </li>
             <li>
               <h4>
-                <a>글쓰기</a>
+                <Link
+                  href={{
+                    pathname: "/post",
+                  }}
+                >
+                  <HeaderLink>글쓰기</HeaderLink>
+                </Link>
               </h4>
             </li>
             <li>
               <h4>
-                <a>내가 대여해 준 물품</a>
+                <HeaderLink>내가 대여해 준 물품</HeaderLink>
               </h4>
             </li>
             <li>
               <h4>
-                <a>내가 대여한 물품</a>
+                <HeaderLink>내가 대여한 물품</HeaderLink>
               </h4>
             </li>
             <li>
               <h4>
-                <a>담아 둔 목록보기</a>
+                <HeaderLink>담아 둔 목록보기</HeaderLink>
               </h4>
             </li>
           </ul>
@@ -112,22 +166,22 @@ const Category = ({ onClickOpen, isOpen }) => {
           <ul className={styles.lnbItem}>
             <li>
               <h3>
-                <a>자주묻는 질문</a>
+                <HeaderLink>자주묻는 질문</HeaderLink>
               </h3>
             </li>
             <li>
               <h4>
-                <a>자주묻는 질문</a>
+                <HeaderLink>자주묻는 질문</HeaderLink>
               </h4>
             </li>
             <li>
               <h4>
-                <a>문의하기</a>
+                <HeaderLink>문의하기</HeaderLink>
               </h4>
             </li>
             <li>
               <h4>
-                <a>공지사항</a>
+                <HeaderLink>공지사항</HeaderLink>
               </h4>
             </li>
           </ul>
@@ -142,9 +196,33 @@ const Category = ({ onClickOpen, isOpen }) => {
 
           {/* <!-- 모바일용 gnb 메뉴 --> */}
           <ul className={styles.lnbItem}>
-            <li>마이페이지</li>
-            <li>로그인</li>
-            <li>회원가입</li>
+            <li>
+              <Link
+                href={{
+                  pathname: "/mypage",
+                }}
+              >
+                <HeaderLink>마이페이지</HeaderLink>
+              </Link>
+            </li>
+            <li>
+              <Link
+                href={{
+                  pathname: "/login",
+                }}
+              >
+                <HeaderLink>로그인</HeaderLink>
+              </Link>
+            </li>
+            <li>
+              <Link
+                href={{
+                  pathname: "/signup",
+                }}
+              >
+                <HeaderLink>회원가입</HeaderLink>
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>

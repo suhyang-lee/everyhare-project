@@ -1,16 +1,26 @@
-const initState = {
-  name: "zozo",
-  age: 27,
-  password: "babo",
-};
+import { HYDRATE } from "next-redux-wrapper";
+import { combineReducers } from "redux";
 
-const rootReducer = (state = initState, action) => {
+import user from "./user";
+import post from "./post";
+import search from "./search";
+
+/* combineReducers를 통해 reducer 함수 합치기
+ * Hydrate(SSR)를 위해서 index를 추가한 것 임.
+ */
+const rootReducer = (state, action) => {
   switch (action.type) {
-    case "CHANGE_NICKNAME":
-      return {
-        ...state,
-        name: action.data,
-      };
+    case HYDRATE:
+      console.log("HYDRATE", action);
+      return action.payload;
+    default: {
+      const combineReducer = combineReducers({
+        user,
+        post,
+        search,
+      });
+      return combineReducer(state, action);
+    }
   }
 };
 

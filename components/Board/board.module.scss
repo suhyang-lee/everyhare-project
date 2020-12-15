@@ -1,0 +1,45 @@
+@import "../scss-common/variables";
+@import "../scss-common/mixins";
+@import "./boardResponsive.scss";
+
+.contentsWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  margin-bottom: 10rem;
+
+  .titleWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5rem;
+  }
+}
+
+.titleWrapper {
+  h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+  }
+
+  button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.125rem;
+    background-color: #000;
+    color: #fff;
+    font-weight: 500;
+    img {
+      margin-left: 0.5rem;
+    }
+  }
+}
+
+.listContents {
+  display: grid;
+  column-gap: 24px;
+  row-gap: 40px;
+  grid-template-rows: repeat(auto-fill, 1fr);
+}

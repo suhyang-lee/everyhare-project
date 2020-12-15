@@ -1,17 +1,12 @@
+@import "../scss-common/variables";
+@import "../scss-common/mixins";
+@import "./signupResponsive.scss";
+
 .joinWrapper {
-  width: 800px;
   margin: 0 auto;
-  padding-top: 15rem;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-}
-
-.joinItem {
-  display: flex;
-  flex: 1;
-  flex-direction: row;
-  justify-content: space-between;
 }
 
 .joinContent:first-child > h4 {
@@ -30,7 +25,6 @@
 }
 
 .joinContent:nth-child(2) > button {
-  width: 20rem;
   height: 3rem;
   margin-bottom: 0.3rem;
   font-size: 1rem;
@@ -109,5 +103,4 @@
   color: #fff;
   border-radius: 3rem;
   cursor: pointer;
-  margin-bottom: 10rem;
 }

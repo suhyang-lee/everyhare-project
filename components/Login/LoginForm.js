@@ -1,31 +1,54 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
+
 import styles from "./login.module.scss";
 import Link from "next/link";
 import PropTypes from "prop-types";
-import useInput from "../Hooks/useInput";
+import { useRouter } from "next/router";
 
-const LoginForm = ({ setIsLoggedIn, onClickLoginModalClose }) => {
-  const [id, onChangeId] = useInput("");
-  const [password, onChangePassword] = useInput("");
+import { userInput } from "../Hooks/userHooks";
+import { useDispatch, useSelector } from "react-redux";
+import { loginRequstAction } from "../../reducers/user";
 
-  const onSubmitForm = useCallback(
+const LoginForm = ({ onClickLoginModal }) => {
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const { loginLoadding, loginError, user } = useSelector(
+    (state) => state.user,
+  );
+  const [email, onChangeEmail] = userInput("");
+  const [password, onChangePassword] = userInput("");
+  const [keepLoggedIn, onChangeKeepLoggedIn] = userInput("");
+
+  useEffect(() => {
+    if (loginError) {
+      alert(loginError);
+    }
+  }, [loginError]);
+
+  useEffect(() => {
+    if (user && user.id) {
+      router.push("/");
+    }
+  }, [user]);
+
+  const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      console.log(id, password);
-      setIsLoggedIn(true);
-      onClickLoginModalClose();
+      dispatch(loginRequstAction({ email, password }));
+      onClickLoginModal(!e);
     },
-    [id, password],
+    [email, password],
   );
+
   return (
     <>
-      <form className={styles.loginForm} onSubmit={onSubmitForm}>
+      <form className={styles.loginForm} onSubmit={onSubmit}>
         <input
-          type="text"
-          name="user-id"
-          value={id}
-          onChange={onChangeId}
-          placeholder="아이디"
+          type="email"
+          name="user-email"
+          value={email}
+          onChange={onChangeEmail}
+          placeholder="이메일"
         />
         <input
           type="password"
@@ -36,9 +59,15 @@ const LoginForm = ({ setIsLoggedIn, onClickLoginModalClose }) => {
         />
 
         <div className={styles.loginInfoSet}>
-          <label>
-            <input type="checkbox" /> 로그인 유지하기
-          </label>
+          <div className={styles.loginKeep}>
+            <input
+              id="keepLoggedIn"
+              type="checkbox"
+              value={keepLoggedIn}
+              onChange={onChangeKeepLoggedIn}
+            />
+            <label htmlFor="keepLoggedIn">로그인 유지하기</label>
+          </div>
           <Link href="/profile/search">
             <button>아이디/비밀번호 찾기</button>
           </Link>
@@ -52,11 +81,6 @@ const LoginForm = ({ setIsLoggedIn, onClickLoginModalClose }) => {
       </form>
     </>
   );
-};
-
-LoginForm.propTypes = {
-  setIsLoggedIn: PropTypes.func.isRequired,
-  onClickLoginModalClose: PropTypes.func.isRequired,
 };
 
 export default LoginForm;

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AACA,AAAA,kBAAkB,CAAC;EACjB,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,KAAK;EACb,QAAQ,EAAE,MAAM;CAUjB;;AAbD,AAKE,kBALgB,CAKhB,GAAG,CAAC;EACF,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,KAAK;EACb,UAAU,EAAE,KAAK;EACjB,OAAO,EAAE,WAAW;EACpB,WAAW,EAAE,MAAM;EACnB,eAAe,EAAE,MAAM;CACxB",
+    "sources": [
+        "slider.module.scss"
+    ],
+    "names": [],
+    "file": "slider.module.css"
+}

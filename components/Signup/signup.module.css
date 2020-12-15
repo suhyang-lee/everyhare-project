@@ -1,0 +1,209 @@
+/* _variable.scss */
+/* _mixins.scss */
+/* _variable.scss */
+@media only screen and (min-width: 360px) and (max-width: 719px) {
+  .joinWrapper {
+    width: 95%;
+    padding-top: 8rem;
+    padding-bottom: 3rem;
+  }
+  .joinWrapper .joinItem {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    gap: 1rem;
+  }
+  .joinContent:nth-child(2) > button {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 720px) and (max-width: 1199px) {
+  .joinWrapper {
+    width: 80%;
+    padding-top: 12rem;
+    padding-bottom: 3rem;
+  }
+  .joinWrapper .joinItem {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    gap: 1rem;
+  }
+  .joinContent:nth-child(2) > button {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .joinWrapper {
+    width: 800px;
+    padding-top: 15rem;
+    padding-bottom: 3rem;
+  }
+  .joinWrapper .joinItem {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .joinContent:nth-child(2) > button {
+    width: 20rem;
+  }
+}
+
+.joinWrapper {
+  margin: 0 auto;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.joinContent:first-child > h4 {
+  font-size: 2rem;
+}
+
+.joinContent:first-child > p {
+  font-size: 1.125rem;
+  color: #979797;
+  margin-top: 1rem;
+}
+
+.joinContent:nth-child(2) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.joinContent:nth-child(2) > button {
+  height: 3rem;
+  margin-bottom: 0.3rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 0.3rem;
+}
+
+.joinContent:nth-child(2) > button:first-child {
+  color: #000;
+  background: url("/images/kakako-logo.png") no-repeat #fee500;
+  background-position: 3rem center;
+  background-size: 1.5rem;
+}
+
+.joinContent:nth-child(2) > button:last-child {
+  color: #fff;
+  background: url("/images/naver-logo.png") no-repeat #09c73f;
+  background-position: 3.2rem center;
+  background-size: 1rem;
+}
+
+.joinItem:nth-child(3) > form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.joinItem:nth-child(3) > form > input {
+  width: 100%;
+  height: 3rem;
+  margin-bottom: 0.3rem;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 1rem;
+  border: 1px solid #c7c7c7;
+  font-size: 1rem;
+  border-radius: 0.3rem;
+}
+
+.joinItem:nth-child(2) {
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  font-weight: 900;
+}
+
+.joinItem:nth-child(2) > hr {
+  width: 50%;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  border: 0px;
+  height: 1px;
+  background-color: #c7c7c7;
+}
+
+.joinItem:nth-child(2) > hr:nth-child(1) {
+  -ms-flex-item-align: right;
+      -ms-grid-row-align: right;
+      align-self: right;
+  margin-right: 1rem;
+}
+
+.joinItem:nth-child(2) > hr:nth-child(2) {
+  -ms-flex-item-align: left;
+      -ms-grid-row-align: left;
+      align-self: left;
+  margin-left: 1rem;
+}
+
+.joinInfoMessage {
+  margin-top: 1rem;
+  margin-bottom: 5rem;
+}
+
+.joinSubmitBtn {
+  display: block;
+  width: 20.5rem;
+  height: 4.063rem;
+  font-size: 1.25rem;
+  background-color: #000;
+  margin: 0 auto;
+  color: #fff;
+  border-radius: 3rem;
+  cursor: pointer;
+}
+/*# sourceMappingURL=signup.module.css.map */

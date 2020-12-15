@@ -1,0 +1,24 @@
+/* 로그인 액션 */
+export const LOG_IN_REQUEST = "LOG_IN_REQUEST";
+export const LOG_IN_SUCCESS = "LOG_IN_SUCCESS";
+export const LOG_IN_FAILURE = "LOG_IN_FAILURE";
+
+/* 로그인 확인 액션 */
+export const LOAD_USER_INFO_REQUEST = "LOAD_USER_INFO_REQUEST";
+export const LOAD_USER_INFO_SUCCESS = "LOAD_USER_INFO_SUCCESS";
+export const LOAD_USER_INFO_FAILURE = "LOAD_USER_INFO_FAILURE";
+
+/* 로그아웃 액션 */
+export const LOG_OUT_REQUEST = "LOG_OUT_REQUEST";
+export const LOG_OUT_SUCCESS = "LOG_OUT_SUCCESS";
+export const LOG_OUT_FAILURE = "LOG_OUT_FAILURE";
+
+/* 회원가입 액션 */
+export const SIGN_UP_REQUEST = "SIGN_UP_REQUEST";
+export const SIGN_UP_SUCCESS = "SIGN_UP_SUCCESS";
+export const SIGN_UP_FAILURE = "SIGN_UP_FAILURE";
+
+/* 닉네임 변경 액션 */
+export const CHANGE_NICKNAME_REQUEST = "CHANGE_NICKNAME_REQUEST";
+export const CHANGE_NICKNAME_SUCCESS = "CHANGE_NICKNAME_SUCCESS";
+export const CHANGE_NICKNAME_FAILURE = "CHANGE_NICKNAME_FAILURE";

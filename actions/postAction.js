@@ -1,0 +1,37 @@
+/* 전체글 가져오기 액션 */
+export const LOAD_POSTS_REQUEST = "LOAD_POSTS_REQUEST";
+export const LOAD_POSTS_SUCCESS = "LOAD_POSTS_SUCCESS";
+export const LOAD_POSTS_FAILURE = "LOAD_POSTS_FAILURE";
+
+/* 글 가져오기 액션 */
+export const LOAD_POST_REQUEST = "LOAD_POST_REQUEST";
+export const LOAD_POST_SUCCESS = "LOAD_POST_SUCCESS";
+export const LOAD_POST_FAILURE = "LOAD_POST_FAILURE";
+
+/* 글쓰기 액션 */
+export const ADD_POST_REQUEST = "ADD_POST_REQUEST";
+export const ADD_POST_SUCCESS = "ADD_POST_SUCCESS";
+export const ADD_POST_FAILURE = "ADD_POST_FAILURE";
+
+/* 이미지 업로드 */
+export const UPLOAD_IMAGES_REQUEST = "UPLOAD_IMAGES_REQUEST";
+export const UPLOAD_IMAGES_SUCCESS = "UPLOAD_IMAGES_SUCCESS";
+export const UPLOAD_IMAGES_FAILURE = "UPLOAD_IMAGES_FAILURE";
+
+/* 업로드 된 이미지 State에서 삭제 */
+export const REMOVE_IMAGE = "REMOVE_IMAGE";
+
+/* 댓글쓰기 액션 */
+export const ADD_COMMENT_REQUEST = "ADD_COMMENT_REQUEST";
+export const ADD_COMMENT_SUCCESS = "ADD_COMMENT_SUCCESS";
+export const ADD_COMMENT_FAILURE = "ADD_COMMENT_FAILURE";
+
+/* 찜하기 액션 */
+export const ZZIM_POST_REQUEST = "ZZIM_POST_REQUEST";
+export const ZZIM_POST_SUCCESS = "ZZIM_POST_SUCCESS";
+export const ZZIM_POST_FAILURE = "ZZIM_POST_FAILURE";
+
+/* 찜 취소하기 액션 */
+export const NOT_ZZIM_POST_REQUEST = "NOT_ZZIM_POST_REQUEST";
+export const NOT_ZZIM_POST_SUCCESS = "NOT_ZZIM_POST_SUCCESS";
+export const NOT_ZZIM_POST_FAILURE = "NOT_ZZIM_POST_FAILURE";

@@ -1,40 +1,55 @@
 /* 페이지 공통 헤더  */
 import React, { useCallback, useState } from "react";
+import Link from "next/link";
+import styled from "styled-components";
+
 import Category from "../Category/Category";
 import Login from "../../Login/Login";
 
 import styles from "./header.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutRequstAction } from "../../../reducers/user";
+import Search from "./Search";
+
+const HeaderLink = styled.a`
+  color: black;
+  cursor: pointer;
+`;
 
 const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user);
 
   const [isOpen, setIsOpen] = useState(false);
   const [isShow, setIsShow] = useState(false);
+  const [isSearchShow, setIsSearchShow] = useState(false);
 
   const onLogOut = useCallback(() => {
-    setIsLoggedIn(false);
+    dispatch(logoutRequstAction());
   }, []);
 
-  const onClickOpen = () => {
+  const onClickOpen = useCallback(() => {
     setIsOpen(!isOpen);
-  };
+  }, [isOpen]);
 
-  const onClickLoginModal = (e) => {
-    setIsShow(true);
-  };
+  const onClickLoginModal = useCallback(
+    (e) => {
+      setIsShow(!isShow);
+    },
+    [setIsShow, isShow],
+  );
 
-  const onClickLoginModalClose = (e) => {
-    setIsShow(false);
-  };
+  const onClickSearch = useCallback(
+    (e) => {
+      setIsSearchShow(!isSearchShow);
+    },
+    [isSearchShow],
+  );
 
   return (
     <>
-      {isShow && (
-        <Login
-          onClickLoginModalClose={onClickLoginModalClose}
-          setIsLoggedIn={setIsLoggedIn}
-        />
-      )}
+      {isSearchShow && <Search onClickSearch={onClickSearch} />}
+      {isShow && <Login onClickLoginModal={onClickLoginModal} />}
       <header className={styles.header}>
         <div className={styles.headerItemsWrapper}>
           <div className={styles.headerItem}>
@@ -45,9 +60,11 @@ const Header = () => {
           </div>
 
           <div className={styles.headerItem}>
-            <h1>
-              <img src="/images/img-everyshare-logo.svg" alt="에브리쉐어" />
-            </h1>
+            <Link href="/">
+              <h1>
+                <img src="/images/img-everyshare-logo.svg" alt="에브리쉐어" />
+              </h1>
+            </Link>
           </div>
 
           <div className={styles.headerItem}>
@@ -58,7 +75,7 @@ const Header = () => {
                     <a>마이페이지</a>
                   </h2>
                 </li>
-                {isLoggedIn ? (
+                {user ? (
                   <li onClick={onLogOut}>
                     <h2>로그아웃</h2>
                   </li>
@@ -69,17 +86,24 @@ const Header = () => {
                     </li>
                     <li>
                       <h2>
-                        <a>회원가입</a>
+                        <Link href="/signup">
+                          <HeaderLink>회원가입</HeaderLink>
+                        </Link>
                       </h2>
                     </li>
+                    {user && (
+                      <li className={styles.circleBtn}>
+                        <div className={styles.zzimed}>
+                          {user.Zzimed.length}
+                        </div>
+                        <img src="/images/icon-shopping.svg" alt="담아두기" />
+                      </li>
+                    )}
                   </>
                 )}
 
-                <li className={styles.circleBtn}>
+                <li className={styles.circleBtn} onClick={onClickSearch}>
                   <img src="/images/icon-search.svg" alt="검색하기" />
-                </li>
-                <li className={styles.circleBtn}>
-                  <img src="/images/icon-shopping.svg" alt="담아두기" />
                 </li>
               </ul>
             </nav>
