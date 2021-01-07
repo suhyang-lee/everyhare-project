@@ -2,15 +2,9 @@ import React, { useCallback, useState } from "react";
 import PropTypes from "prop-types";
 import Link from "next/link";
 
-import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 import styles from "./postcard.module.scss";
 
 const PostCard = ({ post }) => {
-  const [liked, setLiked] = useState(false);
-  const onToggleLike = useCallback(() => {
-    setLiked((prev) => !prev);
-  }, []);
-
   const type = {
     owner: "LEND",
     borrower: "BORROW",
@@ -38,14 +32,6 @@ const PostCard = ({ post }) => {
             <p>
               {post.price} ETH / {post.deposit} ETH
             </p>
-            <button onClick={onToggleLike}>
-              {liked ? (
-                <HeartFilled style={{ color: "red" }} />
-              ) : (
-                <HeartOutlined />
-              )}{" "}
-              5
-            </button>
           </div>
         </div>
       </div>

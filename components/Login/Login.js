@@ -26,7 +26,7 @@ const Login = ({ onClickLoginModal }) => {
 
   return (
     <>
-      <div className={styles.loginWrapper} onClickCapture={onMaskClick}>
+      <div className={styles.loginWrapper} onClick={onMaskClick}>
         <div className={styles.modalWrapper}>
           <button className={styles.closeBtn} onClick={onClickLoginModal}>
             <img src="/images/icon-close.svg" alt="로그인 모달 닫기" />

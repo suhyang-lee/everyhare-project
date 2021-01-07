@@ -33,7 +33,6 @@ import {
   ADD_COMMENT_FAILURE,
 } from "../actions/postAction";
 
-//API 요청
 function addPostAPI(data) {
   return axios.post("/post", data);
 }
@@ -51,17 +50,15 @@ function loadPostAPI(data) {
 }
 
 function zzimPostAPI(data) {
-  console.log(data);
   return axios.patch(`/post/${data.postId}/zzim`, data);
 }
 
 function notZzimPostAPI(data) {
-  console.log(data);
   return axios.delete(`/post/${data.postId}/zzim`, data);
 }
 
 function addCommentAPI(data) {
-  return axios.post(`post/${data.postId}/comment`, data);
+  return axios.post(`/post/${data.postId}/comment`, data);
 }
 
 /* API 결과 받아 처리 */

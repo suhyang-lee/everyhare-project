@@ -6,7 +6,6 @@ import { END } from "redux-saga";
 import axios from "axios";
 import Layout from "../components/Layout/Layout";
 import wrapper from "../store/configureStore";
-import { LOAD_USER_INFO_REQUEST } from "../actions/userAction";
 import styles from "../components/Login/login.module.scss";
 import LoginForm from "../components/Login/LoginForm";
 import styled from "styled-components";
@@ -42,13 +41,11 @@ const LoginPage = () => {
 export const getServerSideProps = wrapper.getServerSideProps(
   async (context) => {
     const cookie = context.req ? context.req.headers.cookie : "";
+
     if (context.req && cookie) {
       axios.defaults.headers.Cookie = cookie;
     }
 
-    context.store.dispatch({
-      type: LOAD_USER_INFO_REQUEST,
-    });
     context.store.dispatch(END);
     await context.store.sagaTask.toPromise();
   },

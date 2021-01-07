@@ -10,8 +10,8 @@ import wrapper from "../../store/configureStore";
 import AppLayout from "../../components/Layout/AppLayout";
 import BoardList from "../../components/Board";
 import { getCategory } from "../../components/common/global";
-import { LOAD_USER_INFO_REQUEST } from "../../actions/userAction";
 import { LOAD_POSTS_REQUEST } from "../../actions/postAction";
+import { LOAD_USER_INFO_REQUEST } from "../../actions/userAction";
 
 const Board = () => {
   const router = useRouter();

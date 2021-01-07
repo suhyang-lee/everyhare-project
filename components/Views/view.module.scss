@@ -99,6 +99,7 @@
   .chatBtn {
     padding-top: 0.2rem;
     padding-bottom: 0.2rem;
+    padding-left: 0.5rem;
     padding-right: 1rem;
     box-sizing: border-box;
     background: 0;
@@ -193,6 +194,18 @@
 .productContents {
   width: 100%;
   box-sizing: border-box;
+
+  ul,
+  ol {
+    margin-top: 16px;
+    padding-left: 20px;
+    margin-bottom: 16px;
+    list-style: initial !important;
+  }
+
+  .contents {
+    line-height: 160%;
+  }
 
   ul {
     width: 100%;

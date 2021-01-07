@@ -15,10 +15,10 @@ export const getServerSideProps = wrapper.getServerSideProps(
     if (context.req && cookie) {
       axios.defaults.headers.Cookie = cookie;
     }
-
     context.store.dispatch({
       type: LOAD_USER_INFO_REQUEST,
     });
+
     context.store.dispatch(END);
     await context.store.sagaTask.toPromise();
   },

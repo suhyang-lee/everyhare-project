@@ -34,6 +34,7 @@ const CommentList = ({ comment }) => {
         </div>
         <p>{User.nickname}</p>
         <p>@{User.email && User.email.split("@")[0]}</p>
+        {console.log(User.email)}
       </div>
       <div className={styles.commentContents}>
         <div className={styles.commentInfo}>

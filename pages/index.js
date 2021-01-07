@@ -6,6 +6,7 @@ import AppLayout from "../components/Layout/AppLayout";
 import Contents from "../components/Home/Home";
 
 import { LOAD_USER_INFO_REQUEST } from "../actions/userAction";
+
 import wrapper from "../store/configureStore";
 import axios from "axios";
 
@@ -23,6 +24,7 @@ const Home = () => {
 export const getServerSideProps = wrapper.getServerSideProps(
   async (context) => {
     const cookie = context.req ? context.req.headers.cookie : "";
+
     if (context.req && cookie) {
       axios.defaults.headers.Cookie = cookie;
     }
@@ -30,6 +32,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
     context.store.dispatch({
       type: LOAD_USER_INFO_REQUEST,
     });
+
     context.store.dispatch(END);
     await context.store.sagaTask.toPromise();
   },

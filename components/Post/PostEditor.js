@@ -15,10 +15,11 @@ const Editor = dynamic(
 
 const EditorWrapper = styled.div`
   .wrapper {
-    min-height: 400px;
+    height: 300px;
+    margin-bottom: 8rem;
   }
   .editor {
-    height: 300px !important;
+    height: 100% !important;
     border: 1px solid #f1f1f1 !important;
     padding: 1rem !important;
     border-radius: 2px !important;

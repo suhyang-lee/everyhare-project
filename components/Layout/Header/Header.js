@@ -76,9 +76,17 @@ const Header = () => {
                   </h2>
                 </li>
                 {user ? (
-                  <li onClick={onLogOut}>
-                    <h2>로그아웃</h2>
-                  </li>
+                  <>
+                    <li onClick={onLogOut}>
+                      <h2>로그아웃</h2>
+                    </li>
+                    <li className={styles.circleBtn}>
+                      <div className={styles.zzimed}>
+                        {user.Zzimed ? user.Zzimed.length : 0}
+                      </div>
+                      <img src="/images/icon-shopping.svg" alt="담아두기" />
+                    </li>
+                  </>
                 ) : (
                   <>
                     <li>
@@ -91,14 +99,6 @@ const Header = () => {
                         </Link>
                       </h2>
                     </li>
-                    {user && (
-                      <li className={styles.circleBtn}>
-                        <div className={styles.zzimed}>
-                          {user.Zzimed.length}
-                        </div>
-                        <img src="/images/icon-shopping.svg" alt="담아두기" />
-                      </li>
-                    )}
                   </>
                 )}
 

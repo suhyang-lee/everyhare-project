@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import styled from "styled-components";
 
-import { HeartOutlined, HeartFilled } from "@ant-design/icons";
+import { HeartOutlined, HeartFilled, WechatOutlined } from "@ant-design/icons";
 
 import CommentList from "./Comment/CommentList";
 import CommentInput from "./Comment/CommentInput";
@@ -94,7 +94,7 @@ const View = ({ post }) => {
             </div>
             <div className={styles.profileInfo}>
               <p>{post.User.nickname}</p>
-              <button className={styles.chatBtn}>1대1 대화요청</button>
+              <button className={styles.chatBtn}> 1대1 대화요청</button>
             </div>
           </div>
           <div className={styles.priceWrapper}>
@@ -131,7 +131,7 @@ const View = ({ post }) => {
         </ul>
         <article className={styles.productContents}>
           <div
-            className="contents"
+            className={styles.contents}
             dangerouslySetInnerHTML={{ __html: post.contents }}
           ></div>
         </article>

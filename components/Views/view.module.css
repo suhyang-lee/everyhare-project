@@ -248,6 +248,18 @@
           box-sizing: border-box;
 }
 
+.productContents ul,
+.productContents ol {
+  margin-top: 16px;
+  padding-left: 20px;
+  margin-bottom: 16px;
+  list-style: initial !important;
+}
+
+.productContents .contents {
+  line-height: 160%;
+}
+
 .productContents ul {
   width: 100%;
 }
