@@ -19,9 +19,6 @@ import {
   SIGN_UP_REQUEST,
   SIGN_UP_SUCCESS,
   SIGN_UP_FAILURE,
-  LOAD_TOKEN_SUCCESS,
-  LOAD_TOKEN_FAILURE,
-  LOAD_TOKEN_REQUEST,
 } from "../actions/userAction";
 import axios from "axios";
 

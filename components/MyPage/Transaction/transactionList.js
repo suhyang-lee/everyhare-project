@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "./contents.module.scss";
+import styles from "./transaction.module.scss";
 
 const TransactionList = () => {
   return (

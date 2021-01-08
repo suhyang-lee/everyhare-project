@@ -4,14 +4,14 @@ import styles from "./view.module.scss";
 import PropTypes from "prop-types";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import styled from "styled-components";
-
+import { useDispatch, useSelector } from "react-redux";
 import { HeartOutlined, HeartFilled, WechatOutlined } from "@ant-design/icons";
 
 import CommentList from "./Comment/CommentList";
 import CommentInput from "./Comment/CommentInput";
 import ProductSlider from "./Slider/slider";
 import { getCategory } from "../common/global";
-import { useDispatch, useSelector } from "react-redux";
+import Apply from "./Apply/ApplyModal";
 import {
   NOT_ZZIM_POST_REQUEST,
   ZZIM_POST_REQUEST,
@@ -25,8 +25,10 @@ const AchorStyle = styled(AnchorLink)`
 const View = ({ post }) => {
   const dispatch = useDispatch();
   const [days, setDays] = useState(1);
+  const [modalIsOpen, setIsOpen] = useState(false);
   const { user } = useSelector((state) => state.user);
   const id = user?.id;
+  const basketed = post.Basketer.find((v) => v.id === id);
 
   const handleMinus = useCallback(() => {
     if (days > 1) {
@@ -62,7 +64,13 @@ const View = ({ post }) => {
     });
   }, [id]);
 
-  const basketed = post.Basketer.find((v) => v.id === id);
+  const openModal = useCallback(() => {
+    setIsOpen(true);
+  }, [setIsOpen]);
+
+  const closeModal = useCallback(() => {
+    setIsOpen(false);
+  }, [setIsOpen]);
 
   return (
     <div className={styles.contentsWrapper}>
@@ -75,7 +83,7 @@ const View = ({ post }) => {
           <h4>{getCategory(post.category)}</h4>
           <h5>{post.title}</h5>
           <div className={styles.buyBtnWrapper}>
-            <button>신청하기</button>
+            <button onClick={openModal}>신청하기</button>
             <button>
               찜하기{" "}
               {basketed ? (
@@ -88,8 +96,8 @@ const View = ({ post }) => {
           <div className={styles.writerInfo}>
             <div className={styles.profileImage}>
               <img
-                src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1489&q=80"
-                alt="프로필이미지"
+                src={post.User.profileUrl}
+                alt={`${post.User.nickname}의 프로필`}
               />
             </div>
             <div className={styles.profileInfo}>
@@ -144,6 +152,11 @@ const View = ({ post }) => {
           {post && post.id ? <CommentInput postId={post.id} /> : <></>}
         </article>
       </section>
+      <Apply
+        modalIsOpen={modalIsOpen}
+        closeModal={closeModal}
+        writer={post.User}
+      />
     </div>
   );
 };

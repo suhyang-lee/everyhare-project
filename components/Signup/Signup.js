@@ -81,6 +81,22 @@ const Signup = () => {
     }
   }, [user]);
 
+  const onKakaoTalkLogin = useCallback((e) => {
+    e.preventDefault();
+    const currentUrl = document.location.href;
+    window.location.href = `http://localhost:3060/auth/kakao?redirect_url=${encodeURIComponent(
+      currentUrl,
+    )}`;
+  }, []);
+
+  const onNaverLogin = useCallback((e) => {
+    e.preventDefault();
+    const currentUrl = document.location.href;
+    window.location.href = `http://localhost:3060/auth/naver?redirect_url=${encodeURIComponent(
+      currentUrl,
+    )}`;
+  });
+
   const onSubmit = useCallback((data) => {
     data.provider = "local";
     console.log(data);
@@ -101,8 +117,8 @@ const Signup = () => {
           </p>
         </div>
         <div className={styles.joinContent}>
-          <button>카카오로 신규가입</button>
-          <button>네이버로 신규가입</button>
+          <button onClick={onKakaoTalkLogin}>카카오로 신규가입</button>
+          <button onClick={onNaverLogin}>네이버로 신규가입</button>
         </div>
       </div>
       <div className={styles.joinItem}>

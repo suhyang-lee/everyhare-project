@@ -60,6 +60,18 @@ export const loginRequstAction = (data) => {
   };
 };
 
+export const kakaoLoginRequestAction = () => {
+  return {
+    type: KAKAO_LOG_IN_REQUEST,
+  };
+};
+
+export const naverLoginRequestAction = () => {
+  return {
+    type: NAVER_LOG_IN_REQUEST,
+  };
+};
+
 export const logoutRequstAction = () => {
   return {
     type: LOG_OUT_REQUEST,

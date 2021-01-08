@@ -27,14 +27,10 @@ const CommentList = ({ comment }) => {
     <li className={styles.commentWrapper}>
       <div className={styles.commentProfile}>
         <div className={styles.userProfileImage}>
-          <img
-            src="https://images.unsplash.com/photo-1518109331836-a2a7e93f89bb?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80"
-            alt="프로필이미지"
-          />
+          <img src={User.profileUrl} alt="프로필이미지" />
         </div>
         <p>{User.nickname}</p>
         <p>@{User.email && User.email.split("@")[0]}</p>
-        {console.log(User.email)}
       </div>
       <div className={styles.commentContents}>
         <div className={styles.commentInfo}>
@@ -57,7 +53,7 @@ const CommentList = ({ comment }) => {
         <p>{comment.contents}</p>
         <button onClick={onToggleLike}>
           {liked ? <HeartFilled style={{ color: "red" }} /> : <HeartOutlined />}{" "}
-          5
+          0
         </button>
       </div>
     </li>

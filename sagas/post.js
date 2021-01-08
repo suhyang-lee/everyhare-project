@@ -31,39 +31,16 @@ import {
   ADD_COMMENT_REQUEST,
   ADD_COMMENT_SUCCESS,
   ADD_COMMENT_FAILURE,
+  APPLY_RENTAL_REQUEST,
+  APPLY_RENTAL_SUCCESS,
+  APPLY_RENTAL_FAILURE,
 } from "../actions/postAction";
 
-function addPostAPI(data) {
-  return axios.post("/post", data);
-}
-
-function uploadImagesAPI(data) {
-  return axios.post("/post/images", data);
-}
-
-function loadPostsAPI(data, lastId) {
-  return axios.get(`/posts/${encodeURIComponent(data)}?lastId=${lastId || 0}`);
-}
-
+//전체 게시물 가져오기
 function loadPostAPI(data) {
   return axios.get(`/post/${data.postId}`, data);
 }
 
-function zzimPostAPI(data) {
-  return axios.patch(`/post/${data.postId}/zzim`, data);
-}
-
-function notZzimPostAPI(data) {
-  return axios.delete(`/post/${data.postId}/zzim`, data);
-}
-
-function addCommentAPI(data) {
-  return axios.post(`/post/${data.postId}/comment`, data);
-}
-
-/* API 결과 받아 처리 */
-
-//전체 게시물 가져오기
 function* loadPosts(action) {
   try {
     const result = yield call(loadPostsAPI, action.data, action.lastId);
@@ -81,6 +58,10 @@ function* loadPosts(action) {
 }
 
 //게시물 등록하기
+function addPostAPI(data) {
+  return axios.post("/post", data);
+}
+
 function* addPost(action) {
   try {
     const result = yield call(addPostAPI, action.data);
@@ -98,6 +79,10 @@ function* addPost(action) {
 }
 
 //이미지 등록하기
+function uploadImagesAPI(data) {
+  return axios.post("/post/images", data);
+}
+
 function* uploadImages(action) {
   try {
     const result = yield call(uploadImagesAPI, action.data);
@@ -116,6 +101,10 @@ function* uploadImages(action) {
 }
 
 //PostId로 게시물 가져오기
+function loadPostsAPI(data, lastId) {
+  return axios.get(`/posts/${encodeURIComponent(data)}?lastId=${lastId || 0}`);
+}
+
 function* loadPost(action) {
   try {
     const result = yield call(loadPostAPI, action.data);
@@ -133,6 +122,10 @@ function* loadPost(action) {
 }
 
 //댓글 등록하기
+function addCommentAPI(data) {
+  return axios.post(`/post/${data.postId}/comment`, data);
+}
+
 function* addComment(action) {
   try {
     const result = yield call(addCommentAPI, action.data);
@@ -150,6 +143,10 @@ function* addComment(action) {
 }
 
 //물건 찜하기
+function zzimPostAPI(data) {
+  return axios.patch(`/post/${data.postId}/zzim`, data);
+}
+
 function* zzimPost(action) {
   try {
     const result = yield call(zzimPostAPI, action.data);
@@ -167,6 +164,10 @@ function* zzimPost(action) {
 }
 
 //찜 삭제
+function notZzimPostAPI(data) {
+  return axios.delete(`/post/${data.postId}/zzim`, data);
+}
+
 function* notZzimPost(action) {
   try {
     const result = yield call(notZzimPostAPI, action.data);
@@ -179,6 +180,28 @@ function* notZzimPost(action) {
     console.error(err);
     yield put({
       type: NOT_ZZIM_POST_FAILURE,
+      error: err.response.data,
+    });
+  }
+}
+
+//신청하기
+function addApplyAPI(data) {
+  return axios.post("post/apply", data);
+}
+
+function* addApply(action) {
+  try {
+    const result = yield call(addApplyAPI, action.data);
+    console.log(result);
+    yield put({
+      type: ADD_APPLY_SUCCESS,
+      data: result.data,
+    });
+  } catch (err) {
+    console.error(err);
+    yield put({
+      type: ADD_APPLY_FAILURE,
       error: err.response.data,
     });
   }
@@ -208,6 +231,10 @@ function* watchloadPost() {
 }
 
 function* watchAddComment() {
+  yield takeLatest(ADD_COMMENT_REQUEST, addComment);
+}
+
+function* watchAdd() {
   yield takeLatest(ADD_COMMENT_REQUEST, addComment);
 }
 
