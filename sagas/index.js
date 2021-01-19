@@ -1,16 +1,18 @@
 import { all, fork } from "redux-saga/effects";
-import userSaga, { loadTokenAPI } from "./user";
+import userSaga from "./user";
 import postSaga from "./post";
 import searchSaga from "./search";
+import mypostSaga from "./mypage";
 import axios from "axios";
-import { getToken, setToken } from "../utils/authToken";
+import { authTokenClosure } from "../utils/authToken";
 
 axios.defaults.baseURL = "http://localhost:3060";
 axios.defaults.withCredentials = true;
 
 axios.interceptors.request.use(
   async function (config) {
-    const token = await getToken();
+    const token = authTokenClosure.getToken();
+
     if (token) {
       config.headers["Authorization"] = `Bearer ${token}`;
     }
@@ -23,7 +25,10 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(
   async function (response) {
-    await setToken(response.data.accessToken);
+    if (response.data.accessToken) {
+      authTokenClosure.setToken(response.data.accessToken);
+    }
+
     return response;
   },
   async function (error) {
@@ -39,5 +44,10 @@ axios.interceptors.response.use(
 );
 
 export default function* rootSaga() {
-  yield all([fork(userSaga), fork(postSaga), fork(searchSaga)]);
+  yield all([
+    fork(userSaga),
+    fork(postSaga),
+    fork(searchSaga),
+    fork(mypostSaga),
+  ]);
 }

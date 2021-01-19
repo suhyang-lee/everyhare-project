@@ -17,16 +17,13 @@ import {
   SIGN_UP_REQUEST,
   SIGN_UP_SUCCESS,
   SIGN_UP_FAILURE,
-  CHANGE_NICKNAME_REQUEST,
-  CHANGE_NICKNAME_SUCCESS,
-  CHANGE_NICKNAME_FAILURE,
   LOAD_TOKEN_REQUEST,
   LOAD_TOKEN_SUCCESS,
   LOAD_TOKEN_FAILURE,
 } from "../actions/userAction";
 
 import produce from "immer";
-import { setToken } from "../utils/authToken";
+import { authTokenClosure } from "../utils/authToken";
 
 export const initState = {
   loginLoadding: false, //로그인 시도
@@ -48,6 +45,16 @@ export const initState = {
   signupLoadding: false,
   signupDone: false,
   signupError: false,
+
+  hasMoreMyPosts: true,
+  loadMyPostsLoading: false,
+  loadMyPostsDone: false,
+  loadMyPostsError: null,
+
+  hasMoreMyComments: true,
+  loadMyCommentsLoading: false,
+  loadMyCommentsDone: false,
+  loadMyCommentsError: null,
 
   user: null,
   isLoggedIn: false,
@@ -174,7 +181,7 @@ const reducer = (state = initState, action) => {
         draft.logoutLoadding = false;
         draft.logoutDone = true;
         draft.user = null;
-        setToken("");
+        authTokenClosure.setToken("");
         break;
       case LOG_OUT_FAILURE:
         draft.logoutLoadding = false;
@@ -195,21 +202,6 @@ const reducer = (state = initState, action) => {
         draft.signupLoadding = false;
         draft.signupDone = false;
         draft.signupError = action.error;
-        break;
-
-      case CHANGE_NICKNAME_REQUEST:
-        draft.changeNicknameLoadding = true;
-        draft.changeNicknameDone = false;
-        draft.changeNicknameError = null;
-        break;
-      case CHANGE_NICKNAME_SUCCESS:
-        draft.changeNicknameLoadding = false;
-        draft.changeNicknameDone = true;
-        break;
-      case CHANGE_NICKNAME_FAILURE:
-        draft.changeNicknameLoadding = false;
-        draft.changeNicknameDone = false;
-        draft.changeNicknameError = action.error;
         break;
 
       default:

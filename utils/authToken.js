@@ -1,9 +1,24 @@
-let token;
+const authToken = function () {
+  let token = "";
 
-export async function setToken(newToken) {
-  token = newToken;
-}
+  function updateToken(newToken) {
+    token = newToken;
+  }
 
-export async function getToken() {
-  return token;
-}
+  function sendToken() {
+    console.log("ttttttt", token);
+    return token;
+  }
+
+  return {
+    setToken: function (tokens) {
+      updateToken(tokens);
+    },
+    getToken: function () {
+      return sendToken();
+    },
+  };
+};
+const authTokenClosure = authToken();
+
+export { authTokenClosure };

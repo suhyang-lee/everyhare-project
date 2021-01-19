@@ -48,7 +48,6 @@ function logInAPI(data) {
 function* login(action) {
   try {
     const result = yield call(logInAPI, action.data);
-    console.log(result);
     yield put({
       type: LOG_IN_SUCCESS,
       data: result.data,
@@ -101,13 +100,13 @@ function* loginNaver(action) {
   }
 }
 
-function loadUserInfoAPI(data) {
-  return axios.get("/user", data);
+function loadUserInfoAPI() {
+  return axios.get("/user");
 }
 
-function* loadUserInfo(action) {
+function* loadUserInfo() {
   try {
-    const result = yield call(loadUserInfoAPI, action.data);
+    const result = yield call(loadUserInfoAPI);
     yield put({
       type: LOAD_USER_INFO_SUCCESS,
       data: result.data,

@@ -1,17 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Head from "next/head";
-import { useRouter } from "next/router";
-import { useDispatch, useSelector } from "react-redux";
 
 import { END } from "redux-saga";
 import axios from "axios";
-import wrapper from "../../store/configureStore";
+import wrapper from "../../../store/configureStore";
 
-import AppLayout from "../../components/Layout/AppLayout";
-import UserInfo from "../../components/MyPage";
-import { LOAD_USER_INFO_REQUEST } from "../../actions/userAction";
+import AppLayout from "../../../components/Layout/AppLayout";
+import UserInfo from "../../../components/MyPage";
+import { LOAD_USER_INFO_REQUEST } from "../../../actions/userAction";
+import { useDispatch } from "react-redux";
 
-const Mypage = () => {
+const UserInfo = () => {
+  const dispatch = useDispatch();
   return (
     <AppLayout>
       <Head>

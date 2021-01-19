@@ -4,6 +4,7 @@ import { combineReducers } from "redux";
 import user from "./user";
 import post from "./post";
 import search from "./search";
+import mypage from "./mypage";
 
 /* combineReducers를 통해 reducer 함수 합치기
  * Hydrate(SSR)를 위해서 index를 추가한 것 임.
@@ -19,6 +20,7 @@ const rootReducer = (state, action) => {
         user,
         post,
         search,
+        mypage,
       });
       return combineReducer(state, action);
     }
