@@ -9,7 +9,7 @@ import wrapper from "../../store/configureStore";
 
 import AppLayout from "../../components/Layout/AppLayout";
 import BoardList from "../../components/Board";
-import { getCategory } from "../../components/common/global";
+import { category } from "../../components/common/global";
 import { LOAD_POSTS_REQUEST } from "../../actions/postAction";
 import { LOAD_USER_INFO_REQUEST } from "../../actions/userAction";
 
@@ -49,7 +49,7 @@ const Board = () => {
       <Head>
         <title>게시물 리스트 보기 | EveryShare</title>
       </Head>
-      <BoardList posts={posts} title={getCategory(category)} />
+      <BoardList posts={posts} title={category[category]} />
     </AppLayout>
   );
 };

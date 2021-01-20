@@ -3,21 +3,22 @@ import Head from "next/head";
 
 import { END } from "redux-saga";
 import axios from "axios";
-import wrapper from "../../../store/configureStore";
+import wrapper from "../../store/configureStore";
+import { useRouter } from "next/router";
 
-import AppLayout from "../../../components/Layout/AppLayout";
-import UserInfo from "../../../components/MyPage";
-import { LOAD_USER_INFO_REQUEST } from "../../../actions/userAction";
-import { useDispatch } from "react-redux";
+import AppLayout from "../../components/Layout/AppLayout";
+import Contents from "../../components/MyPage";
+import { LOAD_USER_INFO_REQUEST } from "../../actions/userAction";
 
-const UserInfo = () => {
-  const dispatch = useDispatch();
+const Mypage = () => {
+  const { query } = useRouter();
+
   return (
     <AppLayout>
       <Head>
         <title>마이페이지 | EveryShare</title>
       </Head>
-      <UserInfo />
+      <Contents path={query.mypage} />
     </AppLayout>
   );
 };

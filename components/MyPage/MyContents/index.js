@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { LOAD_MYPOSTS_REQUEST } from "../../../actions/mypageAction";
 import UserViewItem from "./userViewItem";
 
-const UserView = () => {
+const MyContents = () => {
   const dispatch = useDispatch();
   const [pageNum, setPageNum] = useState(1);
 
@@ -61,4 +61,4 @@ const UserView = () => {
   );
 };
 
-export default UserView;
+export default MyContents;

@@ -6,7 +6,6 @@ const authToken = function () {
   }
 
   function sendToken() {
-    console.log("ttttttt", token);
     return token;
   }
 
