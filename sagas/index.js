@@ -13,9 +13,9 @@ axios.interceptors.request.use(
   async function (config) {
     const token = authTokenClosure.getToken();
 
-    if (token) {
-      config.headers["Authorization"] = `Bearer ${token}`;
-    }
+    if (token) config.headers["Authorization"] = `Bearer ${token}`;
+    else config.headers["Authorization"] = "1111111";
+
     return config;
   },
   function (error) {

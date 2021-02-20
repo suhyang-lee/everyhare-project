@@ -5,10 +5,10 @@ import Router from "next/router";
 import { CloseOutlined } from "@ant-design/icons";
 
 import styles from "./search.module.scss";
-import { userInput } from "../../Hooks/userHooks";
+import useInput from "../../../Hooks/useInput";
 
 const Search = ({ onClickSearch }) => {
-  const [search, onChangeSearch] = userInput("");
+  const [search, onChangeSearch] = useInput("");
   const body = document.querySelector("body");
   const lockScroll = (e) => e.preventDefault();
 

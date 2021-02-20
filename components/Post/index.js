@@ -14,9 +14,10 @@ import Phase2 from "./PostFormPhase2";
 import { addPost } from "../../reducers/post";
 
 const PostForm = () => {
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const dispatch = useDispatch();
   const { addPostDone, ImagePaths, posts } = useSelector((state) => state.post);
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+
   const { register, handleSubmit, errors, reset } = useForm();
 
   useEffect(() => {

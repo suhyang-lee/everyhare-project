@@ -1,0 +1,17 @@
+@include mobile {
+  .userInfoWrapper {
+    width: 40%;
+  }
+}
+
+@include tablet {
+  .userInfoWrapper {
+    width: 70%;
+  }
+}
+
+@include desktop {
+  .userInfoWrapper {
+    width: 100%;
+  }
+}

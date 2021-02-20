@@ -1,6 +1,7 @@
 /* 페이지 공통 헤더  */
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
+import Router from "next/router";
 import styled from "styled-components";
 
 import Category from "../Category/Category";
@@ -18,11 +19,17 @@ const HeaderLink = styled.a`
 
 const Header = () => {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.user);
+  const { user, logoutDone } = useSelector((state) => state.user);
 
   const [isOpen, setIsOpen] = useState(false);
   const [isShow, setIsShow] = useState(false);
   const [isSearchShow, setIsSearchShow] = useState(false);
+
+  useEffect(() => {
+    if (logoutDone && !user) {
+      Router.push("/");
+    }
+  }, [logoutDone]);
 
   const onLogOut = useCallback(() => {
     dispatch(logoutRequstAction());
@@ -70,13 +77,15 @@ const Header = () => {
           <div className={styles.headerItem}>
             <nav className={styles.gnbNav}>
               <ul className={styles.gnbUl}>
-                <li>
-                  <h2>
-                    <a>마이페이지</a>
-                  </h2>
-                </li>
                 {user ? (
                   <>
+                    <li>
+                      <h2>
+                        <Link href="/mypage/info">
+                          <HeaderLink>마이페이지</HeaderLink>
+                        </Link>
+                      </h2>
+                    </li>
                     <li onClick={onLogOut}>
                       <h2>로그아웃</h2>
                     </li>

@@ -2,33 +2,41 @@ import React, { useCallback, useEffect, useState } from "react";
 import styles from "./userView.module.scss";
 import PaginationList from "./pagination";
 import { useDispatch, useSelector } from "react-redux";
-import { LOAD_MYPOSTS_REQUEST } from "../../../actions/mypageAction";
+import MYPAGE from "../../../actions/mypageAction";
 import UserViewItem from "./userViewItem";
 
-const MyContents = () => {
+const MyContents = ({ path }) => {
   const dispatch = useDispatch();
   const [pageNum, setPageNum] = useState(1);
 
-  const { myPosts, myPostsTotalCount } = useSelector((state) => state.mypage);
-
-  const onChangePage = useCallback(
-    (e, value) => {
-      e.preventDefault();
-      setPageNum(value);
-      dispatch({
-        type: LOAD_MYPOSTS_REQUEST,
-        pageNum: value,
-      });
-    },
-    [pageNum, setPageNum],
+  const { myContents, myContentsTotalCount } = useSelector(
+    (state) => state.mypage,
   );
 
   useEffect(() => {
     dispatch({
-      type: LOAD_MYPOSTS_REQUEST,
-      pageNum: pageNum,
+      type: MYPAGE.LOAD_MYCONTENTS_REQUEST,
+      data: {
+        pageNum: pageNum,
+        type: path,
+      },
     });
-  }, []);
+  }, [path]);
+
+  const onChangePage = useCallback(
+    (e, value) => {
+      e.preventDefault();
+      dispatch({
+        type: MYPAGE.LOAD_MYCONTENTS_REQUEST,
+        data: {
+          pageNum: value,
+          type: path,
+        },
+      });
+      setPageNum(value);
+    },
+    [pageNum, setPageNum],
+  );
 
   return (
     <table className={styles.myTable}>
@@ -42,15 +50,21 @@ const MyContents = () => {
         </tr>
       </thead>
       <tbody>
-        {myPosts.map((item) => (
-          <UserViewItem key={item.id} item={item} />
-        ))}
+        {myContents.length !== 0 ? (
+          myContents.map((item) => <UserViewItem key={item.id} item={item} />)
+        ) : (
+          <tr>
+            <th></th>
+            <td>작성된 내용이 없습니다</td>
+            <td></td>
+          </tr>
+        )}
       </tbody>
       <tfoot>
         <tr>
           <td colSpan="4">
             <PaginationList
-              pageCount={Math.ceil(myPostsTotalCount / 10)}
+              pageCount={Math.ceil(myContentsTotalCount / 5)}
               page={pageNum}
               onChangePage={onChangePage}
             />

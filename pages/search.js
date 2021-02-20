@@ -10,8 +10,8 @@ import wrapper from "../store/configureStore";
 import AppLayout from "../components/Layout/AppLayout";
 import BoardList from "../components/Board";
 
-import { LOAD_USER_INFO_REQUEST } from "../actions/userAction";
-import { LOAD_SEARCH_REQUEST } from "../actions/searchAction";
+import USER from "../actions/userAction";
+import SEARCH from "../actions/searchAction";
 
 const Search = () => {
   const router = useRouter();
@@ -62,11 +62,11 @@ export const getServerSideProps = wrapper.getServerSideProps(
     }
 
     context.store.dispatch({
-      type: LOAD_USER_INFO_REQUEST,
+      type: USER.LOAD_USER_INFO_REQUEST,
     });
 
     context.store.dispatch({
-      type: LOAD_SEARCH_REQUEST,
+      type: SEARCH.LOAD_SEARCH_REQUEST,
       data: context.query.keyword,
     });
 

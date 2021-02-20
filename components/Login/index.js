@@ -3,7 +3,7 @@ import styles from "./login.module.scss";
 import Link from "next/link";
 import styled from "styled-components";
 
-import { userInput } from "../Hooks/userHooks";
+import useInput from "../../Hooks/useInput";
 import { useDispatch, useSelector } from "react-redux";
 import { loginRequstAction } from "../../reducers/user";
 
@@ -20,9 +20,9 @@ const Error = styled.div`
 const LoginForm = ({ onClickLoginModal }) => {
   const dispatch = useDispatch();
   const { loginLoadding, user, loginDone } = useSelector((state) => state.user);
-  const [email, onChangeEmail] = userInput("");
-  const [password, onChangePassword] = userInput("");
-  const [keepLoggedIn, onChangeKeepLoggedIn] = userInput("");
+  const [email, onChangeEmail] = useInput("");
+  const [password, onChangePassword] = useInput("");
+  const [keepLoggedIn, onChangeKeepLoggedIn] = useInput("");
   const [loginInputError, setLoginInputError] = useState(false);
   const [attemptLoginError, setAttemptLoginError] = useState(false);
 
@@ -44,6 +44,7 @@ const LoginForm = ({ onClickLoginModal }) => {
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
+
       if (email === "" || password === "") {
         return setLoginInputError(true);
       }
@@ -66,7 +67,7 @@ const LoginForm = ({ onClickLoginModal }) => {
     window.location.href = `http://localhost:3060/auth/naver?redirect_url=${encodeURIComponent(
       currentUrl,
     )}`;
-  });
+  }, []);
 
   return (
     <>

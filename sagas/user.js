@@ -1,26 +1,7 @@
 import { all, fork, delay, put, takeLatest, call } from "redux-saga/effects";
-
-import {
-  LOAD_USER_INFO_REQUEST,
-  LOAD_USER_INFO_SUCCESS,
-  LOAD_USER_INFO_FAILURE,
-  LOG_IN_REQUEST,
-  LOG_IN_SUCCESS,
-  LOG_IN_FAILURE,
-  KAKAO_LOG_IN_REQUEST,
-  KAKAO_LOG_IN_SUCCESS,
-  KAKAO_LOG_IN_FAILURE,
-  NAVER_LOG_IN_REQUEST,
-  NAVER_LOG_IN_SUCCESS,
-  NAVER_LOG_IN_FAILURE,
-  LOG_OUT_REQUEST,
-  LOG_OUT_SUCCESS,
-  LOG_OUT_FAILURE,
-  SIGN_UP_REQUEST,
-  SIGN_UP_SUCCESS,
-  SIGN_UP_FAILURE,
-} from "../actions/userAction";
 import axios from "axios";
+
+import USER from "../actions/userAction";
 
 function signUpAPI(data) {
   return axios.post("/user", data);
@@ -31,11 +12,11 @@ function* signup(action) {
     const result = yield call(signUpAPI, action.data);
     console.log(result);
     yield put({
-      type: SIGN_UP_SUCCESS,
+      type: USER.SIGN_UP_SUCCESS,
     });
   } catch (err) {
     yield put({
-      type: SIGN_UP_FAILURE,
+      type: USER.SIGN_UP_FAILURE,
       error: err.response.data,
     });
   }
@@ -49,12 +30,13 @@ function* login(action) {
   try {
     const result = yield call(logInAPI, action.data);
     yield put({
-      type: LOG_IN_SUCCESS,
-      data: result.data,
+      type: USER.LOG_IN_SUCCESS,
+      data: result.data.userInfo,
     });
   } catch (err) {
+    console.error(err);
     yield put({
-      type: LOG_IN_FAILURE,
+      type: USER.LOG_IN_FAILURE,
       error: err.response.data,
     });
   }
@@ -69,12 +51,13 @@ function* loginKakao(action) {
     const result = yield call(loginKakaoAPI, action.data);
     console.log("카카오로그인", result);
     yield put({
-      type: KAKAO_LOG_IN_SUCCESS,
+      type: USER.KAKAO_LOG_IN_SUCCESS,
       data: result.data,
     });
   } catch (err) {
+    console.error(err);
     yield put({
-      type: KAKAO_LOG_IN_FAILURE,
+      type: USER.KAKAO_LOG_IN_FAILURE,
       error: err.response.data,
     });
   }
@@ -89,12 +72,13 @@ function* loginNaver(action) {
     const result = yield call(loginNaverAPI, action.data);
 
     yield put({
-      type: NAVER_LOG_IN_SUCCESS,
+      type: USER.NAVER_LOG_IN_SUCCESS,
       data: result.data,
     });
   } catch (err) {
+    console.error(err);
     yield put({
-      type: NAVER_LOG_IN_FAILURE,
+      type: USER.NAVER_LOG_IN_FAILURE,
       error: err.response.data,
     });
   }
@@ -108,12 +92,13 @@ function* loadUserInfo() {
   try {
     const result = yield call(loadUserInfoAPI);
     yield put({
-      type: LOAD_USER_INFO_SUCCESS,
+      type: USER.LOAD_USER_INFO_SUCCESS,
       data: result.data,
     });
   } catch (err) {
+    console.error(err);
     yield put({
-      type: LOAD_USER_INFO_FAILURE,
+      type: USER.LOAD_USER_INFO_FAILURE,
       error: err.response.data,
     });
   }
@@ -125,40 +110,90 @@ function logOutAPI() {
 
 function* logout() {
   try {
-    yield call(logOutAPI);
+    const result = yield call(logOutAPI);
     yield put({
-      type: LOG_OUT_SUCCESS,
+      type: USER.LOG_OUT_SUCCESS,
     });
   } catch (err) {
+    console.error(err);
     yield put({
-      type: LOG_OUT_FAILURE,
+      type: USER.LOG_OUT_FAILURE,
+      error: err.response.data,
+    });
+  }
+}
+
+function uploadProfileImageAPI(data) {
+  return axios.patch("/mypage/info/profile", data);
+}
+
+function* uploadProfileImage(action) {
+  try {
+    const result = yield call(uploadProfileImageAPI, action.data);
+
+    yield put({
+      type: USER.UPLOAD_PROFILE_IMAGE_SUCCESS,
+      data: result.data,
+    });
+  } catch (err) {
+    console.error(err);
+    yield put({
+      type: USER.UPLOAD_PROFILE_IMAGE_FAILURE,
+      error: err.response.data,
+    });
+  }
+}
+
+function changeNicknameAPI(data) {
+  return axios.patch("/mypage/info", { nickname: data });
+}
+
+function* changeNickname(action) {
+  try {
+    const result = yield call(changeNicknameAPI, action.data);
+    yield put({
+      type: USER.CHANGE_NICKNAME_SUCCESS,
+      data: result.data,
+    });
+  } catch (err) {
+    console.error(err);
+    yield put({
+      type: USER.CHANGE_NICKNAME_FAILURE,
       error: err.response.data,
     });
   }
 }
 
 function* watchLogIn() {
-  yield takeLatest(LOG_IN_REQUEST, login);
+  yield takeLatest(USER.LOG_IN_REQUEST, login);
 }
 
 function* watchLogInKakao() {
-  yield takeLatest(KAKAO_LOG_IN_REQUEST, loginKakao);
+  yield takeLatest(USER.KAKAO_LOG_IN_REQUEST, loginKakao);
 }
 
 function* watchLogInNaver() {
-  yield takeLatest(NAVER_LOG_IN_REQUEST, loginNaver);
+  yield takeLatest(USER.NAVER_LOG_IN_REQUEST, loginNaver);
 }
 
 function* watchLoadUserInfo() {
-  yield takeLatest(LOAD_USER_INFO_REQUEST, loadUserInfo);
+  yield takeLatest(USER.LOAD_USER_INFO_REQUEST, loadUserInfo);
 }
 
 function* watchLogOut() {
-  yield takeLatest(LOG_OUT_REQUEST, logout);
+  yield takeLatest(USER.LOG_OUT_REQUEST, logout);
 }
 
 function* watchSignUp() {
-  yield takeLatest(SIGN_UP_REQUEST, signup);
+  yield takeLatest(USER.SIGN_UP_REQUEST, signup);
+}
+
+function* watchUploadProfileImage() {
+  yield takeLatest(USER.UPLOAD_PROFILE_IMAGE_REQUEST, uploadProfileImage);
+}
+
+function* watchChangeNickname() {
+  yield takeLatest(USER.CHANGE_NICKNAME_REQUEST, changeNickname);
 }
 
 export default function* userSaga() {
@@ -169,5 +204,7 @@ export default function* userSaga() {
     fork(watchLogOut),
     fork(watchSignUp),
     fork(watchLoadUserInfo),
+    fork(watchUploadProfileImage),
+    fork(watchChangeNickname),
   ]);
 }

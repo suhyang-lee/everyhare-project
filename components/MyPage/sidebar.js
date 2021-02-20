@@ -1,12 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import styled from "styled-components";
 import styles from "./sidebar.module.scss";
-
-const HeaderLink = styled.a`
-  color: black;
-  cursor: pointer;
-`;
 
 const Sidebar = () => {
   return (

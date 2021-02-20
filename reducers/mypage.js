@@ -1,82 +1,34 @@
-import {
-  CHANGE_NICKNAME_REQUEST,
-  CHANGE_NICKNAME_SUCCESS,
-  CHANGE_NICKNAME_FAILURE,
-  LOAD_MYPOSTS_REQUEST,
-  LOAD_MYPOSTS_SUCCESS,
-  LOAD_MYPOSTS_FAILURE,
-  LOAD_MYCOMMENTS_REQUEST,
-  LOAD_MYCOMMENTS_SUCCESS,
-  LOAD_MYCOMMENTS_FAILURE,
-} from "../actions/mypageAction";
+import MYPAGE from "../actions/mypageAction";
 
 import produce from "immer";
 
 export const initState = {
-  loadMyPostsLoading: false,
-  loadMyPostsDone: false,
-  loadMyPostsError: null,
+  loadMyContentsLoading: false,
+  loadMyContentsDone: false,
+  loadMyContentsError: null,
 
-  loadMyCommentsLoading: false,
-  loadMyCommentsDone: false,
-  loadMyCommentsError: null,
-
-  myPosts: [],
-  myPostsTotalCount: 0,
-  myComments: [],
-  myCommentsTotalCount: 0,
+  myContents: [],
+  myContentsTotalCount: 0,
 };
 
 const reducer = (state = initState, action) => {
   return produce(state, (draft) => {
     switch (action.type) {
-      case CHANGE_NICKNAME_REQUEST:
-        draft.changeNicknameLoadding = true;
-        draft.changeNicknameDone = false;
-        draft.changeNicknameError = null;
+      case MYPAGE.LOAD_MYCONTENTS_REQUEST:
+        draft.loadMyContentsLoading = true;
+        draft.loadMyContentsDone = false;
+        draft.loadMyContentsError = null;
         break;
-      case CHANGE_NICKNAME_SUCCESS:
-        draft.changeNicknameLoadding = false;
-        draft.changeNicknameDone = true;
+      case MYPAGE.LOAD_MYCONTENTS_SUCCESS:
+        draft.loadMyContentsLoading = false;
+        draft.loadMyContentsDone = true;
+        draft.myContents = action.data.data;
+        draft.myContentsTotalCount = action.data.count;
         break;
-      case CHANGE_NICKNAME_FAILURE:
-        draft.changeNicknameLoadding = false;
-        draft.changeNicknameDone = false;
-        draft.changeNicknameError = action.error;
-        break;
-
-      case LOAD_MYPOSTS_REQUEST:
-        draft.loadMyPostsLoadding = true;
-        draft.loadMyPostsDone = false;
-        draft.loadMyPostsError = null;
-        break;
-      case LOAD_MYPOSTS_SUCCESS:
-        const { data, count } = action.data;
-        draft.loadMyPostsLoadding = false;
-        draft.loadMyPostsDone = true;
-        draft.myPosts = data;
-        draft.myPostsTotalCount = count;
-        break;
-      case LOAD_MYPOSTS_FAILURE:
-        draft.loadMyPostsLoadding = false;
-        draft.loadMyPostsDone = false;
-        draft.loadMyPostsError = action.error;
-        break;
-
-      case LOAD_MYCOMMENTS_REQUEST:
-        draft.loadMyCommentsLoadding = true;
-        draft.loadMyCommentsDone = false;
-        draft.loadMyCommentsError = null;
-        break;
-      case LOAD_MYCOMMENTS_SUCCESS:
-        draft.loadMyCommentsLoadding = false;
-        draft.loadMyCommentsDone = true;
-        draft.myComments = draft.myComments.concat(action.data);
-        break;
-      case LOAD_MYCOMMENTS_FAILURE:
-        draft.loadMyCommentsLoadding = false;
-        draft.loadMyCommentsDone = false;
-        draft.loadMyCommentsError = action.error;
+      case MYPAGE.LOAD_MYCONTENTS_FAILURE:
+        draft.loadMyContentsLoading = false;
+        draft.loadMyContentsDone = false;
+        draft.loadMyContentsError = action.error;
         break;
 
       default:

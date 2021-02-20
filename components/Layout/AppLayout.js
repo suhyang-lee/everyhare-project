@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Header from "./Header/Header";
+import Header from "./Header";
 import Footer from "./Footer/Footer";
 
 /* CSS 모듈 import */

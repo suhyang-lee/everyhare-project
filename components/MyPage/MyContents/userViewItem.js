@@ -8,7 +8,7 @@ const UserViewItem = ({ item }) => {
         <input type="checkbox" name="updateChecked" />
       </th>
       <td>
-        <a href="">{item.title}</a>
+        <a href="">{item[Object.keys(item)[1]]}</a>
       </td>
       <td>{getFormatDate(item.createdAt)}</td>
     </tr>

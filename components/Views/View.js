@@ -10,7 +10,7 @@ import { HeartOutlined, HeartFilled, WechatOutlined } from "@ant-design/icons";
 import CommentList from "./Comment/CommentList";
 import CommentInput from "./Comment/CommentInput";
 import ProductSlider from "./Slider/slider";
-import { getCategory } from "../common/global";
+import { CATEOGRY } from "../../utils/variables";
 import Apply from "./Apply/ApplyModal";
 import {
   NOT_ZZIM_POST_REQUEST,
@@ -80,7 +80,7 @@ const View = ({ post }) => {
           {<ProductSlider Images={post.Images} />}
         </div>
         <div className={styles.infoWrapper}>
-          <h4>{getCategory(post.category)}</h4>
+          <h4>{CATEOGRY[post.category]}</h4>
           <h5>{post.title}</h5>
           <div className={styles.buyBtnWrapper}>
             <button onClick={openModal}>신청하기</button>

@@ -7,7 +7,7 @@ import wrapper from "../store/configureStore";
 
 import AppLayout from "../components/Layout/AppLayout";
 import Signup from "../components/Signup/Signup";
-import { LOAD_USER_INFO_REQUEST } from "../actions/userAction";
+import USER from "../actions/userAction";
 
 const SignUp = () => {
   return (
@@ -27,7 +27,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
       axios.defaults.headers.Cookie = cookie;
     }
     context.store.dispatch({
-      type: LOAD_USER_INFO_REQUEST,
+      type: USER.LOAD_USER_INFO_REQUEST,
     });
 
     context.store.dispatch(END);

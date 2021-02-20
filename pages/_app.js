@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import Head from "next/head";
-import "../public/css/global.css";
+import "../styles/global.css";
 
 import wrapper from "../store/configureStore";
 
@@ -10,7 +10,7 @@ const EveryShare = ({ Component }) => {
     <>
       <Head>
         <title>EveryShare</title>
-        <link rel="shortcut icon" href="/static/favicon.ico" />
+        <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
       <Component />
     </>

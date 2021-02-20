@@ -6,9 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { END } from "redux-saga";
 import axios from "axios";
 import wrapper from "../../store/configureStore";
-import { LOAD_USER_INFO_REQUEST } from "../../actions/userAction";
+import USER from "../../actions/userAction";
 
-import { LOAD_POST_REQUEST } from "../../actions/postAction";
+import POST from "../../actions/postAction";
 import AppLayout from "../../components/Layout/AppLayout";
 import View from "../../components/Views/View";
 
@@ -19,7 +19,7 @@ const PostContents = () => {
 
   useEffect(() => {
     dispatch({
-      type: LOAD_POST_REQUEST,
+      type: POST.LOAD_POST_REQUEST,
       data: { postId },
     });
   }, []);
@@ -41,7 +41,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
       axios.defaults.headers.Cookie = cookie;
     }
     context.store.dispatch({
-      type: LOAD_USER_INFO_REQUEST,
+      type: USER.LOAD_USER_INFO_REQUEST,
     });
     context.store.dispatch(END);
     await context.store.sagaTask.toPromise();

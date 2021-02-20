@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 
 import styles from "./login.module.scss";
-import LoginForm from "./LoginForm";
+import LoginForm from ".";
 
 const Login = ({ onClickLoginModal }) => {
   /* 모달 부모창 스크롤 막기 */

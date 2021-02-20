@@ -8,11 +8,10 @@ import { useRouter } from "next/router";
 
 import AppLayout from "../../components/Layout/AppLayout";
 import Contents from "../../components/MyPage";
-import { LOAD_USER_INFO_REQUEST } from "../../actions/userAction";
+import USER from "../../actions/userAction";
 
 const Mypage = () => {
   const { query } = useRouter();
-
   return (
     <AppLayout>
       <Head>
@@ -31,7 +30,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
     }
 
     context.store.dispatch({
-      type: LOAD_USER_INFO_REQUEST,
+      type: USER.LOAD_USER_INFO_REQUEST,
     });
 
     context.store.dispatch(END);

@@ -9,9 +9,9 @@ import wrapper from "../../store/configureStore";
 
 import AppLayout from "../../components/Layout/AppLayout";
 import BoardList from "../../components/Board";
-import { category } from "../../components/common/global";
-import { LOAD_POSTS_REQUEST } from "../../actions/postAction";
-import { LOAD_USER_INFO_REQUEST } from "../../actions/userAction";
+import { CATEOGRY } from "../../utils/variables";
+import POST from "../../actions/postAction";
+import USER from "../../actions/userAction";
 
 const Board = () => {
   const router = useRouter();
@@ -31,7 +31,7 @@ const Board = () => {
         if (hasMorePost && !loadPostsLoading) {
           const lastId = posts[posts.length - 1]?.id;
           dispatch({
-            type: LOAD_POSTS_REQUEST,
+            type: POST.LOAD_POSTS_REQUEST,
             lastId,
             data: category,
           });
@@ -49,7 +49,7 @@ const Board = () => {
       <Head>
         <title>게시물 리스트 보기 | EveryShare</title>
       </Head>
-      <BoardList posts={posts} title={category[category]} />
+      <BoardList posts={posts} title={CATEOGRY[category]} />
     </AppLayout>
   );
 };
@@ -62,11 +62,11 @@ export const getServerSideProps = wrapper.getServerSideProps(
     }
 
     context.store.dispatch({
-      type: LOAD_USER_INFO_REQUEST,
+      type: USER.LOAD_USER_INFO_REQUEST,
     });
 
     context.store.dispatch({
-      type: LOAD_POSTS_REQUEST,
+      type: POST.LOAD_POSTS_REQUEST,
       data: context.query.category,
     });
 

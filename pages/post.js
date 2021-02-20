@@ -3,13 +3,15 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 
 import { END } from "redux-saga";
+import { useSelector } from "react-redux";
+
 import axios from "axios";
 import wrapper from "../store/configureStore";
-import { LOAD_USER_INFO_REQUEST } from "../actions/userAction";
+import USER from "../actions/userAction";
 
 import AppLayout from "../components/Layout/AppLayout";
-import PostForm from "../components/Post/PostForm";
-import { useSelector } from "react-redux";
+import PostForm from "../components/Post";
+
 import Loading from "../components/common/Loading";
 
 const Post = () => {
@@ -46,7 +48,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
     }
 
     context.store.dispatch({
-      type: LOAD_USER_INFO_REQUEST,
+      type: USER.LOAD_USER_INFO_REQUEST,
     });
 
     context.store.dispatch(END);

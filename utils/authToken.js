@@ -1,23 +1,18 @@
-const authToken = function () {
-  let token = "";
-
-  function updateToken(newToken) {
-    token = newToken;
-  }
-
-  function sendToken() {
-    return token;
-  }
+const authToken = () => {
+  let token = null;
 
   return {
-    setToken: function (tokens) {
-      updateToken(tokens);
+    setToken: (tokens) => {
+      token = tokens;
+      return true;
     },
-    getToken: function () {
-      return sendToken();
+    getToken: () => token,
+    removeToken: () => {
+      token = null;
+      return true;
     },
   };
 };
-const authTokenClosure = authToken();
 
+const authTokenClosure = authToken();
 export { authTokenClosure };

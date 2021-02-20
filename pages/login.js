@@ -7,7 +7,7 @@ import axios from "axios";
 import Layout from "../components/Layout/Layout";
 import wrapper from "../store/configureStore";
 import styles from "../components/Login/login.module.scss";
-import LoginForm from "../components/Login/LoginForm";
+import LoginForm from "../components/Login";
 import styled from "styled-components";
 
 const HeaderLink = styled.a`

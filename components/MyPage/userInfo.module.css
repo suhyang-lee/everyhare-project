@@ -1,0 +1,23 @@
+.wrapper {
+  width: 1200px;
+  margin: 0 auto;
+  padding-top: 2rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 4fr;
+      grid-template-columns: 1fr 4fr;
+  margin-top: 10rem;
+  position: relative;
+}
+
+.wrapper h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.wrapper h4 {
+  font-weight: 700;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+}
+/*# sourceMappingURL=userInfo.module.css.map */

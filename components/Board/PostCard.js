@@ -4,12 +4,12 @@ import Link from "next/link";
 
 import styles from "./postcard.module.scss";
 
-const PostCard = ({ post }) => {
-  const type = {
-    owner: "LEND",
-    borrower: "BORROW",
-  };
+const type = {
+  owner: "LEND",
+  borrower: "BORROW",
+};
 
+const PostCard = ({ post }) => {
   return (
     <Link href={`/view/${post.id}`}>
       <div className={styles.postCard}>

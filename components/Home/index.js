@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./home.module.scss";
 
-import MainBanner from "./MainBanner/MainBanner";
+import MainBanner from "./MainBanner";
 
 const Home = () => {
   return (

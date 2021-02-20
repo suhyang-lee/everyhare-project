@@ -1,4 +1,4 @@
-const category = {
+const CATEOGRY = {
   digital: "디지털/가전",
   kids: "유아동",
   goods: "생활용품",
@@ -8,7 +8,7 @@ const category = {
   etc: "기타용품",
 };
 
-const titleInfo = {
+const TITLEINFO = {
   owner: {
     title: "내가 대여해 준 물품",
     discription:
@@ -37,7 +37,7 @@ const titleInfo = {
   },
 };
 
-const myPageType = {
+const MYPAGETYPE = {
   owner: 0,
   borrow: 0,
   posts: 1,
@@ -46,4 +46,4 @@ const myPageType = {
   signout: 3,
 };
 
-export { category, titleInfo, myPageType };
+export { CATEOGRY, TITLEINFO, MYPAGETYPE };

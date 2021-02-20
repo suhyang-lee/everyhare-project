@@ -8,7 +8,7 @@ import { RightOutlined, CloseCircleFilled } from "@ant-design/icons";
 
 import Editor from "./PostEditor";
 import { useDispatch, useSelector } from "react-redux";
-import { REMOVE_IMAGE, UPLOAD_IMAGES_REQUEST } from "../../actions/postAction";
+import POST from "../../actions/postAction";
 
 const cx = classNames.bind(styles);
 
@@ -38,7 +38,7 @@ const PostFormPhase2 = ({ register, setEditorState, errors }) => {
       });
 
       dispatch({
-        type: UPLOAD_IMAGES_REQUEST,
+        type: POST.UPLOAD_IMAGES_REQUEST,
         data: imageFormData,
       });
     },
@@ -48,7 +48,7 @@ const PostFormPhase2 = ({ register, setEditorState, errors }) => {
   const onRemoveImage = useCallback(
     (index) => () => {
       dispatch({
-        type: REMOVE_IMAGE,
+        type: POST.REMOVE_IMAGE,
         data: index,
       });
     },

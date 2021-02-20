@@ -7,12 +7,6 @@ import _ from "lodash/fp";
 
 const cx = classNames.bind(styles);
 
-const ErrorMessage = styled.div`
-  display: block;
-  color: red;
-  margin-top: 1rem;
-`;
-
 const PostFormPhase1 = ({ register, errors }) => {
   return (
     <>
@@ -68,7 +62,6 @@ const PostFormPhase1 = ({ register, errors }) => {
           </div>
           <div className={styles.postContents}>
             <h5>카테고리를 선택 해 주세요</h5>
-
             <select
               name="category"
               className={styles.selectList}
