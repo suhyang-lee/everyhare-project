@@ -17,9 +17,11 @@ const Error = styled.div`
   text-align: left;
 `;
 
-const LoginForm = ({ onClickLoginModal }) => {
+const LoginForm = ({ onClickLoginModal, isShow }) => {
   const dispatch = useDispatch();
-  const { loginLoadding, user, loginDone } = useSelector((state) => state.user);
+  const { loginLoadding, user, loginDone, loginError } = useSelector(
+    (state) => state.user,
+  );
   const [email, onChangeEmail] = useInput("");
   const [password, onChangePassword] = useInput("");
   const [keepLoggedIn, onChangeKeepLoggedIn] = useInput("");
@@ -27,10 +29,10 @@ const LoginForm = ({ onClickLoginModal }) => {
   const [attemptLoginError, setAttemptLoginError] = useState(false);
 
   useEffect(() => {
-    if (user) {
+    if (loginError) {
       setAttemptLoginError(true);
     }
-  }, [user, setAttemptLoginError]);
+  }, [loginError, setAttemptLoginError]);
 
   useEffect(
     (e) => {

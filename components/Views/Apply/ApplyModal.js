@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import MaterialUIPickers from "./Picker";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { APPLY_RENTAL_REQUEST } from "../../../actions/postAction";
+import POST from "../../../actions/postAction";
 
 const customStyles = {
   content: {
@@ -56,10 +56,8 @@ const Apply = ({ modalIsOpen, closeModal, writer }) => {
   };
 
   const onSubmit = useCallback(() => {
-    console.log("작성자", writer);
-    console.log("유저", user);
     dispatch({
-      type: APPLY_RENTAL_REQUEST,
+      type: POST.APPLY_RENTAL_REQUEST,
       data: { startDate: selectedStartDate, endDate: selectedEndDate },
     });
   }, [selectedStartDate, selectedEndDate]);

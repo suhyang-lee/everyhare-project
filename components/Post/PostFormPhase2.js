@@ -4,6 +4,7 @@ import _ from "lodash/fp";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import classNames from "classnames/bind";
+import { v4 as uuidv4 } from "uuid";
 import { RightOutlined, CloseCircleFilled } from "@ant-design/icons";
 
 import Editor from "./PostEditor";
@@ -193,7 +194,7 @@ const PostFormPhase2 = ({ register, setEditorState, errors }) => {
                   name="rentalFee"
                   className={styles.rentalFee}
                 />
-                <p>원</p>
+                <p>ETH</p>
               </div>
 
               {_.get("rentalFee.type", errors) === "required" && (
@@ -220,7 +221,7 @@ const PostFormPhase2 = ({ register, setEditorState, errors }) => {
                   name="deposit"
                   className={styles.depositInput}
                 />
-                <p>원</p>
+                <p>ETH</p>
                 <button className={styles.searchBtn}>
                   시세 알아보기&nbsp;
                   <RightOutlined />

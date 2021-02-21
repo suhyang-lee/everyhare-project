@@ -1,6 +1,7 @@
 import USER from "../actions/userAction";
-
+import Router from "next/router";
 import produce from "immer";
+import { authTokenClosure } from "../utils/authToken";
 
 export const initState = {
   loginLoadding: false, //로그인 시도
@@ -135,7 +136,7 @@ const reducer = (state = initState, action) => {
       case USER.LOAD_USER_INFO_FAILURE:
         draft.loadUserInfoLoadding = false;
         draft.loadUserInfoDone = false;
-        draft.loginError = action.error;
+        draft.loadUserInfoError = action.error;
         break;
 
       case USER.LOG_OUT_REQUEST:
@@ -147,6 +148,7 @@ const reducer = (state = initState, action) => {
         draft.logoutLoadding = false;
         draft.logoutDone = true;
         draft.user = null;
+        authTokenClosure.setToken(undefined);
 
         break;
       case USER.LOG_OUT_FAILURE:

@@ -10,7 +10,6 @@ import wrapper from "../store/configureStore";
 import AppLayout from "../components/Layout/AppLayout";
 import BoardList from "../components/Board";
 
-import USER from "../actions/userAction";
 import SEARCH from "../actions/searchAction";
 
 const Search = () => {
@@ -60,10 +59,6 @@ export const getServerSideProps = wrapper.getServerSideProps(
     if (context.req && cookie) {
       axios.defaults.headers.Cookie = cookie;
     }
-
-    context.store.dispatch({
-      type: USER.LOAD_USER_INFO_REQUEST,
-    });
 
     context.store.dispatch({
       type: SEARCH.LOAD_SEARCH_REQUEST,

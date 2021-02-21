@@ -46,12 +46,12 @@ export const initState = {
 };
 
 export const addPost = (data) => ({
-  type: ADD_POST_REQUEST,
+  type: POST.ADD_POST_REQUEST,
   data,
 });
 
 export const addComment = (data) => ({
-  type: ADD_COMMENT_REQUEST,
+  type: POST.ADD_COMMENT_REQUEST,
   data,
 });
 

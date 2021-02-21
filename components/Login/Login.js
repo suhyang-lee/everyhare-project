@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import styles from "./login.module.scss";
 import LoginForm from ".";
 
-const Login = ({ onClickLoginModal }) => {
+const Login = ({ onClickLoginModal, isShow }) => {
   /* 모달 부모창 스크롤 막기 */
   const body = document.querySelector("body");
   const lockScroll = (e) => e.preventDefault();
@@ -32,7 +32,7 @@ const Login = ({ onClickLoginModal }) => {
             <img src="/images/icon-close.svg" alt="로그인 모달 닫기" />
           </button>
           <img src="/images/img-everyshare-logo.svg" alt="에브리쉐어 로고" />
-          <LoginForm onClickLoginModal={onClickLoginModal} />
+          <LoginForm onClickLoginModal={onClickLoginModal} isShow={isShow} />
         </div>
       </div>
     </>

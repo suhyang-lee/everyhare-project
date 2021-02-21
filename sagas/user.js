@@ -49,7 +49,6 @@ function loginKakaoAPI(data) {
 function* loginKakao(action) {
   try {
     const result = yield call(loginKakaoAPI, action.data);
-    console.log("카카오로그인", result);
     yield put({
       type: USER.KAKAO_LOG_IN_SUCCESS,
       data: result.data,
@@ -111,6 +110,10 @@ function logOutAPI() {
 function* logout() {
   try {
     const result = yield call(logOutAPI);
+    if (result) {
+      axios.defaults.headers.common["Authorization"] = undefined;
+      axios.defaults.headers.Cookie = undefined;
+    }
     yield put({
       type: USER.LOG_OUT_SUCCESS,
     });

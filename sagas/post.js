@@ -119,11 +119,13 @@ function* addComment(action) {
 
 //물건 찜하기
 function zzimPostAPI(data) {
-  return axios.patch(`/post/${data.postId}/zzim`, data);
+  console.log(data);
+  return axios.patch(`/post/${data.postId}/zzim`);
 }
 
 function* zzimPost(action) {
   try {
+    console.log(action);
     const result = yield call(zzimPostAPI, action.data);
     yield put({
       type: POST.ZZIM_POST_SUCCESS,

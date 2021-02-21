@@ -1,7 +1,7 @@
 /* 페이지 공통 헤더  */
 import React, { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 import styled from "styled-components";
 
 import Category from "../Category/Category";
@@ -11,6 +11,7 @@ import styles from "./header.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutRequstAction } from "../../../reducers/user";
 import Search from "./Search";
+import USER from "../../../actions/userAction";
 
 const HeaderLink = styled.a`
   color: black;
@@ -19,17 +20,26 @@ const HeaderLink = styled.a`
 
 const Header = () => {
   const dispatch = useDispatch();
-  const { user, logoutDone } = useSelector((state) => state.user);
+  const router = useRouter();
+  const { user, logoutDone, zzimPostDone, notZzimPostDone } = useSelector(
+    (state) => state.user,
+  );
 
   const [isOpen, setIsOpen] = useState(false);
   const [isShow, setIsShow] = useState(false);
   const [isSearchShow, setIsSearchShow] = useState(false);
 
   useEffect(() => {
+    dispatch({
+      type: USER.LOAD_USER_INFO_REQUEST,
+    });
+  }, [router]);
+
+  useEffect(() => {
     if (logoutDone && !user) {
       Router.push("/");
     }
-  }, [logoutDone]);
+  }, [logoutDone, user]);
 
   const onLogOut = useCallback(() => {
     dispatch(logoutRequstAction());
@@ -56,7 +66,9 @@ const Header = () => {
   return (
     <>
       {isSearchShow && <Search onClickSearch={onClickSearch} />}
-      {isShow && <Login onClickLoginModal={onClickLoginModal} />}
+      {isShow && (
+        <Login onClickLoginModal={onClickLoginModal} isShow={isShow} />
+      )}
       <header className={styles.header}>
         <div className={styles.headerItemsWrapper}>
           <div className={styles.headerItem}>
@@ -91,7 +103,7 @@ const Header = () => {
                     </li>
                     <li className={styles.circleBtn}>
                       <div className={styles.zzimed}>
-                        {user.Zzimed ? user.Zzimed.length : 0}
+                        {user.Zzimed.length || 0}
                       </div>
                       <img src="/images/icon-shopping.svg" alt="담아두기" />
                     </li>

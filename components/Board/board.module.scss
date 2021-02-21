@@ -3,6 +3,7 @@
 @import "./boardResponsive.scss";
 
 .contentsWrapper {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,4 +43,29 @@
   column-gap: 24px;
   row-gap: 40px;
   grid-template-rows: repeat(auto-fill, 1fr);
+}
+
+.nonePost {
+  display: flex;
+  flex-direction: column;
+  span {
+    margin-right: 0.5rem;
+    color: gray;
+  }
+  button {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 5px;
+    border: 1px solid rgb(216, 216, 216);
+    background-color: #fff;
+    font-size: 0.8rem;
+    &:hover {
+      background-color: #ffc800;
+      font-weight: bold;
+    }
+  }
+  font-size: 1.4rem;
+  letter-spacing: 0.5;
+  padding: 2rem;
+  color: gray;
 }

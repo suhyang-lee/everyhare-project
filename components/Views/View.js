@@ -12,10 +12,7 @@ import CommentInput from "./Comment/CommentInput";
 import ProductSlider from "./Slider/slider";
 import { CATEOGRY } from "../../utils/variables";
 import Apply from "./Apply/ApplyModal";
-import {
-  NOT_ZZIM_POST_REQUEST,
-  ZZIM_POST_REQUEST,
-} from "../../actions/postAction";
+import POST from "../../actions/postAction";
 
 const AchorStyle = styled(AnchorLink)`
   color: #000;
@@ -46,23 +43,22 @@ const View = ({ post }) => {
     if (!id) {
       return alert("로그인이 필요합니다.");
     }
-
-    return dispatch({
-      type: ZZIM_POST_REQUEST,
+    dispatch({
+      type: POST.ZZIM_POST_REQUEST,
       data: { postId: post.id },
     });
-  }, [id]);
+  }, [id, post]);
 
   const onNotZzimed = useCallback(() => {
     if (!id) {
       return alert("로그인이 필요합니다.");
     }
 
-    return dispatch({
-      type: NOT_ZZIM_POST_REQUEST,
+    dispatch({
+      type: POST.NOT_ZZIM_POST_REQUEST,
       data: { postId: post.id },
     });
-  }, [id]);
+  }, [id, post]);
 
   const openModal = useCallback(() => {
     setIsOpen(true);
