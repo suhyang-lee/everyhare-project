@@ -5,12 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { END } from "redux-saga";
 
 import axios from "axios";
-import wrapper from "../store/configureStore";
+import wrapper from "store/configureStore";
 
-import AppLayout from "../components/Layout/AppLayout";
-import BoardList from "../components/Board";
+import AppLayout from "components/layout/appLayout";
+import BoardList from "components/board";
 
-import SEARCH from "../actions/searchAction";
+import USER from "actions/userAction";
+import SEARCH from "actions/searchAction";
 
 const Search = () => {
   const router = useRouter();
@@ -29,7 +30,7 @@ const Search = () => {
       ) {
         if (hasMoreSearch && !loadSearchLoading) {
           dispatch({
-            type: LOAD_SEARCH_REQUEST,
+            type: SEARCH.LOAD_SEARCH_REQUEST,
             lastId:
               searchs[searchs.length - 1] && searchs[searchs.length - 1].id,
             data: keyword,
@@ -59,6 +60,10 @@ export const getServerSideProps = wrapper.getServerSideProps(
     if (context.req && cookie) {
       axios.defaults.headers.Cookie = cookie;
     }
+
+    context.store.dispatch({
+      type: USER.LOAD_USER_INFO_REQUEST,
+    });
 
     context.store.dispatch({
       type: SEARCH.LOAD_SEARCH_REQUEST,
