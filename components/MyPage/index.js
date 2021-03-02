@@ -1,13 +1,14 @@
 import React from "react";
-import Sidebar from "./sidebar";
-import Contents from "./contents";
+
+import Sidebar from "components/myPage/sidebar";
+import Contents from "components/myPage/contents";
+import Transaction from "components/myPage/transaction";
+import MyContents from "components/myPage/myContents";
+import UserInfo from "components/myPage/userInfo";
+import MyList from "components/myPage/myList";
 
 import styles from "./userInfo.module.scss";
-import { TITLEINFO, MYPAGETYPE } from "../../utils/variables";
-
-import Transaction from "./Transaction";
-import MyContents from "./MyContents";
-import UserInfo from "./UserInfo";
+import { TITLEINFO, MYPAGETYPE } from "utils/variables";
 
 const MypageContents = ({ path, user }) => {
   const pageType = MYPAGETYPE[path];
@@ -18,6 +19,7 @@ const MypageContents = ({ path, user }) => {
         {pageType === 0 && <Transaction path={path} />}
         {pageType === 1 && <MyContents path={path} />}
         {pageType === 2 && <UserInfo path={path} />}
+        {pageType === 4 && <MyList path={path} />}
       </Contents>
     </section>
   );

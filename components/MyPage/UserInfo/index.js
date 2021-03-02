@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import USER from "../../../actions/userAction";
 
+import USER from "actions/userAction";
 import styles from "./userInfo.module.scss";
 
 const UserInfo = () => {

@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
-import styles from "./userView.module.scss";
-import PaginationList from "./pagination";
 import { useDispatch, useSelector } from "react-redux";
-import MYPAGE from "../../../actions/mypageAction";
-import UserViewItem from "./userViewItem";
+
+import MYPAGE from "actions/mypageAction";
+import PaginationList from "components/myPage/myContents/pagination";
+import UserViewItem from "components/myPage/myContents/userViewItem";
+import styles from "./userView.module.scss";
 
 const MyContents = ({ path }) => {
   const dispatch = useDispatch();

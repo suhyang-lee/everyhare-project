@@ -19,6 +19,9 @@ const Sidebar = () => {
 
       <h4>회원 정보</h4>
       <ul>
+        <Link href="/mypage/items">
+          <li>관심 있는 물품</li>
+        </Link>
         <Link href="/mypage/posts">
           <li>내가 쓴 글 보기</li>
         </Link>

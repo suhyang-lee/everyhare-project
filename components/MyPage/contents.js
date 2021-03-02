@@ -3,7 +3,6 @@ import React from "react";
 import styles from "./contents.module.scss";
 
 const Contents = ({ children, info }) => {
-  console.log();
   return (
     <section className={styles.userContents}>
       <h3>{info.title}</h3>

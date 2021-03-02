@@ -1,5 +1,5 @@
 import React from "react";
-import { getFormatDate } from "../../../utils/format";
+import { getFormatDate } from "utils/format";
 
 const UserViewItem = ({ item }) => {
   return (

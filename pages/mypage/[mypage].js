@@ -3,12 +3,12 @@ import Head from "next/head";
 
 import { END } from "redux-saga";
 import axios from "axios";
-import wrapper from "../../store/configureStore";
+import wrapper from "store/configureStore";
 import { useRouter } from "next/router";
 
-import AppLayout from "../../components/Layout/AppLayout";
-import Contents from "../../components/MyPage";
-import USER from "../../actions/userAction";
+import AppLayout from "components/layout/appLayout";
+import Contents from "components/myPage";
+import USER from "actions/userAction";
 
 const Mypage = () => {
   const { query } = useRouter();
