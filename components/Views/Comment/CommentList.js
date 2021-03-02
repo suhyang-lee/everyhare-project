@@ -13,9 +13,7 @@ import {
 import { useSelector } from "react-redux";
 
 const CommentList = ({ comment }) => {
-  const { User } = comment;
   const { user } = useSelector((state) => state.user);
-  const id = user?.id;
 
   const [liked, setLiked] = useState(false);
 
@@ -27,15 +25,16 @@ const CommentList = ({ comment }) => {
     <li className={styles.commentWrapper}>
       <div className={styles.commentProfile}>
         <div className={styles.userProfileImage}>
-          <img src={User.profileUrl} alt="프로필이미지" />
+          <img src={comment.User.profileUrl} alt="프로필이미지" />
         </div>
-        <p>{User.nickname}</p>
-        <p>@{User.email && User.email.split("@")[0]}</p>
+        <p>{comment.User.nickname}</p>
+        <p>@{comment.User.email && comment.User.email.split("@")[0]}</p>
       </div>
       <div className={styles.commentContents}>
         <div className={styles.commentInfo}>
           <p>{moment(comment.updatedAt).format("YYYY/MM/DD H:MM")}</p>
-          {id && User.id === id ? (
+
+          {user.id === comment.User.id ? (
             <>
               <button>
                 <DeleteOutlined alt="게시물 삭제하기" />

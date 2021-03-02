@@ -7,6 +7,26 @@
   box-sizing: border-box;
 }
 
+.buttonGroup {
+  width: 1200px;
+  button {
+    padding: 0.5rem 2rem;
+    margin-right: 0.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 2rem;
+    background-color: #fff;
+    outline: none;
+    border: 1px solid #707070;
+    font-weight: 300;
+    font-size: 1rem;
+
+    &:hover,
+    &:active {
+      background-color: #ffc800;
+    }
+  }
+}
+
 .viewInfoWrapper {
   display: flex;
   width: 1200px;
@@ -198,7 +218,6 @@
   ul,
   ol {
     margin-top: 16px;
-    padding-left: 20px;
     margin-bottom: 16px;
     list-style: initial !important;
   }
