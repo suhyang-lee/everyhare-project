@@ -1,5 +1,7 @@
 import dynamic from "next/dynamic";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { EditorState, ContentState, convertFromHTML } from "draft-js";
+
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import styled from "styled-components";
 
@@ -26,7 +28,30 @@ const EditorWrapper = styled.div`
   }
 `;
 
-const PostEditor = ({ setEditorState }) => {
+const PostEditor = ({ setContents, post }) => {
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+
+  useEffect(() => {
+    const data = post?.contents || undefined;
+    if (data) {
+      const blocksFromHTML = convertFromHTML(data);
+      if (blocksFromHTML) {
+        const state = ContentState.createFromBlockArray(
+          blocksFromHTML.contentBlocks,
+          blocksFromHTML.entityMap,
+        );
+
+        setEditorState(EditorState.createWithContent(state));
+      }
+    } else {
+      setEditorState(EditorState.createEmpty());
+    }
+  }, []);
+
+  useEffect(() => {
+    setContents(editorState);
+  }, [editorState]);
+
   return (
     <>
       <EditorWrapper>
@@ -42,6 +67,7 @@ const PostEditor = ({ setEditorState }) => {
           localization={{
             locale: "ko",
           }}
+          editorState={editorState}
           onEditorStateChange={setEditorState}
         />
       </EditorWrapper>
@@ -50,7 +76,7 @@ const PostEditor = ({ setEditorState }) => {
 };
 
 PostEditor.propTypes = {
-  setEditorState: PropTypes.func.isRequired,
+  getEditorState: PropTypes.func,
 };
 
 export default PostEditor;

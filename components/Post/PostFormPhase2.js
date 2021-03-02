@@ -1,15 +1,17 @@
 import React, { useCallback } from "react";
-import styles from "./post.module.scss";
+import { useDispatch, useSelector } from "react-redux";
 import _ from "lodash/fp";
 import PropTypes from "prop-types";
+
 import styled from "styled-components";
 import classNames from "classnames/bind";
-import { v4 as uuidv4 } from "uuid";
-import { RightOutlined, CloseCircleFilled } from "@ant-design/icons";
 
-import Editor from "./PostEditor";
-import { useDispatch, useSelector } from "react-redux";
-import POST from "../../actions/postAction";
+import Preview from "components/post/preview";
+import Editor from "components/post/postEditor";
+import POST from "actions/postAction";
+
+import { RightOutlined, CloseCircleFilled } from "@ant-design/icons";
+import styles from "./post.module.scss";
 
 const cx = classNames.bind(styles);
 
@@ -19,41 +21,33 @@ const ErrorMessage = styled.div`
   margin-top: 1rem;
 `;
 
-const PostFormPhase2 = ({ register, setEditorState, errors }) => {
+const PostFormPhase2 = ({ register, errors, post, setContents }) => {
   const dispatch = useDispatch();
   const { ImagePaths } = useSelector((state) => state.post);
+
+  let totalImages = post?.Images.length || 0;
 
   const onChangeImages = useCallback(
     (e) => {
       e.preventDefault();
 
-      let totalImages = e.target.files.length + ImagePaths.length;
+      totalImages += e.target.files.length;
 
       if (totalImages >= 11) {
         return alert("최대 10개까지 업로드가 가능합니다.");
       }
 
-      const imageFormData = new FormData();
+      const formData = new FormData();
       [].forEach.call(e.target.files, (file) => {
-        imageFormData.append("image", file);
+        formData.append("image", file);
       });
 
       dispatch({
         type: POST.UPLOAD_IMAGES_REQUEST,
-        data: imageFormData,
+        data: formData,
       });
     },
     [ImagePaths],
-  );
-
-  const onRemoveImage = useCallback(
-    (index) => () => {
-      dispatch({
-        type: POST.REMOVE_IMAGE,
-        data: index,
-      });
-    },
-    [],
   );
 
   return (
@@ -112,7 +106,7 @@ const PostFormPhase2 = ({ register, setEditorState, errors }) => {
           <div className={styles.postContents}>
             <h5>
               대여 할 이미지를 등록 해 주세요 <br />{" "}
-              <span>{ImagePaths.length}/10</span>
+              <span>{totalImages}/10</span>
             </h5>
 
             <div className={styles.imageUploadWrapper}>
@@ -125,19 +119,20 @@ const PostFormPhase2 = ({ register, setEditorState, errors }) => {
                 onChange={onChangeImages}
               />
               {/* 이미지 업로드시 미리보기 */}
-              {ImagePaths.map((image, index) => {
+
+              {post?.Images.map((image, index) => {
                 return (
-                  <>
-                    <div className={styles.imagePreviews} key={image}>
-                      <CloseCircleFilled
-                        className={styles.closeBtn}
-                        onClick={onRemoveImage(index)}
-                        key={image}
-                      />
-                      <img src={`http://localhost:3060/${image}`} alt={image} />
-                    </div>
-                  </>
+                  <Preview
+                    key={image.src}
+                    image={image}
+                    post={post}
+                    index={image.id}
+                  />
                 );
+              })}
+
+              {ImagePaths?.map((image, index) => {
+                return <Preview key={image.src} image={image} index={index} />;
               })}
             </div>
           </div>
@@ -167,7 +162,7 @@ const PostFormPhase2 = ({ register, setEditorState, errors }) => {
           <div className={styles.postContents}>
             <h5>물품에 대한 내용을 작성해주세요</h5>
             <div className={styles.inputWrapper}>
-              <Editor setEditorState={setEditorState} />
+              <Editor setContents={setContents} post={post} />
             </div>
           </div>
 
@@ -244,7 +239,7 @@ const PostFormPhase2 = ({ register, setEditorState, errors }) => {
 
 PostFormPhase2.propTypes = {
   register: PropTypes.func.isRequired,
-  setEditorState: PropTypes.func.isRequired,
+  handleEditorStateChange: PropTypes.func,
   errors: PropTypes.object.isRequired,
 };
 

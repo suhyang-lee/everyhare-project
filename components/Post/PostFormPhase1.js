@@ -1,13 +1,13 @@
 import React from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import styles from "./post.module.scss";
-import classNames from "classnames/bind";
 import _ from "lodash/fp";
+import PropTypes from "prop-types";
+import classNames from "classnames/bind";
+
+import styles from "./post.module.scss";
 
 const cx = classNames.bind(styles);
 
-const PostFormPhase1 = ({ register, errors }) => {
+const PostFormPhase1 = ({ register, errors, post }) => {
   return (
     <>
       <article className={styles.postWrapper}>
@@ -88,6 +88,7 @@ const PostFormPhase1 = ({ register, errors }) => {
 PostFormPhase1.propTypes = {
   register: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
+  post: PropTypes.object.isRequired,
 };
 
 export default PostFormPhase1;

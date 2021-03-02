@@ -1,47 +1,13 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
-import { convertToRaw } from "draft-js";
-import draftToHtml from "draftjs-to-html";
-import { EditorState } from "draft-js";
+import React from "react";
 import { useForm } from "react-hook-form";
-import Router from "next/router";
+import PropTypes from "prop-types";
 
+import Phase1 from "components/post/postFormPhase1";
+import Phase2 from "components/post/postFormPhase2";
 import styles from "./post.module.scss";
-import Phase1 from "./PostFormPhase1";
-import Phase2 from "./PostFormPhase2";
 
-import { addPost } from "../../reducers/post";
-
-const PostForm = () => {
-  const dispatch = useDispatch();
-  const { addPostDone, ImagePaths, posts } = useSelector((state) => state.post);
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
-
-  const { register, handleSubmit, errors, reset } = useForm();
-
-  useEffect(() => {
-    if (addPostDone) {
-      reset();
-      setEditorState("");
-      Router.push(`view/${posts[0].id}`);
-    }
-  }, [addPostDone]);
-
-  const onSubmit = useCallback(
-    (data) => {
-      const editorToHtml = draftToHtml(
-        convertToRaw(editorState.getCurrentContent()),
-      );
-
-      //전달 데이터 내부에 richtext 컨텐츠 삽입
-      data.contents = editorToHtml;
-      data.Images = ImagePaths;
-
-      dispatch(addPost(data));
-    },
-    [editorState, ImagePaths],
-  );
+const PostForm = ({ post, setContents, onSubmit, defaultFormValues }) => {
+  const { register, handleSubmit, errors } = useForm(defaultFormValues);
 
   return (
     <div className={styles.wrapper}>
@@ -50,12 +16,12 @@ const PostForm = () => {
         <h3>물품등록</h3>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Phase1 register={register} errors={errors} />
+        <Phase1 register={register} errors={errors} post={post} />
         <Phase2
+          post={post}
           register={register}
           errors={errors}
-          editorState={editorState}
-          setEditorState={setEditorState}
+          setContents={setContents}
         />
         <button htmltype="submit" className={styles.submitBtn}>
           물품 등록하기
@@ -63,6 +29,25 @@ const PostForm = () => {
       </form>
     </div>
   );
+};
+
+PostForm.propTypes = {
+  handleEditorStateChange: PropTypes.func,
+  post: PropTypes.shape({
+    id: PropTypes.number,
+    postType: PropTypes.string,
+    category: PropTypes.string,
+    rentTerm: PropTypes.string,
+    title: PropTypes.string,
+    priceType: PropTypes.string,
+    price: PropTypes.number,
+    deposit: PropTypes.number,
+    createdAt: PropTypes.string,
+    updatedAt: PropTypes.string,
+    UserId: PropTypes.number,
+    Images: PropTypes.arrayOf(PropTypes.object),
+    Comments: PropTypes.arrayOf(PropTypes.object),
+  }),
 };
 
 export default PostForm;
