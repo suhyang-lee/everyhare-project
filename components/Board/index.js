@@ -1,13 +1,14 @@
 import React from "react";
-import PropTypes from "prop-types";
 import Link from "next/link";
 import { useSelector } from "react-redux";
-import PostCard from "./PostCard";
-import styles from "./board.module.scss";
+import PropTypes from "prop-types";
+
 import { SnippetsOutlined } from "@ant-design/icons";
+import PostCard from "components/board/postCard";
+import styles from "./board.module.scss";
 
 const Board = ({ posts, title }) => {
-  const { loadPostsLoading } = useSelector((state) => state.post);
+  const { loadPostsDone } = useSelector((state) => state.post);
 
   return (
     <section className={styles.contentsWrapper}>
@@ -18,7 +19,7 @@ const Board = ({ posts, title }) => {
           <img src="../images/icon-filter.svg" alt="필터" />
         </button>
       </div>
-      {posts.length === 0 && (
+      {loadPostsDone && posts.length === 0 && (
         <div className={styles.nonePost}>
           <span>
             <SnippetsOutlined />
@@ -29,17 +30,11 @@ const Board = ({ posts, title }) => {
           </Link>
         </div>
       )}
-      {loadPostsLoading ? (
-        <div>loading.....</div>
-      ) : (
-        <>
-          <div className={styles.listContents}>
-            {posts.map((post) => {
-              return <PostCard key={post.id} post={post} />;
-            })}
-          </div>
-        </>
-      )}
+      <div className={styles.listContents}>
+        {posts.map((post) => {
+          return <PostCard key={post.id} post={post} />;
+        })}
+      </div>
     </section>
   );
 };
