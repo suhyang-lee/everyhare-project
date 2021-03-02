@@ -5,23 +5,52 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { END } from "redux-saga";
 import axios from "axios";
-import wrapper from "../../store/configureStore";
-import USER from "../../actions/userAction";
+import wrapper from "store/configureStore";
 
-import POST from "../../actions/postAction";
-import AppLayout from "../../components/Layout/AppLayout";
-import View from "../../components/Views/View";
+import USER from "actions/userAction";
+import POST from "actions/postAction";
+
+import AppLayout from "components/layout/appLayout";
+import View from "components/views";
 
 const PostContents = () => {
   const dispatch = useDispatch();
-  const postId = useRouter().query.postContents;
-  const { post } = useSelector((state) => state.post);
+  const router = useRouter();
+
+  const postId = router.query.postContents;
+
+  const { post, removePostDone, zzimPostDone } = useSelector(
+    (state) => state.post,
+  );
+  const { user } = useSelector((state) => state.user);
 
   useEffect(() => {
-    dispatch({
-      type: POST.LOAD_POST_REQUEST,
-      data: { postId },
-    });
+    if (zzimPostDone) {
+      dispatch({
+        type: USER.LOAD_USER_INFO_REQUEST,
+      });
+    }
+  }, [post]);
+
+  useEffect(() => {
+    if (!user) {
+      router.replace("/login");
+    }
+  }, [user]);
+
+  useEffect(() => {
+    if (removePostDone) {
+      router.replace(`/board/${post.category}`);
+    }
+  }, [removePostDone]);
+
+  useEffect(() => {
+    if (user) {
+      dispatch({
+        type: POST.LOAD_POST_REQUEST,
+        data: { postId },
+      });
+    }
   }, []);
 
   return (
@@ -29,7 +58,7 @@ const PostContents = () => {
       <Head>
         <title>게시물 상세보기 | EveryShare</title>
       </Head>
-      <View post={post} />
+      {user && <View post={post} />}
     </AppLayout>
   );
 };
