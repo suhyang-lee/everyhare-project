@@ -1,9 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Header from "./Header";
-import Footer from "./Footer/Footer";
+import Header from "components/layout/header";
+import Footer from "components/layout/footer";
 
-/* CSS 모듈 import */
 import styles from "./layout.module.scss";
 
 const AppLayout = ({ children }) => {
@@ -16,7 +15,6 @@ const AppLayout = ({ children }) => {
   );
 };
 
-//props 체크 - node는 react의 node.
 AppLayout.propTypes = {
   children: PropTypes.node.isRequired,
 };

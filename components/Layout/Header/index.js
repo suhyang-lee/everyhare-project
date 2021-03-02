@@ -1,17 +1,17 @@
 /* 페이지 공통 헤더  */
 import React, { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
-import Router, { useRouter } from "next/router";
-import styled from "styled-components";
-
-import Category from "../Category/Category";
-import Login from "../../Login/Login";
-
-import styles from "./header.module.scss";
+import Router from "next/router";
 import { useDispatch, useSelector } from "react-redux";
-import { logoutRequstAction } from "../../../reducers/user";
-import Search from "./Search";
-import USER from "../../../actions/userAction";
+
+import styled from "styled-components";
+import styles from "./header.module.scss";
+
+import Login from "components/login";
+import Category from "components/layout/category";
+import Search from "components/layout/header/search";
+
+import { logoutRequstAction } from "reducers/user";
 
 const HeaderLink = styled.a`
   color: black;
@@ -20,20 +20,11 @@ const HeaderLink = styled.a`
 
 const Header = () => {
   const dispatch = useDispatch();
-  const router = useRouter();
-  const { user, logoutDone, zzimPostDone, notZzimPostDone } = useSelector(
-    (state) => state.user,
-  );
+  const { user, logoutDone } = useSelector((state) => state.user);
 
   const [isOpen, setIsOpen] = useState(false);
-  const [isShow, setIsShow] = useState(false);
+  const [isShowModal, setIsShowModal] = useState(false);
   const [isSearchShow, setIsSearchShow] = useState(false);
-
-  useEffect(() => {
-    dispatch({
-      type: USER.LOAD_USER_INFO_REQUEST,
-    });
-  }, [router]);
 
   useEffect(() => {
     if (logoutDone && !user) {
@@ -43,17 +34,25 @@ const Header = () => {
 
   const onLogOut = useCallback(() => {
     dispatch(logoutRequstAction());
+    Router.push("/logout");
   }, []);
 
   const onClickOpen = useCallback(() => {
     setIsOpen(!isOpen);
   }, [isOpen]);
 
-  const onClickLoginModal = useCallback(
+  const onLoginModalOpen = useCallback(
     (e) => {
-      setIsShow(!isShow);
+      setIsShowModal(true);
     },
-    [setIsShow, isShow],
+    [setIsShowModal, isShowModal],
+  );
+
+  const onLoginModalClose = useCallback(
+    (e) => {
+      setIsShowModal(false);
+    },
+    [setIsShowModal, isShowModal],
   );
 
   const onClickSearch = useCallback(
@@ -66,8 +65,11 @@ const Header = () => {
   return (
     <>
       {isSearchShow && <Search onClickSearch={onClickSearch} />}
-      {isShow && (
-        <Login onClickLoginModal={onClickLoginModal} isShow={isShow} />
+      {isShowModal && (
+        <Login
+          onLoginModalOpen={onLoginModalOpen}
+          onLoginModalClose={onLoginModalClose}
+        />
       )}
       <header className={styles.header}>
         <div className={styles.headerItemsWrapper}>
@@ -101,17 +103,19 @@ const Header = () => {
                     <li onClick={onLogOut}>
                       <h2>로그아웃</h2>
                     </li>
-                    <li className={styles.circleBtn}>
-                      <div className={styles.zzimed}>
-                        {user.Zzimed.length || 0}
-                      </div>
-                      <img src="/images/icon-shopping.svg" alt="담아두기" />
-                    </li>
+                    <Link href="/mypage/items">
+                      <li className={styles.circleBtn}>
+                        <div className={styles.zzimed}>
+                          {user.Zzimed.length || 0}
+                        </div>
+                        <img src="/images/icon-shopping.svg" alt="담아두기" />
+                      </li>
+                    </Link>
                   </>
                 ) : (
                   <>
                     <li>
-                      <h2 onClick={onClickLoginModal}>로그인</h2>
+                      <h2 onClick={onLoginModalOpen}>로그인</h2>
                     </li>
                     <li>
                       <h2>

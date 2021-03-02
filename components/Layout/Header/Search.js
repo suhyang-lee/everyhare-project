@@ -1,11 +1,12 @@
 /* 페이지 공통 헤더  */
-import React, { useCallback, useEffect, useState } from "react";
-import { SearchOutlined } from "@ant-design/icons";
+import React, { useCallback, useEffect } from "react";
 import Router from "next/router";
+
+import { SearchOutlined } from "@ant-design/icons";
 import { CloseOutlined } from "@ant-design/icons";
 
 import styles from "./search.module.scss";
-import useInput from "../../../Hooks/useInput";
+import useInput from "hooks/useInput";
 
 const Search = ({ onClickSearch }) => {
   const [search, onChangeSearch] = useInput("");
