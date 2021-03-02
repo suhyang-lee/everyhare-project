@@ -19,6 +19,10 @@ const TITLEINFO = {
     discription:
       "회원님께서 다른 회원님께 회원님의 물건을 대여 한 경우에 대한 거래 내역입니다",
   },
+  items: {
+    title: "관심 있는 물품",
+    discription: "회원님께서 담아 둔 관심 상품 입니다",
+  },
   posts: {
     title: "내가 쓴 글 보기",
     discription: "회원님께서 작성하신 게시글 입니다",
@@ -44,6 +48,13 @@ const MYPAGETYPE = {
   comments: 1,
   info: 2,
   signout: 3,
+  items: 4,
 };
 
-export { CATEOGRY, TITLEINFO, MYPAGETYPE };
+const STATE = {
+  0: "거래대기",
+  1: "거래승인",
+  2: "거래완료",
+};
+
+export { CATEOGRY, TITLEINFO, MYPAGETYPE, STATE };

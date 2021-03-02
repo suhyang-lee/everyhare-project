@@ -1,7 +1,12 @@
 const getFormatDate = (date) => {
-  const d = new Date(date);
+  const newData = new Date(date);
 
-  return `${d.getFullYear()}.${d.getMonth() + 1}.${d.getDate()}`;
+  const year = newData.getFullYear();
+  let month = 1 + newData.getMonth();
+  month = month >= 10 ? month : "0" + month;
+  let day = newData.getDate();
+  day = day >= 10 ? day : "0" + day;
+  return `${year}-${month}-${day}`;
 };
 
 export { getFormatDate };
