@@ -1,10 +1,17 @@
-const path = require("path");
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
+});
 
-module.exports = {
+module.exports = withBundleAnalyzer({
   compress: true,
   webpack(config, { webpack }) {
-    const prod = process.env.MODE_ENV === "production";
-    const plugins = [...config.plugins];
+    config.resolve.modules.push(__dirname);
+    const prod = process.env.NODE_ENV === "production";
+    const plugins = [
+      ...config.plugins,
+      new webpack.IgnorePlugin(/jsdom$/),
+      new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /^\.\/ko$/),
+    ];
 
     return {
       ...config,
@@ -13,4 +20,4 @@ module.exports = {
       plugins,
     };
   },
-};
+});
