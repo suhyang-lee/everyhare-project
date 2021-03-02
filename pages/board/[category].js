@@ -3,24 +3,33 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 
-import { END } from "redux-saga";
 import axios from "axios";
-import wrapper from "../../store/configureStore";
+import wrapper from "store/configureStore";
+import { END } from "redux-saga";
+import { CATEOGRY } from "utils/variables";
 
-import AppLayout from "../../components/Layout/AppLayout";
-import BoardList from "../../components/Board";
-import { CATEOGRY } from "../../utils/variables";
-import POST from "../../actions/postAction";
-import USER from "../../actions/userAction";
+import POST from "actions/postAction";
+import USER from "actions/userAction";
+
+import AppLayout from "components/layout/appLayout";
+import BoardList from "components/board";
+import LoadingIcon from "components/common/loadingIcon";
 
 const Board = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const { category } = router.query;
 
-  const { posts, hasMorePost, loadPostsLoading } = useSelector(
+  const { posts, hasMorePost, loadPostsLoading, loadPostsDone } = useSelector(
     (state) => state.post,
   );
+
+  useEffect(() => {
+    dispatch({
+      type: POST.LOAD_POSTS_REQUEST,
+      data: category,
+    });
+  }, [category]);
 
   useEffect(() => {
     function onScroll() {
@@ -44,6 +53,10 @@ const Board = () => {
     };
   }, [hasMorePost, loadPostsLoading, posts]);
 
+  if (loadPostsLoading || !loadPostsDone) {
+    return <LoadingIcon />;
+  }
+
   return (
     <AppLayout>
       <Head>
@@ -63,11 +76,6 @@ export const getServerSideProps = wrapper.getServerSideProps(
 
     context.store.dispatch({
       type: USER.LOAD_USER_INFO_REQUEST,
-    });
-
-    context.store.dispatch({
-      type: POST.LOAD_POSTS_REQUEST,
-      data: context.query.category,
     });
 
     context.store.dispatch(END);
