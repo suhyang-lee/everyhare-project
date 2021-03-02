@@ -1,6 +1,5 @@
-import SEARCH from "../actions/searchAction";
-
 import produce from "immer";
+import SEARCH from "actions/searchAction";
 
 export const initState = {
   searchs: [],

@@ -1,6 +1,5 @@
-import POST from "../actions/postAction";
-
 import produce from "immer";
+import POST from "actions/postAction";
 
 export const initState = {
   posts: [],
@@ -24,13 +23,29 @@ export const initState = {
   addPostDone: false,
   addPostError: null,
 
+  updatePostLoading: false,
+  updatePostDone: false,
+  updatePostError: null,
+
+  removePostLoading: false,
+  removePostDone: false,
+  removePostError: null,
+
   uploadImagesLoading: false,
   uploadImagesDone: false,
   uploadImagesError: null,
 
+  removeUploadImagesLoading: false,
+  removeUploadImagesDone: false,
+  removeUploadImagesError: null,
+
   loadPostLoading: false,
   loadPostDone: false,
   loadPostError: null,
+
+  applyRentalLoading: false,
+  applyRentalDone: false,
+  applyRentalError: null,
 
   addCommentLoading: false,
   addCommentDone: false,
@@ -55,9 +70,7 @@ export const addComment = (data) => ({
   data,
 });
 
-//Reducer : 이전 상태를 액션을 통해 다음 상태로 만들어내는 함수(불변성은 지켜야함)
 const reducer = (state = initState, action) => {
-  //Immer 사용
   return produce(state, (draft) => {
     switch (action.type) {
       case POST.LOAD_POSTS_REQUEST:
@@ -92,6 +105,51 @@ const reducer = (state = initState, action) => {
         draft.addPostError = action.error;
         break;
 
+      case POST.UPDATE_POST_REQUEST:
+        draft.updatePostLoading = true;
+        draft.updatePostDone = false;
+        draft.updatePostError = null;
+        break;
+      case POST.UPDATE_POST_SUCCESS:
+        draft.updatePostLoading = false;
+        draft.updatePostDone = true;
+        draft.posts.unshift(action.data);
+        draft.ImagePaths = [];
+        break;
+      case POST.UPDATE_POST_FAILURE:
+        draft.updatePostLoading = false;
+        draft.updatePostDone = action.error;
+        break;
+
+      case POST.REMOVE_POST_REQUEST:
+        draft.removePostLoading = true;
+        draft.removePostDone = false;
+        draft.removePostError = null;
+        break;
+      case POST.REMOVE_POST_SUCCESS:
+        draft.removePostLoading = false;
+        draft.removePostDone = true;
+        draft.ImagePaths = [];
+        break;
+      case POST.REMOVE_POST_FAILURE:
+        draft.removePostLoading = false;
+        draft.removePostDone = action.error;
+        break;
+
+      case POST.APPLY_RENTAL_REQUEST:
+        draft.applyRentalLoading = true;
+        draft.applyRentalDone = false;
+        draft.applyRentalError = null;
+        break;
+      case POST.APPLY_RENTAL_SUCCESS:
+        draft.applyRentalLoading = false;
+        draft.applyRentalDone = true;
+        break;
+      case POST.APPLY_RENTAL_FAILURE:
+        draft.applyRentalLoading = false;
+        draft.applyRentalError = action.error;
+        break;
+
       case POST.UPLOAD_IMAGES_REQUEST:
         draft.uploadImagesLoading = true;
         draft.uploadImagesDone = false;
@@ -105,6 +163,20 @@ const reducer = (state = initState, action) => {
       case POST.UPLOAD_IMAGES_FAILURE:
         draft.uploadImagesLoading = false;
         draft.uploadImagesError = action.error;
+        break;
+
+      case POST.REMOVE_IMAGES_REQUEST:
+        draft.removeUploadImagesLoading = true;
+        draft.removeUploadImagesDone = false;
+        draft.removeUploadImagesError = null;
+        break;
+      case POST.REMOVE_IMAGES_SUCCESS:
+        draft.removeUploadImagesLoading = false;
+        draft.removeUploadImagesDone = true;
+        break;
+      case POST.REMOVE_IMAGES_FAILURE:
+        draft.removeUploadImagesLoading = false;
+        draft.removeUploadImagesError = action.error;
         break;
 
       case POST.REMOVE_IMAGE:

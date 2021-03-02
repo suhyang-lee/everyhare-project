@@ -1,7 +1,7 @@
 import { all, fork, delay, put, takeLatest, call } from "redux-saga/effects";
 import axios from "axios";
 
-import USER from "../actions/userAction";
+import USER from "actions/userAction";
 
 function signUpAPI(data) {
   return axios.post("/user", data);

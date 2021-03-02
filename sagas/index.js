@@ -1,10 +1,11 @@
 import { all, fork } from "redux-saga/effects";
-import userSaga from "./user";
-import postSaga from "./post";
-import searchSaga from "./search";
-import mypostSaga from "./mypage";
 import axios from "axios";
-import { authTokenClosure } from "../utils/authToken";
+
+import userSaga from "sagas/user";
+import postSaga from "sagas/post";
+import searchSaga from "sagas/search";
+import mypostSaga from "sagas/mypage";
+import { authTokenClosure } from "utils/authToken";
 
 axios.defaults.baseURL = "http://localhost:3060";
 axios.defaults.withCredentials = true;

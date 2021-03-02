@@ -1,22 +1,21 @@
-import USER from "../actions/userAction";
-import Router from "next/router";
 import produce from "immer";
-import { authTokenClosure } from "../utils/authToken";
+import USER from "actions/userAction";
+import { authTokenClosure } from "utils/authToken";
 
 export const initState = {
-  loginLoadding: false, //로그인 시도
+  loginLoadding: false,
   loginDone: false,
   loginError: false,
 
-  loadUserInfoLoadding: false, //로그인 정보 시도
+  loadUserInfoLoadding: false,
   loadUserInfoDone: false,
   loadUserInfoError: false,
 
-  logoutLoadding: false, //로그아웃 시도
+  logoutLoadding: false,
   logoutDone: false,
   logoutError: false,
 
-  changeNicknameLoadding: false, //닉네임 변경 시도
+  changeNicknameLoadding: false,
   changeNicknameDone: false,
   changeNicknameError: false,
 

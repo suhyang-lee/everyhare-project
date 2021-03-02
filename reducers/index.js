@@ -1,14 +1,10 @@
 import { HYDRATE } from "next-redux-wrapper";
 import { combineReducers } from "redux";
 
-import user from "./user";
-import post from "./post";
-import search from "./search";
-import mypage from "./mypage";
-
-/* combineReducers를 통해 reducer 함수 합치기
- * Hydrate(SSR)를 위해서 index를 추가한 것 임.
- */
+import user from "reducers/user";
+import post from "reducers/post";
+import search from "reducers/search";
+import mypage from "reducers/mypage";
 
 const rootReducer = (state, action) => {
   switch (action.type) {

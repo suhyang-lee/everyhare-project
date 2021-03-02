@@ -1,17 +1,8 @@
-import {
-  all,
-  delay,
-  fork,
-  put,
-  takeLatest,
-  throttle,
-  call,
-} from "redux-saga/effects";
+import { all, fork, put, takeLatest, throttle, call } from "redux-saga/effects";
 import axios from "axios";
 
-import POST from "../actions/postAction";
+import POST from "actions/postAction";
 
-//전체 게시물 가져오기
 function loadPostAPI(data) {
   return axios.get(`/post/${data.postId}`, data);
 }
@@ -32,7 +23,6 @@ function* loadPosts(action) {
   }
 }
 
-//게시물 등록하기
 function addPostAPI(data) {
   return axios.post("/post", data);
 }
@@ -53,7 +43,47 @@ function* addPost(action) {
   }
 }
 
-//이미지 등록하기
+function updatePostAPI(data) {
+  return axios.patch(`/post/${parseInt(data.id, 10)}`, data);
+}
+
+function* updatePost(action) {
+  try {
+    const result = yield call(updatePostAPI, action.data);
+    yield put({
+      type: POST.UPDATE_POST_SUCCESS,
+      data: result.data,
+    });
+  } catch (err) {
+    console.error(err);
+    yield put({
+      type: POST.UPDATE_POST_FAILURE,
+      error: err.response.data,
+    });
+  }
+}
+
+function removePostAPI(data) {
+  return axios.delete(`/post/${data.postId}`, data);
+}
+
+function* removePost(action) {
+  try {
+    const result = yield call(removePostAPI, action.data);
+    console.log(result);
+    yield put({
+      type: POST.REMOVE_POST_SUCCESS,
+      data: result.data,
+    });
+  } catch (err) {
+    console.error(err);
+    yield put({
+      type: POST.REMOVE_POST_FAILURE,
+      error: err.response.data,
+    });
+  }
+}
+
 function uploadImagesAPI(data) {
   return axios.post("/post/images", data);
 }
@@ -75,7 +105,27 @@ function* uploadImages(action) {
   }
 }
 
-//PostId로 게시물 가져오기
+function uploadRemoveImagesAPI(data) {
+  return axios.delete(`/post/images?id=${data.id}`, data);
+}
+
+function* uploadRemoveImages(action) {
+  try {
+    const result = yield call(uploadRemoveImagesAPI, action.data);
+
+    yield put({
+      type: POST.REMOVE_IMAGES_SUCCESS,
+      data: result.data.id,
+    });
+  } catch (err) {
+    console.error(err);
+    yield put({
+      type: POST.REMOVE_IMAGES_FAILURE,
+      error: err.response.data,
+    });
+  }
+}
+
 function loadPostsAPI(data, lastId) {
   return axios.get(`/posts/${encodeURIComponent(data)}?lastId=${lastId || 0}`);
 }
@@ -125,7 +175,6 @@ function zzimPostAPI(data) {
 
 function* zzimPost(action) {
   try {
-    console.log(action);
     const result = yield call(zzimPostAPI, action.data);
     yield put({
       type: POST.ZZIM_POST_SUCCESS,
@@ -162,7 +211,6 @@ function* notZzimPost(action) {
   }
 }
 
-/*신청하기
 function addApplyAPI(data) {
   return axios.post("post/apply", data);
 }
@@ -170,23 +218,24 @@ function addApplyAPI(data) {
 function* addApply(action) {
   try {
     const result = yield call(addApplyAPI, action.data);
-    console.log(result);
+
     yield put({
-      type: POST.ADD_APPLY_SUCCESS,
+      type: POST.APPLY_RENTAL_SUCCESS,
       data: result.data,
     });
   } catch (err) {
     console.error(err);
     yield put({
-      type: POST.ADD_APPLY_FAILURE,
+      type: POST.APPLY_RENTAL_FAILURE,
       error: err.response.data,
     });
   }
 }
+
 function* watchAdd() {
   yield takeLatest(POST.ADD_COMMENT_REQUEST, addComment);
 }
-*/
+
 function* watchLoadPosts() {
   yield throttle(5000, POST.LOAD_POSTS_REQUEST, loadPosts);
 }
@@ -195,8 +244,20 @@ function* watchAddPost() {
   yield takeLatest(POST.ADD_POST_REQUEST, addPost);
 }
 
+function* watchUploadPost() {
+  yield takeLatest(POST.UPDATE_POST_REQUEST, updatePost);
+}
+
+function* watchRemovePost() {
+  yield takeLatest(POST.REMOVE_POST_REQUEST, removePost);
+}
+
 function* watchUploadImages() {
   yield takeLatest(POST.UPLOAD_IMAGES_REQUEST, uploadImages);
+}
+
+function* watchUploadRemoveImages() {
+  yield takeLatest(POST.REMOVE_IMAGES_REQUEST, uploadRemoveImages);
 }
 
 function* watchZzimPost() {
@@ -214,17 +275,26 @@ function* watchAddComment() {
   yield takeLatest(POST.ADD_COMMENT_REQUEST, addComment);
 }
 
+function* watchAddApply() {
+  yield takeLatest(POST.APPLY_RENTAL_REQUEST, addApply);
+}
+
 export default function* postSaga() {
   yield all([
+    fork(watchAdd),
     fork(watchLoadPosts),
     fork(watchloadPost),
+    fork(watchRemovePost),
 
     fork(watchAddPost),
+    fork(watchUploadPost),
     fork(watchUploadImages),
+    fork(watchUploadRemoveImages),
 
     fork(watchZzimPost),
     fork(watchNotZzimPost),
 
     fork(watchAddComment),
+    fork(watchAddApply),
   ]);
 }
