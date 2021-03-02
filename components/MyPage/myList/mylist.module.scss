@@ -1,0 +1,17 @@
+.list {
+  width: 100%;
+  margin-top: 1rem;
+
+  li {
+    box-sizing: border-box;
+    padding: 1rem;
+    border: 1px solid #d9d9d9;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+
+    span {
+      color: red;
+      margin-right: 0.5rem;
+    }
+  }
+}
