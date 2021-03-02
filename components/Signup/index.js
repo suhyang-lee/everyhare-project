@@ -1,13 +1,14 @@
 import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Router from "next/router";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import styled from "styled-components";
-import { WarningOutlined } from "@ant-design/icons";
 
-import { SIGN_UP_REQUEST } from "../../actions/userAction";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { WarningOutlined } from "@ant-design/icons";
+import { useForm } from "react-hook-form";
+
+import styled from "styled-components";
+import USER from "actions/userAction";
 import styles from "./signup.module.scss";
 
 const Error = styled.div`
@@ -54,9 +55,7 @@ const signUpSchema = yup.object().shape({
 
 const Signup = () => {
   const dispatch = useDispatch();
-  const { signupLoading, signupDone, signupError, user } = useSelector(
-    (state) => state.user,
-  );
+  const { signupDone, signupError, user } = useSelector((state) => state.user);
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(signUpSchema),
     mode: "onBlur",
@@ -101,7 +100,7 @@ const Signup = () => {
     data.provider = "local";
     console.log(data);
     dispatch({
-      type: SIGN_UP_REQUEST,
+      type: USER.SIGN_UP_REQUEST,
       data: data,
     });
   }, []);
