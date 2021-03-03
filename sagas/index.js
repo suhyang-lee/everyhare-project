@@ -1,6 +1,6 @@
 import { all, fork } from "redux-saga/effects";
 import axios from "axios";
-import { ServerURL } from "utils/config";
+import { ServerURL } from "config/config";
 
 import userSaga from "sagas/user";
 import postSaga from "sagas/post";
