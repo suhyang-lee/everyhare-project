@@ -3,9 +3,11 @@
     width: 80%;
     height: 100vh;
     right: 0;
+
     .lnbNav {
       width: 100%;
       grid-template-rows: 3rem 1fr;
+      -ms-grid-template-rows: 3rem 1fr;
       display: grid;
       box-sizing: border-box;
       overflow: hidden;
@@ -22,6 +24,7 @@
     }
     .lnbItem:first-child {
       grid-row: 2/3;
+      -ms-grid-row: 2/3;
       display: grid;
       width: 100%;
       line-height: 3rem;
@@ -45,6 +48,7 @@
       display: flex;
       flex-direction: row;
       grid-row: 1/2;
+      -ms-grid-row: 1/2;
       justify-content: space-between;
       border-bottom: 1px solid $line-color-gray;
       li {
@@ -70,6 +74,7 @@
     .lnbNav {
       width: 100%;
       grid-template-rows: 150px 1fr;
+      -ms-grid-template-rows: 150px 1fr;
       display: grid;
       box-sizing: border-box;
       overflow: hidden;
@@ -91,6 +96,7 @@
       display: grid;
       width: 100%;
       grid-template-rows: repeat(8, 100px);
+      -ms-grid-template-rows: repeat(8, 100px);
 
       li {
         line-height: 100px;
@@ -139,6 +145,7 @@
     .lnbNav {
       width: 1200px;
       display: grid;
+      -ms-grid-template-columns: repeat(12, 1fr);
       grid-template-columns: repeat(12, 1fr);
       -moz-column-gap: 27px;
       column-gap: 27px;

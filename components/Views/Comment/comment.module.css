@@ -50,7 +50,7 @@
   width: 46px;
   height: 46px;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;

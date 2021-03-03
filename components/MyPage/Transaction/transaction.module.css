@@ -67,4 +67,26 @@
   color: #fff;
   border-radius: 5px;
 }
+
+.none {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  padding: 3rem;
+  font-size: 1.4rem;
+  border: 1px solid #d9d9d9;
+  color: #8a8a8a;
+  border-radius: 5px;
+}
+
+.none .icon {
+  margin-right: 0.5rem;
+}
 /*# sourceMappingURL=transaction.module.css.map */

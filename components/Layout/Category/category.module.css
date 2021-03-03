@@ -13,6 +13,7 @@
     width: 100%;
     -ms-grid-rows: 3rem 1fr;
         grid-template-rows: 3rem 1fr;
+    -ms-grid-template-rows: 3rem 1fr;
     display: -ms-grid;
     display: grid;
     -webkit-box-sizing: border-box;
@@ -27,9 +28,8 @@
     font-weight: 300;
   }
   .lnbNav .lnbItem:first-child {
-    -ms-grid-row: 2;
-    -ms-grid-row-span: 1;
     grid-row: 2/3;
+    -ms-grid-row: 2/3;
     display: -ms-grid;
     display: grid;
     width: 100%;
@@ -59,9 +59,8 @@
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
             flex-direction: row;
-    -ms-grid-row: 1;
-    -ms-grid-row-span: 1;
     grid-row: 1/2;
+    -ms-grid-row: 1/2;
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
@@ -96,6 +95,7 @@
     width: 100%;
     -ms-grid-rows: 150px 1fr;
         grid-template-rows: 150px 1fr;
+    -ms-grid-template-rows: 150px 1fr;
     display: -ms-grid;
     display: grid;
     -webkit-box-sizing: border-box;
@@ -120,6 +120,7 @@
     width: 100%;
     -ms-grid-rows: (100px)[8];
         grid-template-rows: repeat(8, 100px);
+    -ms-grid-template-rows: repeat(8, 100px);
   }
   .lnbNav .lnbItem:first-of-type li {
     line-height: 100px;
@@ -189,6 +190,7 @@
     width: 1200px;
     display: -ms-grid;
     display: grid;
+    -ms-grid-template-columns: repeat(12, 1fr);
     -ms-grid-columns: (1fr)[12];
         grid-template-columns: repeat(12, 1fr);
     -webkit-column-gap: 27px;

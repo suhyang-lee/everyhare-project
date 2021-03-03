@@ -82,11 +82,11 @@
   }
   .bannerWriteBtn:hover {
     -webkit-animation-duration: 0.2s;
-            animation-duration: 0.2s;
+    animation-duration: 0.2s;
     -webkit-animation-name: seepButton;
-            animation-name: seepButton;
+    animation-name: seepButton;
     -webkit-animation-timing-function: ease-in;
-            animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
   }
   @-webkit-keyframes seepButton {
     0% {
