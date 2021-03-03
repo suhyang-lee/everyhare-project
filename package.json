@@ -7,7 +7,7 @@
     "dev": "next -p 3000",
     "build": "cross-env ANALYZE=true NODE_ENV=production next build",
     "start": "cross-env NODE_ENV=production next start",
-    "deploy" : "cross-env NODE_ENV=production next build && next export"
+    "deploy" : "NODE_ENV=production next build && next export"
   },
   "author": "SUHYANG.LEE",
   "license": "ISC",
