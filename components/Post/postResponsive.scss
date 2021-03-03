@@ -23,7 +23,7 @@
 }
 
 @include tablet {
-  .wrapper { 
+  .wrapper {
     margin-top: 10rem;
   }
 
@@ -45,7 +45,6 @@
     }
   }
 }
-
 
 @include desktop {
   .wrapper {

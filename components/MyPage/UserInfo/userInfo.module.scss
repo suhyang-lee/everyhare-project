@@ -51,6 +51,7 @@
     img {
       width: 140px;
       height: 140px;
+      -o-object-fit: cover;
       object-fit: cover;
       display: inline-flex;
       align-items: center;

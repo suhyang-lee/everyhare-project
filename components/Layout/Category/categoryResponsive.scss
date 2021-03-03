@@ -140,6 +140,7 @@
       width: 1200px;
       display: grid;
       grid-template-columns: repeat(12, 1fr);
+      -moz-column-gap: 27px;
       column-gap: 27px;
       justify-content: center;
       box-sizing: border-box;

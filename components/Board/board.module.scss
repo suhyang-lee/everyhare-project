@@ -40,6 +40,7 @@
 
 .listContents {
   display: grid;
+  -moz-column-gap: 24px;
   column-gap: 24px;
   row-gap: 40px;
   grid-template-rows: repeat(auto-fill, 1fr);

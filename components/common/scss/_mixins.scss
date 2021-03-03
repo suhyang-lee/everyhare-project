@@ -25,10 +25,24 @@
   }
 
   &:hover {
+    -webkit-animation-duration: 1s;
     animation-duration: 1s;
+    -webkit-animation-name: leftButtonSlide;
     animation-name: leftButtonSlide;
+    -webkit-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
+    -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
+  }
+
+  @-webkit-keyframes leftButtonSlide {
+    from {
+      margin-left: 10px;
+    }
+
+    to {
+      margin-left: 0px;
+    }
   }
 
   @keyframes leftButtonSlide {
@@ -53,10 +67,24 @@
   }
 
   &:hover {
+    -webkit-animation-duration: 1s;
     animation-duration: 1s;
+    -webkit-animation-name: rightButtonSlide;
     animation-name: rightButtonSlide;
+    -webkit-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
+    -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
+  }
+
+  @-webkit-keyframes rightButtonSlide {
+    from {
+      margin-right: 10px;
+    }
+
+    to {
+      margin-right: 0px;
+    }
   }
 
   @keyframes rightButtonSlide {
@@ -110,24 +138,25 @@
 @mixin basic-grid-columns($columnNum, $gap) {
   display: grid;
   grid-template-columns: repeat($columnNum, 1fr);
+  -moz-column-gap: $gap * 1px;
   column-gap: $gap * 1px;
 }
 
 // 반응형 미디어 쿼리 (Size: 360-720-1200)
 @mixin mobile {
-  @media  only screen and (min-width: #{$breakpoint-mobile}) and (max-width: #{$breakpoint-tablet - 1px}) {
+  @media only screen and (min-width: #{$breakpoint-mobile}) and (max-width: #{$breakpoint-tablet - 1px}) {
     @content;
   }
 }
 
 @mixin tablet {
-  @media  only screen and (min-width: #{$breakpoint-tablet}) and (max-width: #{$breakpoint-desktop - 1px}) {
+  @media only screen and (min-width: #{$breakpoint-tablet}) and (max-width: #{$breakpoint-desktop - 1px}) {
     @content;
   }
 }
 
 @mixin desktop {
-  @media  only screen and (min-width: #{$breakpoint-desktop}) {
+  @media only screen and (min-width: #{$breakpoint-desktop}) {
     @content;
   }
 }

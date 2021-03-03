@@ -1,4 +1,3 @@
-
 .slickImageWrapper {
   width: 100%;
   height: 500px;
@@ -7,6 +6,7 @@
   img {
     width: 100%;
     height: 500px;
+    -o-object-fit: cover;
     object-fit: cover;
     display: inline-flex;
     align-items: center;

@@ -15,6 +15,7 @@ const Loader = styled.div`
   border-radius: 50%;
   width: 50px;
   height: 50px;
+  -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
 
   @keyframes spin {

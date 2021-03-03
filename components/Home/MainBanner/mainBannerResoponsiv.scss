@@ -78,9 +78,22 @@
     height: 16%;
 
     &:hover {
+      -webkit-animation-duration: 0.2s;
       animation-duration: 0.2s;
+      -webkit-animation-name: seepButton;
       animation-name: seepButton;
+      -webkit-animation-timing-function: ease-in;
       animation-timing-function: ease-in;
+    }
+    @-webkit-keyframes seepButton {
+      0% {
+        opacity: 0%;
+      }
+
+      100% {
+        opacity: 100%;
+        background-color: $G-color-yellow;
+      }
     }
     @keyframes seepButton {
       0% {

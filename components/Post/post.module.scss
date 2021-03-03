@@ -160,6 +160,7 @@
   grid-template-rows: repeat(auto-fill, 1fr);
   grid-template-columns: repeat(auto-fill, minmax(151px, 1fr));
   row-gap: 8px;
+  -moz-column-gap: 8px;
   column-gap: 8px;
 
   input[type="file"] {
@@ -196,6 +197,7 @@
     img {
       width: 151px;
       height: 151px;
+      -o-object-fit: cover;
       object-fit: cover;
       display: inline-flex;
       align-items: center;
