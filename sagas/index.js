@@ -1,5 +1,6 @@
 import { all, fork } from "redux-saga/effects";
 import axios from "axios";
+import { ServerURL } from "utils/config";
 
 import userSaga from "sagas/user";
 import postSaga from "sagas/post";
@@ -7,7 +8,7 @@ import searchSaga from "sagas/search";
 import mypostSaga from "sagas/mypage";
 import { authTokenClosure } from "utils/authToken";
 
-axios.defaults.baseURL = "http://localhost:3060";
+axios.defaults.baseURL = ServerURL;
 axios.defaults.withCredentials = true;
 
 axios.interceptors.request.use(
