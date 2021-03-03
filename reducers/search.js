@@ -1,4 +1,4 @@
-import produce from "immer";
+import produce from "utils/produce";
 import SEARCH from "actions/searchAction";
 
 export const initState = {

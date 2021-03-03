@@ -1,4 +1,4 @@
-import produce from "immer";
+import produce from "utils/produce";
 import MYPAGE from "actions/mypageAction";
 
 export const initState = {

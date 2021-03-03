@@ -1,4 +1,4 @@
-import produce from "immer";
+import produce from "utils/produce";
 import POST from "actions/postAction";
 
 export const initState = {
